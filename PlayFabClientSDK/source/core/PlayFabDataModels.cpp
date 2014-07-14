@@ -6,55 +6,6 @@ using namespace rapidjson;
 
 
 
-RemoveFriendRequest::~RemoveFriendRequest()
-{
-	
-}
-
-void RemoveFriendRequest::writeJSON(PFStringJsonWriter& writer)
-{
-    writer.StartObject();
-
-	
-	writer.String("FriendPlayFabId"); writer.String(FriendPlayFabId.c_str());
-	
-	
-	writer.EndObject();
-}
-
-bool RemoveFriendRequest::readFromValue(const rapidjson::Value& obj)
-{
-	
-	const Value::Member* FriendPlayFabId_member = obj.FindMember("FriendPlayFabId");
-	if (FriendPlayFabId_member != NULL) FriendPlayFabId = FriendPlayFabId_member->value.GetString();
-	
-	
-	return true;
-}
-
-
-RemoveFriendResult::~RemoveFriendResult()
-{
-	
-}
-
-void RemoveFriendResult::writeJSON(PFStringJsonWriter& writer)
-{
-    writer.StartObject();
-
-	
-	
-	writer.EndObject();
-}
-
-bool RemoveFriendResult::readFromValue(const rapidjson::Value& obj)
-{
-	
-	
-	return true;
-}
-
-
 SetFriendTagsRequest::~SetFriendTagsRequest()
 {
 	
@@ -529,28 +480,6 @@ bool UpdatePasswordResult::readFromValue(const rapidjson::Value& obj)
 }
 
 
-Object::~Object()
-{
-	
-}
-
-void Object::writeJSON(PFStringJsonWriter& writer)
-{
-    writer.StartObject();
-
-	
-	
-	writer.EndObject();
-}
-
-bool Object::readFromValue(const rapidjson::Value& obj)
-{
-	
-	
-	return true;
-}
-
-
 LogEventRequest::~LogEventRequest()
 {
 	
@@ -566,7 +495,7 @@ void LogEventRequest::writeJSON(PFStringJsonWriter& writer)
 	if(!Body.empty()) {
 	writer.String("Body");
 	writer.StartObject();
-	for (std::map<std::string, Object>::iterator iter = Body.begin(); iter != Body.end(); ++iter) {
+	for (std::map<std::string, MultitypeVar>::iterator iter = Body.begin(); iter != Body.end(); ++iter) {
 		writer.String(iter->first.c_str()); iter->second.writeJSON(writer);
 	}
 	writer.EndObject();
@@ -585,7 +514,7 @@ bool LogEventRequest::readFromValue(const rapidjson::Value& obj)
 	const Value::Member* Body_member = obj.FindMember("Body");
 	if (Body_member != NULL) {
 		for (Value::ConstMemberIterator iter = Body_member->value.MemberBegin(); iter != Body_member->value.MemberEnd(); ++iter) {
-			Body[iter->name.GetString()] = Object(iter->value);
+			Body[iter->name.GetString()] = MultitypeVar(iter->value);
 		}
 	}
 	
@@ -707,9 +636,9 @@ void LoginWithFacebookRequest::writeJSON(PFStringJsonWriter& writer)
     writer.StartObject();
 
 	
-	writer.String("AccessToken"); writer.String(AccessToken.c_str());
-	
 	writer.String("TitleId"); writer.String(TitleId.c_str());
+	
+	writer.String("AccessToken"); writer.String(AccessToken.c_str());
 	
 	writer.String("CreateAccount"); writer.Bool(CreateAccount);
 	
@@ -720,11 +649,11 @@ void LoginWithFacebookRequest::writeJSON(PFStringJsonWriter& writer)
 bool LoginWithFacebookRequest::readFromValue(const rapidjson::Value& obj)
 {
 	
-	const Value::Member* AccessToken_member = obj.FindMember("AccessToken");
-	if (AccessToken_member != NULL) AccessToken = AccessToken_member->value.GetString();
-	
 	const Value::Member* TitleId_member = obj.FindMember("TitleId");
 	if (TitleId_member != NULL) TitleId = TitleId_member->value.GetString();
+	
+	const Value::Member* AccessToken_member = obj.FindMember("AccessToken");
+	if (AccessToken_member != NULL) AccessToken = AccessToken_member->value.GetString();
 	
 	const Value::Member* CreateAccount_member = obj.FindMember("CreateAccount");
 	if (CreateAccount_member != NULL) CreateAccount = CreateAccount_member->value.GetBool();
@@ -781,9 +710,9 @@ void LoginWithIOSDeviceIDRequest::writeJSON(PFStringJsonWriter& writer)
     writer.StartObject();
 
 	
-	writer.String("DeviceId"); writer.String(DeviceId.c_str());
-	
 	writer.String("TitleId"); writer.String(TitleId.c_str());
+	
+	writer.String("DeviceId"); writer.String(DeviceId.c_str());
 	
 	if(OS.length() > 0) { writer.String("OS"); writer.String(OS.c_str()); }
 	
@@ -798,11 +727,11 @@ void LoginWithIOSDeviceIDRequest::writeJSON(PFStringJsonWriter& writer)
 bool LoginWithIOSDeviceIDRequest::readFromValue(const rapidjson::Value& obj)
 {
 	
-	const Value::Member* DeviceId_member = obj.FindMember("DeviceId");
-	if (DeviceId_member != NULL) DeviceId = DeviceId_member->value.GetString();
-	
 	const Value::Member* TitleId_member = obj.FindMember("TitleId");
 	if (TitleId_member != NULL) TitleId = TitleId_member->value.GetString();
+	
+	const Value::Member* DeviceId_member = obj.FindMember("DeviceId");
+	if (DeviceId_member != NULL) DeviceId = DeviceId_member->value.GetString();
 	
 	const Value::Member* OS_member = obj.FindMember("OS");
 	if (OS_member != NULL) OS = OS_member->value.GetString();
@@ -828,9 +757,9 @@ void LoginWithAndroidDeviceIDRequest::writeJSON(PFStringJsonWriter& writer)
     writer.StartObject();
 
 	
-	writer.String("AndroidDeviceId"); writer.String(AndroidDeviceId.c_str());
-	
 	writer.String("TitleId"); writer.String(TitleId.c_str());
+	
+	writer.String("AndroidDeviceId"); writer.String(AndroidDeviceId.c_str());
 	
 	if(OS.length() > 0) { writer.String("OS"); writer.String(OS.c_str()); }
 	
@@ -845,11 +774,11 @@ void LoginWithAndroidDeviceIDRequest::writeJSON(PFStringJsonWriter& writer)
 bool LoginWithAndroidDeviceIDRequest::readFromValue(const rapidjson::Value& obj)
 {
 	
-	const Value::Member* AndroidDeviceId_member = obj.FindMember("AndroidDeviceId");
-	if (AndroidDeviceId_member != NULL) AndroidDeviceId = AndroidDeviceId_member->value.GetString();
-	
 	const Value::Member* TitleId_member = obj.FindMember("TitleId");
 	if (TitleId_member != NULL) TitleId = TitleId_member->value.GetString();
+	
+	const Value::Member* AndroidDeviceId_member = obj.FindMember("AndroidDeviceId");
+	if (AndroidDeviceId_member != NULL) AndroidDeviceId = AndroidDeviceId_member->value.GetString();
 	
 	const Value::Member* OS_member = obj.FindMember("OS");
 	if (OS_member != NULL) OS = OS_member->value.GetString();
@@ -928,8 +857,6 @@ void RegisterPlayFabUserResult::writeJSON(PFStringJsonWriter& writer)
 	
 	if(Username.length() > 0) { writer.String("Username"); writer.String(Username.c_str()); }
 	
-	if(DisplayName.length() > 0) { writer.String("DisplayName"); writer.String(DisplayName.c_str()); }
-	
 	
 	writer.EndObject();
 }
@@ -945,9 +872,6 @@ bool RegisterPlayFabUserResult::readFromValue(const rapidjson::Value& obj)
 	
 	const Value::Member* Username_member = obj.FindMember("Username");
 	if (Username_member != NULL) Username = Username_member->value.GetString();
-	
-	const Value::Member* DisplayName_member = obj.FindMember("DisplayName");
-	if (DisplayName_member != NULL) DisplayName = DisplayName_member->value.GetString();
 	
 	
 	return true;
@@ -3359,9 +3283,9 @@ void ValidateIOSReceiptRequest::writeJSON(PFStringJsonWriter& writer)
 	
 	writer.String("ReceiptData"); writer.String(ReceiptData.c_str());
 	
-	writer.String("CurrencyCode"); writer.String(CurrencyCode.c_str());
-	
 	writer.String("ObjectName"); writer.String(ObjectName.c_str());
+	
+	writer.String("CurrencyCode"); writer.String(CurrencyCode.c_str());
 	
 	writer.String("PurchasePrice"); writer.Double(PurchasePrice);
 	
@@ -3375,11 +3299,11 @@ bool ValidateIOSReceiptRequest::readFromValue(const rapidjson::Value& obj)
 	const Value::Member* ReceiptData_member = obj.FindMember("ReceiptData");
 	if (ReceiptData_member != NULL) ReceiptData = ReceiptData_member->value.GetString();
 	
-	const Value::Member* CurrencyCode_member = obj.FindMember("CurrencyCode");
-	if (CurrencyCode_member != NULL) CurrencyCode = CurrencyCode_member->value.GetString();
-	
 	const Value::Member* ObjectName_member = obj.FindMember("ObjectName");
 	if (ObjectName_member != NULL) ObjectName = ObjectName_member->value.GetString();
+	
+	const Value::Member* CurrencyCode_member = obj.FindMember("CurrencyCode");
+	if (CurrencyCode_member != NULL) CurrencyCode = CurrencyCode_member->value.GetString();
 	
 	const Value::Member* PurchasePrice_member = obj.FindMember("PurchasePrice");
 	if (PurchasePrice_member != NULL) PurchasePrice = PurchasePrice_member->value.GetDouble();
@@ -3595,6 +3519,55 @@ bool AddFriendResult::readFromValue(const rapidjson::Value& obj)
 	
 	const Value::Member* Created_member = obj.FindMember("Created");
 	if (Created_member != NULL) Created = Created_member->value.GetBool();
+	
+	
+	return true;
+}
+
+
+RemoveFriendRequest::~RemoveFriendRequest()
+{
+	
+}
+
+void RemoveFriendRequest::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	writer.String("FriendPlayFabId"); writer.String(FriendPlayFabId.c_str());
+	
+	
+	writer.EndObject();
+}
+
+bool RemoveFriendRequest::readFromValue(const rapidjson::Value& obj)
+{
+	
+	const Value::Member* FriendPlayFabId_member = obj.FindMember("FriendPlayFabId");
+	if (FriendPlayFabId_member != NULL) FriendPlayFabId = FriendPlayFabId_member->value.GetString();
+	
+	
+	return true;
+}
+
+
+RemoveFriendResult::~RemoveFriendResult()
+{
+	
+}
+
+void RemoveFriendResult::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	
+	writer.EndObject();
+}
+
+bool RemoveFriendResult::readFromValue(const rapidjson::Value& obj)
+{
 	
 	
 	return true;

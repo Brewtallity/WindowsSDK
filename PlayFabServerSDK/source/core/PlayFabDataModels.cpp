@@ -2468,8 +2468,6 @@ void UserInfoResponse::writeJSON(PFStringJsonWriter& writer)
 	
 	if(Username.length() > 0) { writer.String("Username"); writer.String(Username.c_str()); }
 	
-	if(DisplayName.length() > 0) { writer.String("DisplayName"); writer.String(DisplayName.c_str()); }
-	
 	if(TitleDisplayName.length() > 0) { writer.String("TitleDisplayName"); writer.String(TitleDisplayName.c_str()); }
 	
 	if(!Inventory.empty()) {
@@ -2506,9 +2504,6 @@ bool UserInfoResponse::readFromValue(const rapidjson::Value& obj)
 	
 	const Value::Member* Username_member = obj.FindMember("Username");
 	if (Username_member != NULL) Username = Username_member->value.GetString();
-	
-	const Value::Member* DisplayName_member = obj.FindMember("DisplayName");
-	if (DisplayName_member != NULL) DisplayName = DisplayName_member->value.GetString();
 	
 	const Value::Member* TitleDisplayName_member = obj.FindMember("TitleDisplayName");
 	if (TitleDisplayName_member != NULL) TitleDisplayName = TitleDisplayName_member->value.GetString();

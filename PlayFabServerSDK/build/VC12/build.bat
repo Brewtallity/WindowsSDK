@@ -11,3 +11,6 @@ msbuild PlayFabAPI\PlayFabAPI.vcxproj /p:configuration="Release" /p:platform="x6
 rd PlayFabAPI\Debug /s /q
 rd PlayFabAPI\Release /s /q
 rd PlayFabAPI\x64 /s /q
+rd Debug /s /q
+rd Release /s /q
+rd x64 /s /q

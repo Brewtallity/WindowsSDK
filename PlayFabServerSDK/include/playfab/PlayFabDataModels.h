@@ -1171,7 +1171,6 @@ namespace PlayFab
 		
 		std::string PlayFabId;
 		std::string Username;
-		std::string DisplayName;
 		std::string TitleDisplayName;
 		std::list<ItemInstance> Inventory;
 		std::map<std::string, Int32> VirtualCurrency;

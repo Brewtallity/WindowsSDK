@@ -12,6 +12,54 @@ std::string PlayFabBaseModel::toJSONString()
     return buffer.GetString();
 }
 
+void MultitypeVar::writeJSON(PFStringJsonWriter& writer)
+{
+    switch (mType)
+    {
+    case MultitypeNull:
+        writer.Null();
+        break;
+    case MultitypeBool:
+        writer.Bool(mBool);
+        break;
+    case MultitypeNumber:
+        writer.Double(mNumber);
+        break;
+    case MultitypeString:
+        writer.String(mString.c_str());
+        break;
+    }
+}
+
+bool MultitypeVar::readFromValue(const rapidjson::Value& obj)
+{
+    if (obj.IsNull())
+    {
+        mType = MultitypeNull;
+    }
+    else if (obj.IsBool())
+    {
+        mType = MultitypeBool;
+        mBool = obj.GetBool();
+    }
+    else if (obj.IsNumber())
+    {
+        mType = MultitypeNumber;
+        mNumber = obj.GetDouble();
+    }
+    else if (obj.IsString())
+    {
+        mType = MultitypeNumber;
+        mString = obj.GetString();
+    }
+    else
+    {
+        mType = MultitypeNull;
+        return false;
+    }
+    return true;
+}
+
 void PlayFab::writeDatetime(time_t datetime, PFStringJsonWriter& writer)
 {
 	char buff[40];

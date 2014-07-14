@@ -7,41 +7,6 @@ namespace PlayFab
 {
 
 	
-	struct RemoveFriendRequest : public PlayFabBaseModel
-    {
-		
-		std::string FriendPlayFabId;
-	
-        RemoveFriendRequest() {}
-
-		RemoveFriendRequest(const rapidjson::Value& obj)
-        {
-            readFromValue(obj);
-        }
-		
-		~RemoveFriendRequest();
-		
-        void writeJSON(PFStringJsonWriter& writer);
-        bool readFromValue(const rapidjson::Value& obj);
-    };
-	
-	struct RemoveFriendResult : public PlayFabBaseModel
-    {
-		
-	
-        RemoveFriendResult() {}
-
-		RemoveFriendResult(const rapidjson::Value& obj)
-        {
-            readFromValue(obj);
-        }
-		
-		~RemoveFriendResult();
-		
-        void writeJSON(PFStringJsonWriter& writer);
-        bool readFromValue(const rapidjson::Value& obj);
-    };
-	
 	struct SetFriendTagsRequest : public PlayFabBaseModel
     {
 		
@@ -296,28 +261,11 @@ namespace PlayFab
         bool readFromValue(const rapidjson::Value& obj);
     };
 	
-	struct Object : public PlayFabBaseModel
-    {
-		
-	
-        Object() {}
-
-		Object(const rapidjson::Value& obj)
-        {
-            readFromValue(obj);
-        }
-		
-		~Object();
-		
-        void writeJSON(PFStringJsonWriter& writer);
-        bool readFromValue(const rapidjson::Value& obj);
-    };
-	
 	struct LogEventRequest : public PlayFabBaseModel
     {
 		
 		std::string eventName;
-		std::map<std::string, Object> Body;
+		std::map<std::string, MultitypeVar> Body;
 	
         LogEventRequest() {}
 
@@ -391,8 +339,8 @@ namespace PlayFab
 	struct LoginWithFacebookRequest : public PlayFabBaseModel
     {
 		
-		std::string AccessToken;
 		std::string TitleId;
+		std::string AccessToken;
 		bool CreateAccount;
 	
         LoginWithFacebookRequest() {}
@@ -431,8 +379,8 @@ namespace PlayFab
 	struct LoginWithIOSDeviceIDRequest : public PlayFabBaseModel
     {
 		
-		std::string DeviceId;
 		std::string TitleId;
+		std::string DeviceId;
 		std::string OS;
 		std::string DeviceModel;
 		bool CreateAccount;
@@ -453,8 +401,8 @@ namespace PlayFab
 	struct LoginWithAndroidDeviceIDRequest : public PlayFabBaseModel
     {
 		
-		std::string AndroidDeviceId;
 		std::string TitleId;
+		std::string AndroidDeviceId;
 		std::string OS;
 		std::string AndroidDevice;
 		bool CreateAccount;
@@ -500,7 +448,6 @@ namespace PlayFab
 		std::string PlayFabId;
 		std::string SessionTicket;
 		std::string Username;
-		std::string DisplayName;
 	
         RegisterPlayFabUserResult() {}
 
@@ -1659,8 +1606,8 @@ namespace PlayFab
     {
 		
 		std::string ReceiptData;
-		std::string CurrencyCode;
 		std::string ObjectName;
+		std::string CurrencyCode;
 		double PurchasePrice;
 	
         ValidateIOSReceiptRequest() {}
@@ -1789,6 +1736,41 @@ namespace PlayFab
         }
 		
 		~AddFriendResult();
+		
+        void writeJSON(PFStringJsonWriter& writer);
+        bool readFromValue(const rapidjson::Value& obj);
+    };
+	
+	struct RemoveFriendRequest : public PlayFabBaseModel
+    {
+		
+		std::string FriendPlayFabId;
+	
+        RemoveFriendRequest() {}
+
+		RemoveFriendRequest(const rapidjson::Value& obj)
+        {
+            readFromValue(obj);
+        }
+		
+		~RemoveFriendRequest();
+		
+        void writeJSON(PFStringJsonWriter& writer);
+        bool readFromValue(const rapidjson::Value& obj);
+    };
+	
+	struct RemoveFriendResult : public PlayFabBaseModel
+    {
+		
+	
+        RemoveFriendResult() {}
+
+		RemoveFriendResult(const rapidjson::Value& obj)
+        {
+            readFromValue(obj);
+        }
+		
+		~RemoveFriendResult();
 		
         void writeJSON(PFStringJsonWriter& writer);
         bool readFromValue(const rapidjson::Value& obj);
