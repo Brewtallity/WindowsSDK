@@ -1,4 +1,4 @@
-#include "HttpRequesterCURL.h"
+#include "playfab/HttpRequesterCURL.h"
 #include "playfab/HttpRequest.h"
 
 #include <curl/curl.h>

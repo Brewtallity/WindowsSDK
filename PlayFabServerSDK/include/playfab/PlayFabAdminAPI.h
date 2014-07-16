@@ -11,31 +11,34 @@
 
 namespace PlayFab
 {
-	typedef void(*GetUserAccountInfoCallback)(GetUserAccountInfoResult& result, void* userData);
-	typedef void(*SendAccountRecoveryEmailCallback)(SendAccountRecoveryEmailResult& result, void* userData);
-	typedef void(*UpdateUserTitleDisplayNameCallback)(UpdateUserTitleDisplayNameResult& result, void* userData);
-	typedef void(*GetCatalogItemsCallback)(GetCatalogItemsResult& result, void* userData);
-	typedef void(*GetRandomResultTablesCallback)(GetRandomResultTablesResult& result, void* userData);
-	typedef void(*GetTitleDataCallback)(GetPublicTitleDataResult& result, void* userData);
-	typedef void(*SetCatalogItemsCallback)(UpdateCatalogItemsResult& result, void* userData);
-	typedef void(*SetTitleDataCallback)(SetTitleDataResult& result, void* userData);
-	typedef void(*UpdateCatalogItemsCallback)(UpdateCatalogItemsResult& result, void* userData);
-	typedef void(*UpdateRandomResultTablesCallback)(UpdateRandomResultTablesResult& result, void* userData);
-	typedef void(*GetUserInventoryCallback)(GetUserInventoryResult& result, void* userData);
-	typedef void(*RevokeInventoryItemCallback)(RevokeInventoryResult& result, void* userData);
-	typedef void(*GetMatchmakerGameInfoCallback)(GetMatchmakerGameInfoResult& result, void* userData);
-	typedef void(*GetMatchmakerGameModesCallback)(GetMatchmakerGameModesResult& result, void* userData);
-	typedef void(*ModifyMatchmakerGameModesCallback)(ModifyMatchmakerGameModesResult& result, void* userData);
-	typedef void(*AddServerBuildCallback)(AddServerBuildResult& result, void* userData);
-	typedef void(*GetServerBuildInfoCallback)(GetServerBuildInfoResult& result, void* userData);
-	typedef void(*ListServerBuildsCallback)(ListBuildsResult& result, void* userData);
-	typedef void(*ModifyServerBuildCallback)(ModifyServerBuildResult& result, void* userData);
-	typedef void(*RemoveServerBuildCallback)(RemoveServerBuildResult& result, void* userData);
 	
     
     class PlayFabAdminAPI
     {
     public:
+		
+		typedef void(*GetUserAccountInfoCallback)(GetUserAccountInfoResult& result, void* userData);
+		typedef void(*SendAccountRecoveryEmailCallback)(SendAccountRecoveryEmailResult& result, void* userData);
+		typedef void(*UpdateUserTitleDisplayNameCallback)(UpdateUserTitleDisplayNameResult& result, void* userData);
+		typedef void(*GetCatalogItemsCallback)(GetCatalogItemsResult& result, void* userData);
+		typedef void(*GetRandomResultTablesCallback)(GetRandomResultTablesResult& result, void* userData);
+		typedef void(*GetTitleDataCallback)(GetTitleDataResult& result, void* userData);
+		typedef void(*SetCatalogItemsCallback)(UpdateCatalogItemsResult& result, void* userData);
+		typedef void(*SetTitleDataCallback)(SetTitleDataResult& result, void* userData);
+		typedef void(*UpdateCatalogItemsCallback)(UpdateCatalogItemsResult& result, void* userData);
+		typedef void(*UpdateRandomResultTablesCallback)(UpdateRandomResultTablesResult& result, void* userData);
+		typedef void(*GetUserInventoryCallback)(GetUserInventoryResult& result, void* userData);
+		typedef void(*RevokeInventoryItemCallback)(RevokeInventoryResult& result, void* userData);
+		typedef void(*GetMatchmakerGameInfoCallback)(GetMatchmakerGameInfoResult& result, void* userData);
+		typedef void(*GetMatchmakerGameModesCallback)(GetMatchmakerGameModesResult& result, void* userData);
+		typedef void(*ModifyMatchmakerGameModesCallback)(ModifyMatchmakerGameModesResult& result, void* userData);
+		typedef void(*AddServerBuildCallback)(AddServerBuildResult& result, void* userData);
+		typedef void(*GetServerBuildInfoCallback)(GetServerBuildInfoResult& result, void* userData);
+		typedef void(*ListServerBuildsCallback)(ListBuildsResult& result, void* userData);
+		typedef void(*ModifyServerBuildCallback)(ModifyServerBuildResult& result, void* userData);
+		typedef void(*RemoveServerBuildCallback)(RemoveServerBuildResult& result, void* userData);
+		
+	
         PlayFabAdminAPI();
         PlayFabAdminAPI(IHttpRequester* requester, bool ownRequester);
         ~PlayFabAdminAPI();
@@ -53,9 +56,9 @@ namespace PlayFab
 		
 		void GetCatalogItems(GetCatalogItemsRequest& request, GetCatalogItemsCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void GetRandomResultTables(GetRandomResultTablesRequest& request, GetRandomResultTablesCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void GetRandomResultTables(GetRandomResultTablesCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void GetTitleData(GetPublicTitleDataRequest& request, GetTitleDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void GetTitleData(GetTitleDataRequest& request, GetTitleDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 		void SetCatalogItems(UpdateCatalogItemsRequest& request, SetCatalogItemsCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
@@ -79,13 +82,12 @@ namespace PlayFab
 		
 		void GetServerBuildInfo(GetServerBuildInfoRequest& request, GetServerBuildInfoCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void ListServerBuilds(ListBuildsRequest& request, ListServerBuildsCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void ListServerBuilds(ListServerBuildsCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 		void ModifyServerBuild(ModifyServerBuildRequest& request, ModifyServerBuildCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 		void RemoveServerBuild(RemoveServerBuildRequest& request, RemoveServerBuildCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-  
 
     private:
 

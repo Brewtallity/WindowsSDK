@@ -548,17 +548,15 @@ bool SetTitleDataResult::readFromValue(const rapidjson::Value& obj)
 }
 
 
-GetPublicTitleDataRequest::~GetPublicTitleDataRequest()
+GetTitleDataRequest::~GetTitleDataRequest()
 {
 	
 }
 
-void GetPublicTitleDataRequest::writeJSON(PFStringJsonWriter& writer)
+void GetTitleDataRequest::writeJSON(PFStringJsonWriter& writer)
 {
     writer.StartObject();
 
-	
-	if(TitleId.length() > 0) { writer.String("TitleId"); writer.String(TitleId.c_str()); }
 	
 	writer.String("Keys");
 	writer.StartArray();
@@ -572,11 +570,8 @@ void GetPublicTitleDataRequest::writeJSON(PFStringJsonWriter& writer)
 	writer.EndObject();
 }
 
-bool GetPublicTitleDataRequest::readFromValue(const rapidjson::Value& obj)
+bool GetTitleDataRequest::readFromValue(const rapidjson::Value& obj)
 {
-	
-	const Value::Member* TitleId_member = obj.FindMember("TitleId");
-	if (TitleId_member != NULL) TitleId = TitleId_member->value.GetString();
 	
 	const Value::Member* Keys_member = obj.FindMember("Keys");
 	if (Keys_member != NULL) {
@@ -591,17 +586,15 @@ bool GetPublicTitleDataRequest::readFromValue(const rapidjson::Value& obj)
 }
 
 
-GetPublicTitleDataResult::~GetPublicTitleDataResult()
+GetTitleDataResult::~GetTitleDataResult()
 {
 	
 }
 
-void GetPublicTitleDataResult::writeJSON(PFStringJsonWriter& writer)
+void GetTitleDataResult::writeJSON(PFStringJsonWriter& writer)
 {
     writer.StartObject();
 
-	
-	if(TitleId.length() > 0) { writer.String("TitleId"); writer.String(TitleId.c_str()); }
 	
 	if(!Data.empty()) {
 	writer.String("Data");
@@ -616,11 +609,8 @@ void GetPublicTitleDataResult::writeJSON(PFStringJsonWriter& writer)
 	writer.EndObject();
 }
 
-bool GetPublicTitleDataResult::readFromValue(const rapidjson::Value& obj)
+bool GetTitleDataResult::readFromValue(const rapidjson::Value& obj)
 {
-	
-	const Value::Member* TitleId_member = obj.FindMember("TitleId");
-	if (TitleId_member != NULL) TitleId = TitleId_member->value.GetString();
 	
 	const Value::Member* Data_member = obj.FindMember("Data");
 	if (Data_member != NULL) {
@@ -2892,82 +2882,6 @@ bool NotifyMatchmakerPlayerLeftResult::readFromValue(const rapidjson::Value& obj
 	
 	const Value::Member* PlayerState_member = obj.FindMember("PlayerState");
 	if (PlayerState_member != NULL) PlayerState = readPlayerConnectionStateFromValue(PlayerState_member->value);
-	
-	
-	return true;
-}
-
-
-GetTitleDataRequest::~GetTitleDataRequest()
-{
-	
-}
-
-void GetTitleDataRequest::writeJSON(PFStringJsonWriter& writer)
-{
-    writer.StartObject();
-
-	
-	writer.String("Keys");
-	writer.StartArray();
-	for (std::list<std::string>::iterator iter = Keys.begin(); iter != Keys.end(); iter++) {
-		writer.String(iter->c_str());
-	}
-	writer.EndArray();
-	
-	
-	
-	writer.EndObject();
-}
-
-bool GetTitleDataRequest::readFromValue(const rapidjson::Value& obj)
-{
-	
-	const Value::Member* Keys_member = obj.FindMember("Keys");
-	if (Keys_member != NULL) {
-		const rapidjson::Value& memberList = Keys_member->value;
-		for (SizeType i = 0; i < memberList.Size(); i++) {
-			Keys.push_back(memberList[i].GetString());
-		}
-	}
-	
-	
-	return true;
-}
-
-
-GetTitleDataResult::~GetTitleDataResult()
-{
-	
-}
-
-void GetTitleDataResult::writeJSON(PFStringJsonWriter& writer)
-{
-    writer.StartObject();
-
-	
-	if(!Data.empty()) {
-	writer.String("Data");
-	writer.StartObject();
-	for (std::map<std::string, std::string>::iterator iter = Data.begin(); iter != Data.end(); ++iter) {
-		writer.String(iter->first.c_str()); writer.String(iter->second.c_str());
-	}
-	writer.EndObject();
-	}
-	
-	
-	writer.EndObject();
-}
-
-bool GetTitleDataResult::readFromValue(const rapidjson::Value& obj)
-{
-	
-	const Value::Member* Data_member = obj.FindMember("Data");
-	if (Data_member != NULL) {
-		for (Value::ConstMemberIterator iter = Data_member->value.MemberBegin(); iter != Data_member->value.MemberEnd(); ++iter) {
-			Data[iter->name.GetString()] = iter->value.GetString();
-		}
-	}
 	
 	
 	return true;

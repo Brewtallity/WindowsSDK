@@ -6,6 +6,55 @@ using namespace rapidjson;
 
 
 
+RemoveFriendRequest::~RemoveFriendRequest()
+{
+	
+}
+
+void RemoveFriendRequest::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	writer.String("FriendPlayFabId"); writer.String(FriendPlayFabId.c_str());
+	
+	
+	writer.EndObject();
+}
+
+bool RemoveFriendRequest::readFromValue(const rapidjson::Value& obj)
+{
+	
+	const Value::Member* FriendPlayFabId_member = obj.FindMember("FriendPlayFabId");
+	if (FriendPlayFabId_member != NULL) FriendPlayFabId = FriendPlayFabId_member->value.GetString();
+	
+	
+	return true;
+}
+
+
+RemoveFriendResult::~RemoveFriendResult()
+{
+	
+}
+
+void RemoveFriendResult::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	
+	writer.EndObject();
+}
+
+bool RemoveFriendResult::readFromValue(const rapidjson::Value& obj)
+{
+	
+	
+	return true;
+}
+
+
 SetFriendTagsRequest::~SetFriendTagsRequest()
 {
 	
@@ -1526,7 +1575,7 @@ void GetCatalogItemsRequest::writeJSON(PFStringJsonWriter& writer)
     writer.StartObject();
 
 	
-	writer.String("CatalogVersion"); writer.String(CatalogVersion.c_str());
+	if(CatalogVersion.length() > 0) { writer.String("CatalogVersion"); writer.String(CatalogVersion.c_str()); }
 	
 	
 	writer.EndObject();
@@ -2683,7 +2732,7 @@ void UnlockContainerItemRequest::writeJSON(PFStringJsonWriter& writer)
     writer.StartObject();
 
 	
-	writer.String("CrateItemId"); writer.String(CrateItemId.c_str());
+	writer.String("ContainerItemId"); writer.String(ContainerItemId.c_str());
 	
 	if(CatalogVersion.length() > 0) { writer.String("CatalogVersion"); writer.String(CatalogVersion.c_str()); }
 	
@@ -2694,8 +2743,8 @@ void UnlockContainerItemRequest::writeJSON(PFStringJsonWriter& writer)
 bool UnlockContainerItemRequest::readFromValue(const rapidjson::Value& obj)
 {
 	
-	const Value::Member* CrateItemId_member = obj.FindMember("CrateItemId");
-	if (CrateItemId_member != NULL) CrateItemId = CrateItemId_member->value.GetString();
+	const Value::Member* ContainerItemId_member = obj.FindMember("ContainerItemId");
+	if (ContainerItemId_member != NULL) ContainerItemId = ContainerItemId_member->value.GetString();
 	
 	const Value::Member* CatalogVersion_member = obj.FindMember("CatalogVersion");
 	if (CatalogVersion_member != NULL) CatalogVersion = CatalogVersion_member->value.GetString();
@@ -2715,7 +2764,9 @@ void UnlockContainerItemResult::writeJSON(PFStringJsonWriter& writer)
     writer.StartObject();
 
 	
-	if(UnlockedItem.length() > 0) { writer.String("UnlockedItem"); writer.String(UnlockedItem.c_str()); }
+	if(UnlockedItemInstanceId.length() > 0) { writer.String("UnlockedItemInstanceId"); writer.String(UnlockedItemInstanceId.c_str()); }
+	
+	if(UnlockedWithItemInstanceId.length() > 0) { writer.String("UnlockedWithItemInstanceId"); writer.String(UnlockedWithItemInstanceId.c_str()); }
 	
 	if(!GrantedItems.empty()) {
 	writer.String("GrantedItems");
@@ -2726,6 +2777,15 @@ void UnlockContainerItemResult::writeJSON(PFStringJsonWriter& writer)
 	writer.EndArray();
 	 }
 	
+	if(!VirtualCurrency.empty()) {
+	writer.String("VirtualCurrency");
+	writer.StartObject();
+	for (std::map<std::string, Uint32>::iterator iter = VirtualCurrency.begin(); iter != VirtualCurrency.end(); ++iter) {
+		writer.String(iter->first.c_str()); writer.Uint(iter->second);
+	}
+	writer.EndObject();
+	}
+	
 	
 	writer.EndObject();
 }
@@ -2733,14 +2793,24 @@ void UnlockContainerItemResult::writeJSON(PFStringJsonWriter& writer)
 bool UnlockContainerItemResult::readFromValue(const rapidjson::Value& obj)
 {
 	
-	const Value::Member* UnlockedItem_member = obj.FindMember("UnlockedItem");
-	if (UnlockedItem_member != NULL) UnlockedItem = UnlockedItem_member->value.GetString();
+	const Value::Member* UnlockedItemInstanceId_member = obj.FindMember("UnlockedItemInstanceId");
+	if (UnlockedItemInstanceId_member != NULL) UnlockedItemInstanceId = UnlockedItemInstanceId_member->value.GetString();
+	
+	const Value::Member* UnlockedWithItemInstanceId_member = obj.FindMember("UnlockedWithItemInstanceId");
+	if (UnlockedWithItemInstanceId_member != NULL) UnlockedWithItemInstanceId = UnlockedWithItemInstanceId_member->value.GetString();
 	
 	const Value::Member* GrantedItems_member = obj.FindMember("GrantedItems");
 	if (GrantedItems_member != NULL) {
 		const rapidjson::Value& memberList = GrantedItems_member->value;
 		for (SizeType i = 0; i < memberList.Size(); i++) {
 			GrantedItems.push_back(ItemInstance(memberList[i]));
+		}
+	}
+	
+	const Value::Member* VirtualCurrency_member = obj.FindMember("VirtualCurrency");
+	if (VirtualCurrency_member != NULL) {
+		for (Value::ConstMemberIterator iter = VirtualCurrency_member->value.MemberBegin(); iter != VirtualCurrency_member->value.MemberEnd(); ++iter) {
+			VirtualCurrency[iter->name.GetString()] = iter->value.GetUint();
 		}
 	}
 	
@@ -3519,55 +3589,6 @@ bool AddFriendResult::readFromValue(const rapidjson::Value& obj)
 	
 	const Value::Member* Created_member = obj.FindMember("Created");
 	if (Created_member != NULL) Created = Created_member->value.GetBool();
-	
-	
-	return true;
-}
-
-
-RemoveFriendRequest::~RemoveFriendRequest()
-{
-	
-}
-
-void RemoveFriendRequest::writeJSON(PFStringJsonWriter& writer)
-{
-    writer.StartObject();
-
-	
-	writer.String("FriendPlayFabId"); writer.String(FriendPlayFabId.c_str());
-	
-	
-	writer.EndObject();
-}
-
-bool RemoveFriendRequest::readFromValue(const rapidjson::Value& obj)
-{
-	
-	const Value::Member* FriendPlayFabId_member = obj.FindMember("FriendPlayFabId");
-	if (FriendPlayFabId_member != NULL) FriendPlayFabId = FriendPlayFabId_member->value.GetString();
-	
-	
-	return true;
-}
-
-
-RemoveFriendResult::~RemoveFriendResult()
-{
-	
-}
-
-void RemoveFriendResult::writeJSON(PFStringJsonWriter& writer)
-{
-    writer.StartObject();
-
-	
-	
-	writer.EndObject();
-}
-
-bool RemoveFriendResult::readFromValue(const rapidjson::Value& obj)
-{
 	
 	
 	return true;

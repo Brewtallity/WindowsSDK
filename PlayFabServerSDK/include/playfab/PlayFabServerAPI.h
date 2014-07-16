@@ -11,28 +11,31 @@
 
 namespace PlayFab
 {
-	typedef void(*GetUserAccountInfoCallback)(GetUserAccountInfoResult& result, void* userData);
-	typedef void(*GetUserDataCallback)(GetUserDataResult& result, void* userData);
-	typedef void(*GetUserInternalDataCallback)(GetUserDataResult& result, void* userData);
-	typedef void(*GetUserReadOnlyDataCallback)(GetUserDataResult& result, void* userData);
-	typedef void(*UpdateUserDataCallback)(UpdateUserDataResult& result, void* userData);
-	typedef void(*UpdateUserInternalDataCallback)(UpdateUserDataResult& result, void* userData);
-	typedef void(*UpdateUserReadOnlyDataCallback)(UpdateUserDataResult& result, void* userData);
-	typedef void(*GetCatalogItemsCallback)(GetCatalogItemsResult& result, void* userData);
-	typedef void(*GetTitleDataCallback)(GetTitleDataResult& result, void* userData);
-	typedef void(*SetTitleDataCallback)(SetTitleDataResult& result, void* userData);
-	typedef void(*AddUserVirtualCurrencyCallback)(ModifyUserVirtualCurrencyResult& result, void* userData);
-	typedef void(*GetUserInventoryCallback)(GetUserInventoryResult& result, void* userData);
-	typedef void(*GrantItemsToUsersCallback)(GrantItemsToUsersResult& result, void* userData);
-	typedef void(*SubtractUserVirtualCurrencyCallback)(ModifyUserVirtualCurrencyResult& result, void* userData);
-	typedef void(*NotifyMatchmakerPlayerLeftCallback)(NotifyMatchmakerPlayerLeftResult& result, void* userData);
-	typedef void(*RedeemMatchmakerTicketCallback)(RedeemMatchmakerTicketResult& result, void* userData);
-	typedef void(*AwardSteamAchievementCallback)(AwardSteamAchievementResult& result, void* userData);
 	
     
     class PlayFabServerAPI
     {
     public:
+		
+		typedef void(*GetUserAccountInfoCallback)(GetUserAccountInfoResult& result, void* userData);
+		typedef void(*GetUserDataCallback)(GetUserDataResult& result, void* userData);
+		typedef void(*GetUserInternalDataCallback)(GetUserDataResult& result, void* userData);
+		typedef void(*GetUserReadOnlyDataCallback)(GetUserDataResult& result, void* userData);
+		typedef void(*UpdateUserDataCallback)(UpdateUserDataResult& result, void* userData);
+		typedef void(*UpdateUserInternalDataCallback)(UpdateUserDataResult& result, void* userData);
+		typedef void(*UpdateUserReadOnlyDataCallback)(UpdateUserDataResult& result, void* userData);
+		typedef void(*GetCatalogItemsCallback)(GetCatalogItemsResult& result, void* userData);
+		typedef void(*GetTitleDataCallback)(GetTitleDataResult& result, void* userData);
+		typedef void(*SetTitleDataCallback)(SetTitleDataResult& result, void* userData);
+		typedef void(*AddUserVirtualCurrencyCallback)(ModifyUserVirtualCurrencyResult& result, void* userData);
+		typedef void(*GetUserInventoryCallback)(GetUserInventoryResult& result, void* userData);
+		typedef void(*GrantItemsToUsersCallback)(GrantItemsToUsersResult& result, void* userData);
+		typedef void(*SubtractUserVirtualCurrencyCallback)(ModifyUserVirtualCurrencyResult& result, void* userData);
+		typedef void(*NotifyMatchmakerPlayerLeftCallback)(NotifyMatchmakerPlayerLeftResult& result, void* userData);
+		typedef void(*RedeemMatchmakerTicketCallback)(RedeemMatchmakerTicketResult& result, void* userData);
+		typedef void(*AwardSteamAchievementCallback)(AwardSteamAchievementResult& result, void* userData);
+		
+	
         PlayFabServerAPI();
         PlayFabServerAPI(IHttpRequester* requester, bool ownRequester);
         ~PlayFabServerAPI();
@@ -76,7 +79,6 @@ namespace PlayFab
 		
 		void AwardSteamAchievement(AwardSteamAchievementRequest& request, AwardSteamAchievementCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-  
 
     private:
 

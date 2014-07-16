@@ -2,7 +2,7 @@
 #include "playfab/HttpRequest.h"
 #include "playfab/PlayFabSettings.h"
 #include "playfab/PlayFabResultHandler.h"
-#include "HttpRequesterCURL.h"
+#include "playfab/HttpRequesterCURL.h"
 
 #include <string>
 
@@ -283,7 +283,7 @@ void PlayFabAdminAPI::OnGetCatalogItemsResult(int httpStatus, HttpRequest* reque
 
 
 void PlayFabAdminAPI::GetRandomResultTables(
-    GetRandomResultTablesRequest& request,
+    
     GetRandomResultTablesCallback callback,
     ErrorCallback errorCallback,
     void* userData
@@ -298,7 +298,7 @@ void PlayFabAdminAPI::GetRandomResultTables(
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
-    httpRequest->SetBody(request.toJSONString());
+    httpRequest->SetBody("{}");
     httpRequest->CompressBody();
 
     mHttpRequester->AddRequest(httpRequest, OnGetRandomResultTablesResult, this);
@@ -339,7 +339,7 @@ void PlayFabAdminAPI::OnGetRandomResultTablesResult(int httpStatus, HttpRequest*
 
 
 void PlayFabAdminAPI::GetTitleData(
-    GetPublicTitleDataRequest& request,
+    GetTitleDataRequest& request,
     GetTitleDataCallback callback,
     ErrorCallback errorCallback,
     void* userData
@@ -348,7 +348,7 @@ void PlayFabAdminAPI::GetTitleData(
     
     HttpRequest* httpRequest = new HttpRequest("POST", PlayFabSettings::getURL("/Admin/GetTitleData"));
     httpRequest->SetHeader("Content-Type", "application/json");
-	
+	httpRequest->SetHeader("X-SecretKey", PlayFabSettings::developerSecretKey);
 	
     httpRequest->SetResultCallback(callback);
     httpRequest->SetErrorCallback(errorCallback);
@@ -362,7 +362,7 @@ void PlayFabAdminAPI::GetTitleData(
 
 void PlayFabAdminAPI::OnGetTitleDataResult(int httpStatus, HttpRequest* request, void* userData)
 {
-    GetPublicTitleDataResult outResult;
+    GetTitleDataResult outResult;
     PlayFabError errorResult;
 
     bool success = PlayFabRequestHandler::DecodeRequest(httpStatus, request, userData, outResult, errorResult);
@@ -1011,7 +1011,7 @@ void PlayFabAdminAPI::OnGetServerBuildInfoResult(int httpStatus, HttpRequest* re
 
 
 void PlayFabAdminAPI::ListServerBuilds(
-    ListBuildsRequest& request,
+    
     ListServerBuildsCallback callback,
     ErrorCallback errorCallback,
     void* userData
@@ -1026,7 +1026,7 @@ void PlayFabAdminAPI::ListServerBuilds(
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
-    httpRequest->SetBody(request.toJSONString());
+    httpRequest->SetBody("{}");
     httpRequest->CompressBody();
 
     mHttpRequester->AddRequest(httpRequest, OnListServerBuildsResult, this);

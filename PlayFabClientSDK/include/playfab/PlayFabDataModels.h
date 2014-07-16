@@ -1,5 +1,5 @@
-#ifndef PLAYFAB_DATA_MODELS_H_
-#define PLAYFAB_DATA_MODELS_H_
+#ifndef PLAYFAB_CLIENT_DATA_MODELS_H_
+#define PLAYFAB_CLIENT_DATA_MODELS_H_
 
 #include "playfab/PlayFabBaseModel.h"
 
@@ -7,15 +7,74 @@ namespace PlayFab
 {
 
 	
+	struct RemoveFriendRequest : public PlayFabBaseModel
+    {
+		
+		std::string FriendPlayFabId;
+	
+        RemoveFriendRequest() :
+			PlayFabBaseModel(),
+			FriendPlayFabId()
+			{}
+		
+		RemoveFriendRequest(const RemoveFriendRequest& src) :
+			PlayFabBaseModel(),
+			FriendPlayFabId(src.FriendPlayFabId)
+			{}
+			
+		RemoveFriendRequest(const rapidjson::Value& obj) : RemoveFriendRequest()
+        {
+            readFromValue(obj);
+        }
+		
+		~RemoveFriendRequest();
+		
+        void writeJSON(PFStringJsonWriter& writer);
+        bool readFromValue(const rapidjson::Value& obj);
+    };
+	
+	struct RemoveFriendResult : public PlayFabBaseModel
+    {
+		
+	
+        RemoveFriendResult() :
+			PlayFabBaseModel()
+			{}
+		
+		RemoveFriendResult(const RemoveFriendResult& src) :
+			PlayFabBaseModel()
+			{}
+			
+		RemoveFriendResult(const rapidjson::Value& obj) : RemoveFriendResult()
+        {
+            readFromValue(obj);
+        }
+		
+		~RemoveFriendResult();
+		
+        void writeJSON(PFStringJsonWriter& writer);
+        bool readFromValue(const rapidjson::Value& obj);
+    };
+	
 	struct SetFriendTagsRequest : public PlayFabBaseModel
     {
 		
 		std::string FriendPlayFabId;
 		std::list<std::string> Tags;
 	
-        SetFriendTagsRequest() {}
-
-		SetFriendTagsRequest(const rapidjson::Value& obj)
+        SetFriendTagsRequest() :
+			PlayFabBaseModel(),
+			FriendPlayFabId(),
+			Tags()
+			{}
+		
+		SetFriendTagsRequest(const SetFriendTagsRequest& src) :
+			PlayFabBaseModel(),
+			FriendPlayFabId(src.FriendPlayFabId),
+			Tags(src.Tags)
+			{}
+			
+		SetFriendTagsRequest(const rapidjson::Value& obj) : SetFriendTagsRequest()
         {
             readFromValue(obj);
         }
@@ -30,9 +89,15 @@ namespace PlayFab
     {
 		
 	
-        SetFriendTagsResult() {}
-
-		SetFriendTagsResult(const rapidjson::Value& obj)
+        SetFriendTagsResult() :
+			PlayFabBaseModel()
+			{}
+		
+		SetFriendTagsResult(const SetFriendTagsResult& src) :
+			PlayFabBaseModel()
+			{}
+			
+		SetFriendTagsResult(const rapidjson::Value& obj) : SetFriendTagsResult()
         {
             readFromValue(obj);
         }
@@ -48,9 +113,17 @@ namespace PlayFab
 		
 		OptionalBool IncludeSteamFriends;
 	
-        GetFriendsListRequest() {}
-
-		GetFriendsListRequest(const rapidjson::Value& obj)
+        GetFriendsListRequest() :
+			PlayFabBaseModel(),
+			IncludeSteamFriends()
+			{}
+		
+		GetFriendsListRequest(const GetFriendsListRequest& src) :
+			PlayFabBaseModel(),
+			IncludeSteamFriends(src.IncludeSteamFriends)
+			{}
+			
+		GetFriendsListRequest(const rapidjson::Value& obj) : GetFriendsListRequest()
         {
             readFromValue(obj);
         }
@@ -68,9 +141,21 @@ namespace PlayFab
 		std::string FacebookUsername;
 		std::string FacebookDisplayname;
 	
-        UserFacebookInfo() {}
-
-		UserFacebookInfo(const rapidjson::Value& obj)
+        UserFacebookInfo() :
+			PlayFabBaseModel(),
+			FacebookId(),
+			FacebookUsername(),
+			FacebookDisplayname()
+			{}
+		
+		UserFacebookInfo(const UserFacebookInfo& src) :
+			PlayFabBaseModel(),
+			FacebookId(src.FacebookId),
+			FacebookUsername(src.FacebookUsername),
+			FacebookDisplayname(src.FacebookDisplayname)
+			{}
+			
+		UserFacebookInfo(const rapidjson::Value& obj) : UserFacebookInfo()
         {
             readFromValue(obj);
         }
@@ -117,9 +202,23 @@ namespace PlayFab
 		Boxed<Currency> SteamCurrency;
 		Boxed<TitleActivationStatus> SteamActivationStatus;
 	
-        UserSteamInfo() {}
-
-		UserSteamInfo(const rapidjson::Value& obj)
+        UserSteamInfo() :
+			PlayFabBaseModel(),
+			SteamId(),
+			SteamCountry(),
+			SteamCurrency(),
+			SteamActivationStatus()
+			{}
+		
+		UserSteamInfo(const UserSteamInfo& src) :
+			PlayFabBaseModel(),
+			SteamId(src.SteamId),
+			SteamCountry(src.SteamCountry),
+			SteamCurrency(src.SteamCurrency),
+			SteamActivationStatus(src.SteamActivationStatus)
+			{}
+			
+		UserSteamInfo(const rapidjson::Value& obj) : UserSteamInfo()
         {
             readFromValue(obj);
         }
@@ -135,9 +234,17 @@ namespace PlayFab
 		
 		std::string GameCenterId;
 	
-        UserGameCenterInfo() {}
-
-		UserGameCenterInfo(const rapidjson::Value& obj)
+        UserGameCenterInfo() :
+			PlayFabBaseModel(),
+			GameCenterId()
+			{}
+		
+		UserGameCenterInfo(const UserGameCenterInfo& src) :
+			PlayFabBaseModel(),
+			GameCenterId(src.GameCenterId)
+			{}
+			
+		UserGameCenterInfo(const rapidjson::Value& obj) : UserGameCenterInfo()
         {
             readFromValue(obj);
         }
@@ -160,9 +267,31 @@ namespace PlayFab
 		UserSteamInfo* SteamInfo;
 		UserGameCenterInfo* GameCenterInfo;
 	
-        FriendInfo() {}
-
-		FriendInfo(const rapidjson::Value& obj)
+        FriendInfo() :
+			PlayFabBaseModel(),
+			FriendPlayFabId(),
+			Username(),
+			TitleDisplayName(),
+			Tags(),
+			CurrentMatchmakerLobbyId(),
+			FacebookInfo(NULL),
+			SteamInfo(NULL),
+			GameCenterInfo(NULL)
+			{}
+		
+		FriendInfo(const FriendInfo& src) :
+			PlayFabBaseModel(),
+			FriendPlayFabId(src.FriendPlayFabId),
+			Username(src.Username),
+			TitleDisplayName(src.TitleDisplayName),
+			Tags(src.Tags),
+			CurrentMatchmakerLobbyId(src.CurrentMatchmakerLobbyId),
+			FacebookInfo(src.FacebookInfo ? new UserFacebookInfo(*src.FacebookInfo) : NULL),
+			SteamInfo(src.SteamInfo ? new UserSteamInfo(*src.SteamInfo) : NULL),
+			GameCenterInfo(src.GameCenterInfo ? new UserGameCenterInfo(*src.GameCenterInfo) : NULL)
+			{}
+			
+		FriendInfo(const rapidjson::Value& obj) : FriendInfo()
         {
             readFromValue(obj);
         }
@@ -178,9 +307,17 @@ namespace PlayFab
 		
 		std::list<FriendInfo> Friends;
 	
-        GetFriendsListResult() {}
-
-		GetFriendsListResult(const rapidjson::Value& obj)
+        GetFriendsListResult() :
+			PlayFabBaseModel(),
+			Friends()
+			{}
+		
+		GetFriendsListResult(const GetFriendsListResult& src) :
+			PlayFabBaseModel(),
+			Friends(src.Friends)
+			{}
+			
+		GetFriendsListResult(const rapidjson::Value& obj) : GetFriendsListResult()
         {
             readFromValue(obj);
         }
@@ -196,9 +333,17 @@ namespace PlayFab
 		
 		std::string Email;
 	
-        UpdateEmailAddressRequest() {}
-
-		UpdateEmailAddressRequest(const rapidjson::Value& obj)
+        UpdateEmailAddressRequest() :
+			PlayFabBaseModel(),
+			Email()
+			{}
+		
+		UpdateEmailAddressRequest(const UpdateEmailAddressRequest& src) :
+			PlayFabBaseModel(),
+			Email(src.Email)
+			{}
+			
+		UpdateEmailAddressRequest(const rapidjson::Value& obj) : UpdateEmailAddressRequest()
         {
             readFromValue(obj);
         }
@@ -213,9 +358,15 @@ namespace PlayFab
     {
 		
 	
-        UpdateEmailAddressResult() {}
-
-		UpdateEmailAddressResult(const rapidjson::Value& obj)
+        UpdateEmailAddressResult() :
+			PlayFabBaseModel()
+			{}
+		
+		UpdateEmailAddressResult(const UpdateEmailAddressResult& src) :
+			PlayFabBaseModel()
+			{}
+			
+		UpdateEmailAddressResult(const rapidjson::Value& obj) : UpdateEmailAddressResult()
         {
             readFromValue(obj);
         }
@@ -231,9 +382,17 @@ namespace PlayFab
 		
 		std::string Password;
 	
-        UpdatePasswordRequest() {}
-
-		UpdatePasswordRequest(const rapidjson::Value& obj)
+        UpdatePasswordRequest() :
+			PlayFabBaseModel(),
+			Password()
+			{}
+		
+		UpdatePasswordRequest(const UpdatePasswordRequest& src) :
+			PlayFabBaseModel(),
+			Password(src.Password)
+			{}
+			
+		UpdatePasswordRequest(const rapidjson::Value& obj) : UpdatePasswordRequest()
         {
             readFromValue(obj);
         }
@@ -248,9 +407,15 @@ namespace PlayFab
     {
 		
 	
-        UpdatePasswordResult() {}
-
-		UpdatePasswordResult(const rapidjson::Value& obj)
+        UpdatePasswordResult() :
+			PlayFabBaseModel()
+			{}
+		
+		UpdatePasswordResult(const UpdatePasswordResult& src) :
+			PlayFabBaseModel()
+			{}
+			
+		UpdatePasswordResult(const rapidjson::Value& obj) : UpdatePasswordResult()
         {
             readFromValue(obj);
         }
@@ -267,9 +432,19 @@ namespace PlayFab
 		std::string eventName;
 		std::map<std::string, MultitypeVar> Body;
 	
-        LogEventRequest() {}
-
-		LogEventRequest(const rapidjson::Value& obj)
+        LogEventRequest() :
+			PlayFabBaseModel(),
+			eventName(),
+			Body()
+			{}
+		
+		LogEventRequest(const LogEventRequest& src) :
+			PlayFabBaseModel(),
+			eventName(src.eventName),
+			Body(src.Body)
+			{}
+			
+		LogEventRequest(const rapidjson::Value& obj) : LogEventRequest()
         {
             readFromValue(obj);
         }
@@ -285,9 +460,17 @@ namespace PlayFab
 		
 		std::list<std::string> errors;
 	
-        LogEventResult() {}
-
-		LogEventResult(const rapidjson::Value& obj)
+        LogEventResult() :
+			PlayFabBaseModel(),
+			errors()
+			{}
+		
+		LogEventResult(const LogEventResult& src) :
+			PlayFabBaseModel(),
+			errors(src.errors)
+			{}
+			
+		LogEventResult(const rapidjson::Value& obj) : LogEventResult()
         {
             readFromValue(obj);
         }
@@ -305,9 +488,21 @@ namespace PlayFab
 		std::string Username;
 		std::string Password;
 	
-        LoginWithPlayFabRequest() {}
-
-		LoginWithPlayFabRequest(const rapidjson::Value& obj)
+        LoginWithPlayFabRequest() :
+			PlayFabBaseModel(),
+			TitleId(),
+			Username(),
+			Password()
+			{}
+		
+		LoginWithPlayFabRequest(const LoginWithPlayFabRequest& src) :
+			PlayFabBaseModel(),
+			TitleId(src.TitleId),
+			Username(src.Username),
+			Password(src.Password)
+			{}
+			
+		LoginWithPlayFabRequest(const rapidjson::Value& obj) : LoginWithPlayFabRequest()
         {
             readFromValue(obj);
         }
@@ -323,9 +518,17 @@ namespace PlayFab
 		
 		std::string SessionTicket;
 	
-        LoginResult() {}
-
-		LoginResult(const rapidjson::Value& obj)
+        LoginResult() :
+			PlayFabBaseModel(),
+			SessionTicket()
+			{}
+		
+		LoginResult(const LoginResult& src) :
+			PlayFabBaseModel(),
+			SessionTicket(src.SessionTicket)
+			{}
+			
+		LoginResult(const rapidjson::Value& obj) : LoginResult()
         {
             readFromValue(obj);
         }
@@ -343,9 +546,21 @@ namespace PlayFab
 		std::string AccessToken;
 		bool CreateAccount;
 	
-        LoginWithFacebookRequest() {}
-
-		LoginWithFacebookRequest(const rapidjson::Value& obj)
+        LoginWithFacebookRequest() :
+			PlayFabBaseModel(),
+			TitleId(),
+			AccessToken(),
+			CreateAccount(false)
+			{}
+		
+		LoginWithFacebookRequest(const LoginWithFacebookRequest& src) :
+			PlayFabBaseModel(),
+			TitleId(src.TitleId),
+			AccessToken(src.AccessToken),
+			CreateAccount(src.CreateAccount)
+			{}
+			
+		LoginWithFacebookRequest(const rapidjson::Value& obj) : LoginWithFacebookRequest()
         {
             readFromValue(obj);
         }
@@ -363,9 +578,21 @@ namespace PlayFab
 		std::string SteamTicket;
 		bool CreateAccount;
 	
-        LoginWithSteamRequest() {}
-
-		LoginWithSteamRequest(const rapidjson::Value& obj)
+        LoginWithSteamRequest() :
+			PlayFabBaseModel(),
+			TitleId(),
+			SteamTicket(),
+			CreateAccount(false)
+			{}
+		
+		LoginWithSteamRequest(const LoginWithSteamRequest& src) :
+			PlayFabBaseModel(),
+			TitleId(src.TitleId),
+			SteamTicket(src.SteamTicket),
+			CreateAccount(src.CreateAccount)
+			{}
+			
+		LoginWithSteamRequest(const rapidjson::Value& obj) : LoginWithSteamRequest()
         {
             readFromValue(obj);
         }
@@ -385,9 +612,25 @@ namespace PlayFab
 		std::string DeviceModel;
 		bool CreateAccount;
 	
-        LoginWithIOSDeviceIDRequest() {}
-
-		LoginWithIOSDeviceIDRequest(const rapidjson::Value& obj)
+        LoginWithIOSDeviceIDRequest() :
+			PlayFabBaseModel(),
+			TitleId(),
+			DeviceId(),
+			OS(),
+			DeviceModel(),
+			CreateAccount(false)
+			{}
+		
+		LoginWithIOSDeviceIDRequest(const LoginWithIOSDeviceIDRequest& src) :
+			PlayFabBaseModel(),
+			TitleId(src.TitleId),
+			DeviceId(src.DeviceId),
+			OS(src.OS),
+			DeviceModel(src.DeviceModel),
+			CreateAccount(src.CreateAccount)
+			{}
+			
+		LoginWithIOSDeviceIDRequest(const rapidjson::Value& obj) : LoginWithIOSDeviceIDRequest()
         {
             readFromValue(obj);
         }
@@ -407,9 +650,25 @@ namespace PlayFab
 		std::string AndroidDevice;
 		bool CreateAccount;
 	
-        LoginWithAndroidDeviceIDRequest() {}
-
-		LoginWithAndroidDeviceIDRequest(const rapidjson::Value& obj)
+        LoginWithAndroidDeviceIDRequest() :
+			PlayFabBaseModel(),
+			TitleId(),
+			AndroidDeviceId(),
+			OS(),
+			AndroidDevice(),
+			CreateAccount(false)
+			{}
+		
+		LoginWithAndroidDeviceIDRequest(const LoginWithAndroidDeviceIDRequest& src) :
+			PlayFabBaseModel(),
+			TitleId(src.TitleId),
+			AndroidDeviceId(src.AndroidDeviceId),
+			OS(src.OS),
+			AndroidDevice(src.AndroidDevice),
+			CreateAccount(src.CreateAccount)
+			{}
+			
+		LoginWithAndroidDeviceIDRequest(const rapidjson::Value& obj) : LoginWithAndroidDeviceIDRequest()
         {
             readFromValue(obj);
         }
@@ -429,9 +688,25 @@ namespace PlayFab
 		std::string Password;
 		std::string Origination;
 	
-        RegisterPlayFabUserRequest() {}
-
-		RegisterPlayFabUserRequest(const rapidjson::Value& obj)
+        RegisterPlayFabUserRequest() :
+			PlayFabBaseModel(),
+			TitleId(),
+			Username(),
+			Email(),
+			Password(),
+			Origination()
+			{}
+		
+		RegisterPlayFabUserRequest(const RegisterPlayFabUserRequest& src) :
+			PlayFabBaseModel(),
+			TitleId(src.TitleId),
+			Username(src.Username),
+			Email(src.Email),
+			Password(src.Password),
+			Origination(src.Origination)
+			{}
+			
+		RegisterPlayFabUserRequest(const rapidjson::Value& obj) : RegisterPlayFabUserRequest()
         {
             readFromValue(obj);
         }
@@ -449,9 +724,21 @@ namespace PlayFab
 		std::string SessionTicket;
 		std::string Username;
 	
-        RegisterPlayFabUserResult() {}
-
-		RegisterPlayFabUserResult(const rapidjson::Value& obj)
+        RegisterPlayFabUserResult() :
+			PlayFabBaseModel(),
+			PlayFabId(),
+			SessionTicket(),
+			Username()
+			{}
+		
+		RegisterPlayFabUserResult(const RegisterPlayFabUserResult& src) :
+			PlayFabBaseModel(),
+			PlayFabId(src.PlayFabId),
+			SessionTicket(src.SessionTicket),
+			Username(src.Username)
+			{}
+			
+		RegisterPlayFabUserResult(const rapidjson::Value& obj) : RegisterPlayFabUserResult()
         {
             readFromValue(obj);
         }
@@ -467,9 +754,17 @@ namespace PlayFab
 		
 		std::string SteamTicket;
 	
-        LinkSteamAccountRequest() {}
-
-		LinkSteamAccountRequest(const rapidjson::Value& obj)
+        LinkSteamAccountRequest() :
+			PlayFabBaseModel(),
+			SteamTicket()
+			{}
+		
+		LinkSteamAccountRequest(const LinkSteamAccountRequest& src) :
+			PlayFabBaseModel(),
+			SteamTicket(src.SteamTicket)
+			{}
+			
+		LinkSteamAccountRequest(const rapidjson::Value& obj) : LinkSteamAccountRequest()
         {
             readFromValue(obj);
         }
@@ -484,9 +779,15 @@ namespace PlayFab
     {
 		
 	
-        LinkSteamAccountResult() {}
-
-		LinkSteamAccountResult(const rapidjson::Value& obj)
+        LinkSteamAccountResult() :
+			PlayFabBaseModel()
+			{}
+		
+		LinkSteamAccountResult(const LinkSteamAccountResult& src) :
+			PlayFabBaseModel()
+			{}
+			
+		LinkSteamAccountResult(const rapidjson::Value& obj) : LinkSteamAccountResult()
         {
             readFromValue(obj);
         }
@@ -501,9 +802,15 @@ namespace PlayFab
     {
 		
 	
-        UnlinkSteamAccountResult() {}
-
-		UnlinkSteamAccountResult(const rapidjson::Value& obj)
+        UnlinkSteamAccountResult() :
+			PlayFabBaseModel()
+			{}
+		
+		UnlinkSteamAccountResult(const UnlinkSteamAccountResult& src) :
+			PlayFabBaseModel()
+			{}
+			
+		UnlinkSteamAccountResult(const rapidjson::Value& obj) : UnlinkSteamAccountResult()
         {
             readFromValue(obj);
         }
@@ -519,9 +826,17 @@ namespace PlayFab
 		
 		std::string AccessToken;
 	
-        LinkFacebookAccountRequest() {}
-
-		LinkFacebookAccountRequest(const rapidjson::Value& obj)
+        LinkFacebookAccountRequest() :
+			PlayFabBaseModel(),
+			AccessToken()
+			{}
+		
+		LinkFacebookAccountRequest(const LinkFacebookAccountRequest& src) :
+			PlayFabBaseModel(),
+			AccessToken(src.AccessToken)
+			{}
+			
+		LinkFacebookAccountRequest(const rapidjson::Value& obj) : LinkFacebookAccountRequest()
         {
             readFromValue(obj);
         }
@@ -536,9 +851,15 @@ namespace PlayFab
     {
 		
 	
-        LinkFacebookAccountResult() {}
-
-		LinkFacebookAccountResult(const rapidjson::Value& obj)
+        LinkFacebookAccountResult() :
+			PlayFabBaseModel()
+			{}
+		
+		LinkFacebookAccountResult(const LinkFacebookAccountResult& src) :
+			PlayFabBaseModel()
+			{}
+			
+		LinkFacebookAccountResult(const rapidjson::Value& obj) : LinkFacebookAccountResult()
         {
             readFromValue(obj);
         }
@@ -553,9 +874,15 @@ namespace PlayFab
     {
 		
 	
-        UnlinkFacebookAccountRequest() {}
-
-		UnlinkFacebookAccountRequest(const rapidjson::Value& obj)
+        UnlinkFacebookAccountRequest() :
+			PlayFabBaseModel()
+			{}
+		
+		UnlinkFacebookAccountRequest(const UnlinkFacebookAccountRequest& src) :
+			PlayFabBaseModel()
+			{}
+			
+		UnlinkFacebookAccountRequest(const rapidjson::Value& obj) : UnlinkFacebookAccountRequest()
         {
             readFromValue(obj);
         }
@@ -570,9 +897,15 @@ namespace PlayFab
     {
 		
 	
-        UnlinkFacebookAccountResult() {}
-
-		UnlinkFacebookAccountResult(const rapidjson::Value& obj)
+        UnlinkFacebookAccountResult() :
+			PlayFabBaseModel()
+			{}
+		
+		UnlinkFacebookAccountResult(const UnlinkFacebookAccountResult& src) :
+			PlayFabBaseModel()
+			{}
+			
+		UnlinkFacebookAccountResult(const rapidjson::Value& obj) : UnlinkFacebookAccountResult()
         {
             readFromValue(obj);
         }
@@ -588,9 +921,17 @@ namespace PlayFab
 		
 		std::string GameCenterId;
 	
-        LinkGameCenterAccountRequest() {}
-
-		LinkGameCenterAccountRequest(const rapidjson::Value& obj)
+        LinkGameCenterAccountRequest() :
+			PlayFabBaseModel(),
+			GameCenterId()
+			{}
+		
+		LinkGameCenterAccountRequest(const LinkGameCenterAccountRequest& src) :
+			PlayFabBaseModel(),
+			GameCenterId(src.GameCenterId)
+			{}
+			
+		LinkGameCenterAccountRequest(const rapidjson::Value& obj) : LinkGameCenterAccountRequest()
         {
             readFromValue(obj);
         }
@@ -605,9 +946,15 @@ namespace PlayFab
     {
 		
 	
-        LinkGameCenterAccountResult() {}
-
-		LinkGameCenterAccountResult(const rapidjson::Value& obj)
+        LinkGameCenterAccountResult() :
+			PlayFabBaseModel()
+			{}
+		
+		LinkGameCenterAccountResult(const LinkGameCenterAccountResult& src) :
+			PlayFabBaseModel()
+			{}
+			
+		LinkGameCenterAccountResult(const rapidjson::Value& obj) : LinkGameCenterAccountResult()
         {
             readFromValue(obj);
         }
@@ -622,9 +969,15 @@ namespace PlayFab
     {
 		
 	
-        UnlinkGameCenterAccountRequest() {}
-
-		UnlinkGameCenterAccountRequest(const rapidjson::Value& obj)
+        UnlinkGameCenterAccountRequest() :
+			PlayFabBaseModel()
+			{}
+		
+		UnlinkGameCenterAccountRequest(const UnlinkGameCenterAccountRequest& src) :
+			PlayFabBaseModel()
+			{}
+			
+		UnlinkGameCenterAccountRequest(const rapidjson::Value& obj) : UnlinkGameCenterAccountRequest()
         {
             readFromValue(obj);
         }
@@ -639,9 +992,15 @@ namespace PlayFab
     {
 		
 	
-        UnlinkGameCenterAccountResult() {}
-
-		UnlinkGameCenterAccountResult(const rapidjson::Value& obj)
+        UnlinkGameCenterAccountResult() :
+			PlayFabBaseModel()
+			{}
+		
+		UnlinkGameCenterAccountResult(const UnlinkGameCenterAccountResult& src) :
+			PlayFabBaseModel()
+			{}
+			
+		UnlinkGameCenterAccountResult(const rapidjson::Value& obj) : UnlinkGameCenterAccountResult()
         {
             readFromValue(obj);
         }
@@ -656,9 +1015,15 @@ namespace PlayFab
     {
 		
 	
-        GetAccountInfoRequest() {}
-
-		GetAccountInfoRequest(const rapidjson::Value& obj)
+        GetAccountInfoRequest() :
+			PlayFabBaseModel()
+			{}
+		
+		GetAccountInfoRequest(const GetAccountInfoRequest& src) :
+			PlayFabBaseModel()
+			{}
+			
+		GetAccountInfoRequest(const rapidjson::Value& obj) : GetAccountInfoRequest()
         {
             readFromValue(obj);
         }
@@ -697,9 +1062,25 @@ namespace PlayFab
 		OptionalTime LastLogin;
 		OptionalTime FirstLogin;
 	
-        UserTitleInfo() {}
-
-		UserTitleInfo(const rapidjson::Value& obj)
+        UserTitleInfo() :
+			PlayFabBaseModel(),
+			DisplayName(),
+			Origination(),
+			Created(),
+			LastLogin(),
+			FirstLogin()
+			{}
+		
+		UserTitleInfo(const UserTitleInfo& src) :
+			PlayFabBaseModel(),
+			DisplayName(src.DisplayName),
+			Origination(src.Origination),
+			Created(src.Created),
+			LastLogin(src.LastLogin),
+			FirstLogin(src.FirstLogin)
+			{}
+			
+		UserTitleInfo(const rapidjson::Value& obj) : UserTitleInfo()
         {
             readFromValue(obj);
         }
@@ -715,9 +1096,17 @@ namespace PlayFab
 		
 		std::string Email;
 	
-        UserPrivateAccountInfo() {}
-
-		UserPrivateAccountInfo(const rapidjson::Value& obj)
+        UserPrivateAccountInfo() :
+			PlayFabBaseModel(),
+			Email()
+			{}
+		
+		UserPrivateAccountInfo(const UserPrivateAccountInfo& src) :
+			PlayFabBaseModel(),
+			Email(src.Email)
+			{}
+			
+		UserPrivateAccountInfo(const rapidjson::Value& obj) : UserPrivateAccountInfo()
         {
             readFromValue(obj);
         }
@@ -740,9 +1129,31 @@ namespace PlayFab
 		UserSteamInfo* SteamInfo;
 		UserGameCenterInfo* GameCenterInfo;
 	
-        UserAccountInfo() {}
-
-		UserAccountInfo(const rapidjson::Value& obj)
+        UserAccountInfo() :
+			PlayFabBaseModel(),
+			PlayFabId(),
+			Created(),
+			Username(),
+			TitleInfo(NULL),
+			PrivateInfo(NULL),
+			FacebookInfo(NULL),
+			SteamInfo(NULL),
+			GameCenterInfo(NULL)
+			{}
+		
+		UserAccountInfo(const UserAccountInfo& src) :
+			PlayFabBaseModel(),
+			PlayFabId(src.PlayFabId),
+			Created(src.Created),
+			Username(src.Username),
+			TitleInfo(src.TitleInfo ? new UserTitleInfo(*src.TitleInfo) : NULL),
+			PrivateInfo(src.PrivateInfo ? new UserPrivateAccountInfo(*src.PrivateInfo) : NULL),
+			FacebookInfo(src.FacebookInfo ? new UserFacebookInfo(*src.FacebookInfo) : NULL),
+			SteamInfo(src.SteamInfo ? new UserSteamInfo(*src.SteamInfo) : NULL),
+			GameCenterInfo(src.GameCenterInfo ? new UserGameCenterInfo(*src.GameCenterInfo) : NULL)
+			{}
+			
+		UserAccountInfo(const rapidjson::Value& obj) : UserAccountInfo()
         {
             readFromValue(obj);
         }
@@ -758,9 +1169,17 @@ namespace PlayFab
 		
 		UserAccountInfo* AccountInfo;
 	
-        GetAccountInfoResult() {}
-
-		GetAccountInfoResult(const rapidjson::Value& obj)
+        GetAccountInfoResult() :
+			PlayFabBaseModel(),
+			AccountInfo(NULL)
+			{}
+		
+		GetAccountInfoResult(const GetAccountInfoResult& src) :
+			PlayFabBaseModel(),
+			AccountInfo(src.AccountInfo ? new UserAccountInfo(*src.AccountInfo) : NULL)
+			{}
+			
+		GetAccountInfoResult(const rapidjson::Value& obj) : GetAccountInfoResult()
         {
             readFromValue(obj);
         }
@@ -775,9 +1194,15 @@ namespace PlayFab
     {
 		
 	
-        GetUserInventoryRequest() {}
-
-		GetUserInventoryRequest(const rapidjson::Value& obj)
+        GetUserInventoryRequest() :
+			PlayFabBaseModel()
+			{}
+		
+		GetUserInventoryRequest(const GetUserInventoryRequest& src) :
+			PlayFabBaseModel()
+			{}
+			
+		GetUserInventoryRequest(const rapidjson::Value& obj) : GetUserInventoryRequest()
         {
             readFromValue(obj);
         }
@@ -801,9 +1226,33 @@ namespace PlayFab
 		std::string CatalogVersion;
 		std::string BundleParent;
 	
-        ItemInstance() {}
-
-		ItemInstance(const rapidjson::Value& obj)
+        ItemInstance() :
+			PlayFabBaseModel(),
+			ItemId(),
+			ItemInstanceId(),
+			ItemClass(),
+			PurchaseDate(),
+			Expiration(),
+			RemainingUses(),
+			Annotation(),
+			CatalogVersion(),
+			BundleParent()
+			{}
+		
+		ItemInstance(const ItemInstance& src) :
+			PlayFabBaseModel(),
+			ItemId(src.ItemId),
+			ItemInstanceId(src.ItemInstanceId),
+			ItemClass(src.ItemClass),
+			PurchaseDate(src.PurchaseDate),
+			Expiration(src.Expiration),
+			RemainingUses(src.RemainingUses),
+			Annotation(src.Annotation),
+			CatalogVersion(src.CatalogVersion),
+			BundleParent(src.BundleParent)
+			{}
+			
+		ItemInstance(const rapidjson::Value& obj) : ItemInstance()
         {
             readFromValue(obj);
         }
@@ -820,9 +1269,19 @@ namespace PlayFab
 		std::list<ItemInstance> Inventory;
 		std::map<std::string, Int32> VirtualCurrency;
 	
-        GetUserInventoryResult() {}
-
-		GetUserInventoryResult(const rapidjson::Value& obj)
+        GetUserInventoryResult() :
+			PlayFabBaseModel(),
+			Inventory(),
+			VirtualCurrency()
+			{}
+		
+		GetUserInventoryResult(const GetUserInventoryResult& src) :
+			PlayFabBaseModel(),
+			Inventory(src.Inventory),
+			VirtualCurrency(src.VirtualCurrency)
+			{}
+			
+		GetUserInventoryResult(const rapidjson::Value& obj) : GetUserInventoryResult()
         {
             readFromValue(obj);
         }
@@ -838,9 +1297,17 @@ namespace PlayFab
 		
 		std::string CatalogVersion;
 	
-        GetCatalogItemsRequest() {}
-
-		GetCatalogItemsRequest(const rapidjson::Value& obj)
+        GetCatalogItemsRequest() :
+			PlayFabBaseModel(),
+			CatalogVersion()
+			{}
+		
+		GetCatalogItemsRequest(const GetCatalogItemsRequest& src) :
+			PlayFabBaseModel(),
+			CatalogVersion(src.CatalogVersion)
+			{}
+			
+		GetCatalogItemsRequest(const rapidjson::Value& obj) : GetCatalogItemsRequest()
         {
             readFromValue(obj);
         }
@@ -858,9 +1325,21 @@ namespace PlayFab
 		OptionalUint32 UsagePeriod;
 		std::string UsagePeriodGroup;
 	
-        CatalogItemConsumableInfo() {}
-
-		CatalogItemConsumableInfo(const rapidjson::Value& obj)
+        CatalogItemConsumableInfo() :
+			PlayFabBaseModel(),
+			UsageCount(0),
+			UsagePeriod(),
+			UsagePeriodGroup()
+			{}
+		
+		CatalogItemConsumableInfo(const CatalogItemConsumableInfo& src) :
+			PlayFabBaseModel(),
+			UsageCount(src.UsageCount),
+			UsagePeriod(src.UsagePeriod),
+			UsagePeriodGroup(src.UsagePeriodGroup)
+			{}
+			
+		CatalogItemConsumableInfo(const rapidjson::Value& obj) : CatalogItemConsumableInfo()
         {
             readFromValue(obj);
         }
@@ -879,9 +1358,23 @@ namespace PlayFab
 		std::list<std::string> ResultTableContents;
 		std::map<std::string, Uint32> VirtualCurrencyContents;
 	
-        CatalogItemContainerInfo() {}
-
-		CatalogItemContainerInfo(const rapidjson::Value& obj)
+        CatalogItemContainerInfo() :
+			PlayFabBaseModel(),
+			KeyItemId(),
+			ItemContents(),
+			ResultTableContents(),
+			VirtualCurrencyContents()
+			{}
+		
+		CatalogItemContainerInfo(const CatalogItemContainerInfo& src) :
+			PlayFabBaseModel(),
+			KeyItemId(src.KeyItemId),
+			ItemContents(src.ItemContents),
+			ResultTableContents(src.ResultTableContents),
+			VirtualCurrencyContents(src.VirtualCurrencyContents)
+			{}
+			
+		CatalogItemContainerInfo(const rapidjson::Value& obj) : CatalogItemContainerInfo()
         {
             readFromValue(obj);
         }
@@ -899,9 +1392,21 @@ namespace PlayFab
 		std::list<std::string> BundledResultTables;
 		std::map<std::string, Uint32> BundledVirtualCurrencies;
 	
-        CatalogItemBundleInfo() {}
-
-		CatalogItemBundleInfo(const rapidjson::Value& obj)
+        CatalogItemBundleInfo() :
+			PlayFabBaseModel(),
+			BundledItems(),
+			BundledResultTables(),
+			BundledVirtualCurrencies()
+			{}
+		
+		CatalogItemBundleInfo(const CatalogItemBundleInfo& src) :
+			PlayFabBaseModel(),
+			BundledItems(src.BundledItems),
+			BundledResultTables(src.BundledResultTables),
+			BundledVirtualCurrencies(src.BundledVirtualCurrencies)
+			{}
+			
+		CatalogItemBundleInfo(const rapidjson::Value& obj) : CatalogItemBundleInfo()
         {
             readFromValue(obj);
         }
@@ -934,9 +1439,51 @@ namespace PlayFab
 		CatalogItemContainerInfo* Container;
 		CatalogItemBundleInfo* Bundle;
 	
-        CatalogItem() {}
-
-		CatalogItem(const rapidjson::Value& obj)
+        CatalogItem() :
+			PlayFabBaseModel(),
+			ItemId(),
+			ItemClass(),
+			CatalogVersion(),
+			DisplayName(),
+			Description(),
+			VirtualCurrencyPrices(),
+			RealCurrencyPrices(),
+			ReleaseDate(),
+			ExpirationDate(),
+			IsFree(),
+			NotForSale(),
+			NotForTrade(),
+			Tags(),
+			CustomData(),
+			GrantedIfPlayerHas(),
+			Consumable(NULL),
+			Container(NULL),
+			Bundle(NULL)
+			{}
+		
+		CatalogItem(const CatalogItem& src) :
+			PlayFabBaseModel(),
+			ItemId(src.ItemId),
+			ItemClass(src.ItemClass),
+			CatalogVersion(src.CatalogVersion),
+			DisplayName(src.DisplayName),
+			Description(src.Description),
+			VirtualCurrencyPrices(src.VirtualCurrencyPrices),
+			RealCurrencyPrices(src.RealCurrencyPrices),
+			ReleaseDate(src.ReleaseDate),
+			ExpirationDate(src.ExpirationDate),
+			IsFree(src.IsFree),
+			NotForSale(src.NotForSale),
+			NotForTrade(src.NotForTrade),
+			Tags(src.Tags),
+			CustomData(src.CustomData),
+			GrantedIfPlayerHas(src.GrantedIfPlayerHas),
+			Consumable(src.Consumable ? new CatalogItemConsumableInfo(*src.Consumable) : NULL),
+			Container(src.Container ? new CatalogItemContainerInfo(*src.Container) : NULL),
+			Bundle(src.Bundle ? new CatalogItemBundleInfo(*src.Bundle) : NULL)
+			{}
+			
+		CatalogItem(const rapidjson::Value& obj) : CatalogItem()
         {
             readFromValue(obj);
         }
@@ -952,9 +1499,17 @@ namespace PlayFab
 		
 		std::list<CatalogItem> Catalog;
 	
-        GetCatalogItemsResult() {}
-
-		GetCatalogItemsResult(const rapidjson::Value& obj)
+        GetCatalogItemsResult() :
+			PlayFabBaseModel(),
+			Catalog()
+			{}
+		
+		GetCatalogItemsResult(const GetCatalogItemsResult& src) :
+			PlayFabBaseModel(),
+			Catalog(src.Catalog)
+			{}
+			
+		GetCatalogItemsResult(const rapidjson::Value& obj) : GetCatalogItemsResult()
         {
             readFromValue(obj);
         }
@@ -973,9 +1528,23 @@ namespace PlayFab
 		std::string Annotation;
 		std::list<std::string> UpgradeFromItems;
 	
-        ItemPuchaseRequest() {}
-
-		ItemPuchaseRequest(const rapidjson::Value& obj)
+        ItemPuchaseRequest() :
+			PlayFabBaseModel(),
+			ItemId(),
+			Quantity(0),
+			Annotation(),
+			UpgradeFromItems()
+			{}
+		
+		ItemPuchaseRequest(const ItemPuchaseRequest& src) :
+			PlayFabBaseModel(),
+			ItemId(src.ItemId),
+			Quantity(src.Quantity),
+			Annotation(src.Annotation),
+			UpgradeFromItems(src.UpgradeFromItems)
+			{}
+			
+		ItemPuchaseRequest(const rapidjson::Value& obj) : ItemPuchaseRequest()
         {
             readFromValue(obj);
         }
@@ -992,9 +1561,19 @@ namespace PlayFab
 		std::string CatalogVersion;
 		std::list<ItemPuchaseRequest> Items;
 	
-        StartPurchaseRequest() {}
-
-		StartPurchaseRequest(const rapidjson::Value& obj)
+        StartPurchaseRequest() :
+			PlayFabBaseModel(),
+			CatalogVersion(),
+			Items()
+			{}
+		
+		StartPurchaseRequest(const StartPurchaseRequest& src) :
+			PlayFabBaseModel(),
+			CatalogVersion(src.CatalogVersion),
+			Items(src.Items)
+			{}
+			
+		StartPurchaseRequest(const rapidjson::Value& obj) : StartPurchaseRequest()
         {
             readFromValue(obj);
         }
@@ -1017,9 +1596,31 @@ namespace PlayFab
 		std::map<std::string, Uint32> RealCurrencyPrices;
 		std::map<std::string, Uint32> VCAmount;
 	
-        CartItem() {}
-
-		CartItem(const rapidjson::Value& obj)
+        CartItem() :
+			PlayFabBaseModel(),
+			ItemId(),
+			ItemClass(),
+			ItemInstanceId(),
+			DisplayName(),
+			Description(),
+			VirtualCurrencyPrices(),
+			RealCurrencyPrices(),
+			VCAmount()
+			{}
+		
+		CartItem(const CartItem& src) :
+			PlayFabBaseModel(),
+			ItemId(src.ItemId),
+			ItemClass(src.ItemClass),
+			ItemInstanceId(src.ItemInstanceId),
+			DisplayName(src.DisplayName),
+			Description(src.Description),
+			VirtualCurrencyPrices(src.VirtualCurrencyPrices),
+			RealCurrencyPrices(src.RealCurrencyPrices),
+			VCAmount(src.VCAmount)
+			{}
+			
+		CartItem(const rapidjson::Value& obj) : CartItem()
         {
             readFromValue(obj);
         }
@@ -1038,9 +1639,23 @@ namespace PlayFab
 		Uint32 Price;
 		Uint32 StoreCredit;
 	
-        PaymentOption() {}
-
-		PaymentOption(const rapidjson::Value& obj)
+        PaymentOption() :
+			PlayFabBaseModel(),
+			Currency(),
+			ProviderName(),
+			Price(0),
+			StoreCredit(0)
+			{}
+		
+		PaymentOption(const PaymentOption& src) :
+			PlayFabBaseModel(),
+			Currency(src.Currency),
+			ProviderName(src.ProviderName),
+			Price(src.Price),
+			StoreCredit(src.StoreCredit)
+			{}
+			
+		PaymentOption(const rapidjson::Value& obj) : PaymentOption()
         {
             readFromValue(obj);
         }
@@ -1059,9 +1674,23 @@ namespace PlayFab
 		std::list<PaymentOption> PaymentOptions;
 		std::map<std::string, Int32> VirtualCurrencyBalances;
 	
-        StartPurchaseResult() {}
-
-		StartPurchaseResult(const rapidjson::Value& obj)
+        StartPurchaseResult() :
+			PlayFabBaseModel(),
+			OrderId(),
+			Contents(),
+			PaymentOptions(),
+			VirtualCurrencyBalances()
+			{}
+		
+		StartPurchaseResult(const StartPurchaseResult& src) :
+			PlayFabBaseModel(),
+			OrderId(src.OrderId),
+			Contents(src.Contents),
+			PaymentOptions(src.PaymentOptions),
+			VirtualCurrencyBalances(src.VirtualCurrencyBalances)
+			{}
+			
+		StartPurchaseResult(const rapidjson::Value& obj) : StartPurchaseResult()
         {
             readFromValue(obj);
         }
@@ -1079,9 +1708,21 @@ namespace PlayFab
 		std::string ProviderName;
 		std::string Currency;
 	
-        PayForPurchaseRequest() {}
-
-		PayForPurchaseRequest(const rapidjson::Value& obj)
+        PayForPurchaseRequest() :
+			PlayFabBaseModel(),
+			OrderId(),
+			ProviderName(),
+			Currency()
+			{}
+		
+		PayForPurchaseRequest(const PayForPurchaseRequest& src) :
+			PlayFabBaseModel(),
+			OrderId(src.OrderId),
+			ProviderName(src.ProviderName),
+			Currency(src.Currency)
+			{}
+			
+		PayForPurchaseRequest(const rapidjson::Value& obj) : PayForPurchaseRequest()
         {
             readFromValue(obj);
         }
@@ -1127,9 +1768,31 @@ namespace PlayFab
 		Uint32 CreditApplied;
 		std::string ProviderData;
 	
-        PurchaseData() {}
-
-		PurchaseData(const rapidjson::Value& obj)
+        PurchaseData() :
+			PlayFabBaseModel(),
+			PlayFabId(),
+			OrderId(),
+			Status(),
+			VCAmount(),
+			PurchaseCurrency(),
+			PurchasePrice(0),
+			CreditApplied(0),
+			ProviderData()
+			{}
+		
+		PurchaseData(const PurchaseData& src) :
+			PlayFabBaseModel(),
+			PlayFabId(src.PlayFabId),
+			OrderId(src.OrderId),
+			Status(src.Status),
+			VCAmount(src.VCAmount),
+			PurchaseCurrency(src.PurchaseCurrency),
+			PurchasePrice(src.PurchasePrice),
+			CreditApplied(src.CreditApplied),
+			ProviderData(src.ProviderData)
+			{}
+			
+		PurchaseData(const rapidjson::Value& obj) : PurchaseData()
         {
             readFromValue(obj);
         }
@@ -1147,9 +1810,21 @@ namespace PlayFab
 		std::string PurchaseConfirmationPageURL;
 		std::map<std::string, Int32> VirtualCurrency;
 	
-        PayForPurchaseResult() {}
-
-		PayForPurchaseResult(const rapidjson::Value& obj)
+        PayForPurchaseResult() :
+			PlayFabBaseModel(),
+			Purchase(NULL),
+			PurchaseConfirmationPageURL(),
+			VirtualCurrency()
+			{}
+		
+		PayForPurchaseResult(const PayForPurchaseResult& src) :
+			PlayFabBaseModel(),
+			Purchase(src.Purchase ? new PurchaseData(*src.Purchase) : NULL),
+			PurchaseConfirmationPageURL(src.PurchaseConfirmationPageURL),
+			VirtualCurrency(src.VirtualCurrency)
+			{}
+			
+		PayForPurchaseResult(const rapidjson::Value& obj) : PayForPurchaseResult()
         {
             readFromValue(obj);
         }
@@ -1165,9 +1840,17 @@ namespace PlayFab
 		
 		std::string OrderId;
 	
-        ConfirmPurchaseRequest() {}
-
-		ConfirmPurchaseRequest(const rapidjson::Value& obj)
+        ConfirmPurchaseRequest() :
+			PlayFabBaseModel(),
+			OrderId()
+			{}
+		
+		ConfirmPurchaseRequest(const ConfirmPurchaseRequest& src) :
+			PlayFabBaseModel(),
+			OrderId(src.OrderId)
+			{}
+			
+		ConfirmPurchaseRequest(const rapidjson::Value& obj) : ConfirmPurchaseRequest()
         {
             readFromValue(obj);
         }
@@ -1189,9 +1872,29 @@ namespace PlayFab
 		Uint32 UnitPrice;
 		std::list<std::string> BundleContents;
 	
-        PurchasedItem() {}
-
-		PurchasedItem(const rapidjson::Value& obj)
+        PurchasedItem() :
+			PlayFabBaseModel(),
+			ItemInstanceId(),
+			ItemId(),
+			CatalogVersion(),
+			DisplayName(),
+			UnitCurrency(),
+			UnitPrice(0),
+			BundleContents()
+			{}
+		
+		PurchasedItem(const PurchasedItem& src) :
+			PlayFabBaseModel(),
+			ItemInstanceId(src.ItemInstanceId),
+			ItemId(src.ItemId),
+			CatalogVersion(src.CatalogVersion),
+			DisplayName(src.DisplayName),
+			UnitCurrency(src.UnitCurrency),
+			UnitPrice(src.UnitPrice),
+			BundleContents(src.BundleContents)
+			{}
+			
+		PurchasedItem(const rapidjson::Value& obj) : PurchasedItem()
         {
             readFromValue(obj);
         }
@@ -1209,9 +1912,21 @@ namespace PlayFab
 		OptionalTime PurchaseDate;
 		std::list<PurchasedItem> Items;
 	
-        ConfirmPurchaseResult() {}
-
-		ConfirmPurchaseResult(const rapidjson::Value& obj)
+        ConfirmPurchaseResult() :
+			PlayFabBaseModel(),
+			OrderId(),
+			PurchaseDate(),
+			Items()
+			{}
+		
+		ConfirmPurchaseResult(const ConfirmPurchaseResult& src) :
+			PlayFabBaseModel(),
+			OrderId(src.OrderId),
+			PurchaseDate(src.PurchaseDate),
+			Items(src.Items)
+			{}
+			
+		ConfirmPurchaseResult(const rapidjson::Value& obj) : ConfirmPurchaseResult()
         {
             readFromValue(obj);
         }
@@ -1228,9 +1943,19 @@ namespace PlayFab
 		std::string CouponCode;
 		std::string CatalogVersion;
 	
-        RedeemCouponRequest() {}
-
-		RedeemCouponRequest(const rapidjson::Value& obj)
+        RedeemCouponRequest() :
+			PlayFabBaseModel(),
+			CouponCode(),
+			CatalogVersion()
+			{}
+		
+		RedeemCouponRequest(const RedeemCouponRequest& src) :
+			PlayFabBaseModel(),
+			CouponCode(src.CouponCode),
+			CatalogVersion(src.CatalogVersion)
+			{}
+			
+		RedeemCouponRequest(const rapidjson::Value& obj) : RedeemCouponRequest()
         {
             readFromValue(obj);
         }
@@ -1246,9 +1971,17 @@ namespace PlayFab
 		
 		std::list<ItemInstance> GrantedItems;
 	
-        RedeemCouponResult() {}
-
-		RedeemCouponResult(const rapidjson::Value& obj)
+        RedeemCouponResult() :
+			PlayFabBaseModel(),
+			GrantedItems()
+			{}
+		
+		RedeemCouponResult(const RedeemCouponResult& src) :
+			PlayFabBaseModel(),
+			GrantedItems(src.GrantedItems)
+			{}
+			
+		RedeemCouponResult(const rapidjson::Value& obj) : RedeemCouponResult()
         {
             readFromValue(obj);
         }
@@ -1262,12 +1995,22 @@ namespace PlayFab
 	struct UnlockContainerItemRequest : public PlayFabBaseModel
     {
 		
-		std::string CrateItemId;
+		std::string ContainerItemId;
 		std::string CatalogVersion;
 	
-        UnlockContainerItemRequest() {}
-
-		UnlockContainerItemRequest(const rapidjson::Value& obj)
+        UnlockContainerItemRequest() :
+			PlayFabBaseModel(),
+			ContainerItemId(),
+			CatalogVersion()
+			{}
+		
+		UnlockContainerItemRequest(const UnlockContainerItemRequest& src) :
+			PlayFabBaseModel(),
+			ContainerItemId(src.ContainerItemId),
+			CatalogVersion(src.CatalogVersion)
+			{}
+			
+		UnlockContainerItemRequest(const rapidjson::Value& obj) : UnlockContainerItemRequest()
         {
             readFromValue(obj);
         }
@@ -1281,12 +2024,28 @@ namespace PlayFab
 	struct UnlockContainerItemResult : public PlayFabBaseModel
     {
 		
-		std::string UnlockedItem;
+		std::string UnlockedItemInstanceId;
+		std::string UnlockedWithItemInstanceId;
 		std::list<ItemInstance> GrantedItems;
+		std::map<std::string, Uint32> VirtualCurrency;
 	
-        UnlockContainerItemResult() {}
-
-		UnlockContainerItemResult(const rapidjson::Value& obj)
+        UnlockContainerItemResult() :
+			PlayFabBaseModel(),
+			UnlockedItemInstanceId(),
+			UnlockedWithItemInstanceId(),
+			GrantedItems(),
+			VirtualCurrency()
+			{}
+		
+		UnlockContainerItemResult(const UnlockContainerItemResult& src) :
+			PlayFabBaseModel(),
+			UnlockedItemInstanceId(src.UnlockedItemInstanceId),
+			UnlockedWithItemInstanceId(src.UnlockedWithItemInstanceId),
+			GrantedItems(src.GrantedItems),
+			VirtualCurrency(src.VirtualCurrency)
+			{}
+			
+		UnlockContainerItemResult(const rapidjson::Value& obj) : UnlockContainerItemResult()
         {
             readFromValue(obj);
         }
@@ -1303,9 +2062,19 @@ namespace PlayFab
 		std::string Email;
 		std::string TitleId;
 	
-        SendAccountRecoveryEmailRequest() {}
-
-		SendAccountRecoveryEmailRequest(const rapidjson::Value& obj)
+        SendAccountRecoveryEmailRequest() :
+			PlayFabBaseModel(),
+			Email(),
+			TitleId()
+			{}
+		
+		SendAccountRecoveryEmailRequest(const SendAccountRecoveryEmailRequest& src) :
+			PlayFabBaseModel(),
+			Email(src.Email),
+			TitleId(src.TitleId)
+			{}
+			
+		SendAccountRecoveryEmailRequest(const rapidjson::Value& obj) : SendAccountRecoveryEmailRequest()
         {
             readFromValue(obj);
         }
@@ -1320,9 +2089,15 @@ namespace PlayFab
     {
 		
 	
-        SendAccountRecoveryEmailResult() {}
-
-		SendAccountRecoveryEmailResult(const rapidjson::Value& obj)
+        SendAccountRecoveryEmailResult() :
+			PlayFabBaseModel()
+			{}
+		
+		SendAccountRecoveryEmailResult(const SendAccountRecoveryEmailResult& src) :
+			PlayFabBaseModel()
+			{}
+			
+		SendAccountRecoveryEmailResult(const rapidjson::Value& obj) : SendAccountRecoveryEmailResult()
         {
             readFromValue(obj);
         }
@@ -1338,9 +2113,17 @@ namespace PlayFab
 		
 		OptionalUint32 Count;
 	
-        GetTitleNewsRequest() {}
-
-		GetTitleNewsRequest(const rapidjson::Value& obj)
+        GetTitleNewsRequest() :
+			PlayFabBaseModel(),
+			Count()
+			{}
+		
+		GetTitleNewsRequest(const GetTitleNewsRequest& src) :
+			PlayFabBaseModel(),
+			Count(src.Count)
+			{}
+			
+		GetTitleNewsRequest(const rapidjson::Value& obj) : GetTitleNewsRequest()
         {
             readFromValue(obj);
         }
@@ -1358,9 +2141,21 @@ namespace PlayFab
 		std::string Title;
 		std::string Body;
 	
-        TitleNewsItem() {}
-
-		TitleNewsItem(const rapidjson::Value& obj)
+        TitleNewsItem() :
+			PlayFabBaseModel(),
+			Timestamp(),
+			Title(),
+			Body()
+			{}
+		
+		TitleNewsItem(const TitleNewsItem& src) :
+			PlayFabBaseModel(),
+			Timestamp(src.Timestamp),
+			Title(src.Title),
+			Body(src.Body)
+			{}
+			
+		TitleNewsItem(const rapidjson::Value& obj) : TitleNewsItem()
         {
             readFromValue(obj);
         }
@@ -1376,9 +2171,17 @@ namespace PlayFab
 		
 		std::list<TitleNewsItem> News;
 	
-        GetTitleNewsResult() {}
-
-		GetTitleNewsResult(const rapidjson::Value& obj)
+        GetTitleNewsResult() :
+			PlayFabBaseModel(),
+			News()
+			{}
+		
+		GetTitleNewsResult(const GetTitleNewsResult& src) :
+			PlayFabBaseModel(),
+			News(src.News)
+			{}
+			
+		GetTitleNewsResult(const rapidjson::Value& obj) : GetTitleNewsResult()
         {
             readFromValue(obj);
         }
@@ -1394,9 +2197,17 @@ namespace PlayFab
 		
 		std::list<std::string> Keys;
 	
-        GetTitleDataRequest() {}
-
-		GetTitleDataRequest(const rapidjson::Value& obj)
+        GetTitleDataRequest() :
+			PlayFabBaseModel(),
+			Keys()
+			{}
+		
+		GetTitleDataRequest(const GetTitleDataRequest& src) :
+			PlayFabBaseModel(),
+			Keys(src.Keys)
+			{}
+			
+		GetTitleDataRequest(const rapidjson::Value& obj) : GetTitleDataRequest()
         {
             readFromValue(obj);
         }
@@ -1412,9 +2223,17 @@ namespace PlayFab
 		
 		std::map<std::string, std::string> Data;
 	
-        GetTitleDataResult() {}
-
-		GetTitleDataResult(const rapidjson::Value& obj)
+        GetTitleDataResult() :
+			PlayFabBaseModel(),
+			Data()
+			{}
+		
+		GetTitleDataResult(const GetTitleDataResult& src) :
+			PlayFabBaseModel(),
+			Data(src.Data)
+			{}
+			
+		GetTitleDataResult(const rapidjson::Value& obj) : GetTitleDataResult()
         {
             readFromValue(obj);
         }
@@ -1430,9 +2249,17 @@ namespace PlayFab
 		
 		std::list<std::string> Keys;
 	
-        GetUserDataRequest() {}
-
-		GetUserDataRequest(const rapidjson::Value& obj)
+        GetUserDataRequest() :
+			PlayFabBaseModel(),
+			Keys()
+			{}
+		
+		GetUserDataRequest(const GetUserDataRequest& src) :
+			PlayFabBaseModel(),
+			Keys(src.Keys)
+			{}
+			
+		GetUserDataRequest(const rapidjson::Value& obj) : GetUserDataRequest()
         {
             readFromValue(obj);
         }
@@ -1448,9 +2275,17 @@ namespace PlayFab
 		
 		std::map<std::string, std::string> Data;
 	
-        GetUserDataResult() {}
-
-		GetUserDataResult(const rapidjson::Value& obj)
+        GetUserDataResult() :
+			PlayFabBaseModel(),
+			Data()
+			{}
+		
+		GetUserDataResult(const GetUserDataResult& src) :
+			PlayFabBaseModel(),
+			Data(src.Data)
+			{}
+			
+		GetUserDataResult(const rapidjson::Value& obj) : GetUserDataResult()
         {
             readFromValue(obj);
         }
@@ -1466,9 +2301,17 @@ namespace PlayFab
 		
 		std::map<std::string, std::string> Data;
 	
-        UpdateUserDataRequest() {}
-
-		UpdateUserDataRequest(const rapidjson::Value& obj)
+        UpdateUserDataRequest() :
+			PlayFabBaseModel(),
+			Data()
+			{}
+		
+		UpdateUserDataRequest(const UpdateUserDataRequest& src) :
+			PlayFabBaseModel(),
+			Data(src.Data)
+			{}
+			
+		UpdateUserDataRequest(const rapidjson::Value& obj) : UpdateUserDataRequest()
         {
             readFromValue(obj);
         }
@@ -1483,9 +2326,15 @@ namespace PlayFab
     {
 		
 	
-        UpdateUserDataResult() {}
-
-		UpdateUserDataResult(const rapidjson::Value& obj)
+        UpdateUserDataResult() :
+			PlayFabBaseModel()
+			{}
+		
+		UpdateUserDataResult(const UpdateUserDataResult& src) :
+			PlayFabBaseModel()
+			{}
+			
+		UpdateUserDataResult(const rapidjson::Value& obj) : UpdateUserDataResult()
         {
             readFromValue(obj);
         }
@@ -1501,9 +2350,17 @@ namespace PlayFab
 		
 		std::string DisplayName;
 	
-        UpdateUserTitleDisplayNameRequest() {}
-
-		UpdateUserTitleDisplayNameRequest(const rapidjson::Value& obj)
+        UpdateUserTitleDisplayNameRequest() :
+			PlayFabBaseModel(),
+			DisplayName()
+			{}
+		
+		UpdateUserTitleDisplayNameRequest(const UpdateUserTitleDisplayNameRequest& src) :
+			PlayFabBaseModel(),
+			DisplayName(src.DisplayName)
+			{}
+			
+		UpdateUserTitleDisplayNameRequest(const rapidjson::Value& obj) : UpdateUserTitleDisplayNameRequest()
         {
             readFromValue(obj);
         }
@@ -1519,9 +2376,17 @@ namespace PlayFab
 		
 		std::string DisplayName;
 	
-        UpdateUserTitleDisplayNameResult() {}
-
-		UpdateUserTitleDisplayNameResult(const rapidjson::Value& obj)
+        UpdateUserTitleDisplayNameResult() :
+			PlayFabBaseModel(),
+			DisplayName()
+			{}
+		
+		UpdateUserTitleDisplayNameResult(const UpdateUserTitleDisplayNameResult& src) :
+			PlayFabBaseModel(),
+			DisplayName(src.DisplayName)
+			{}
+			
+		UpdateUserTitleDisplayNameResult(const rapidjson::Value& obj) : UpdateUserTitleDisplayNameResult()
         {
             readFromValue(obj);
         }
@@ -1537,9 +2402,17 @@ namespace PlayFab
 		
 		std::string DeviceToken;
 	
-        RegisterForIOSPushNotificationRequest() {}
-
-		RegisterForIOSPushNotificationRequest(const rapidjson::Value& obj)
+        RegisterForIOSPushNotificationRequest() :
+			PlayFabBaseModel(),
+			DeviceToken()
+			{}
+		
+		RegisterForIOSPushNotificationRequest(const RegisterForIOSPushNotificationRequest& src) :
+			PlayFabBaseModel(),
+			DeviceToken(src.DeviceToken)
+			{}
+			
+		RegisterForIOSPushNotificationRequest(const rapidjson::Value& obj) : RegisterForIOSPushNotificationRequest()
         {
             readFromValue(obj);
         }
@@ -1554,9 +2427,15 @@ namespace PlayFab
     {
 		
 	
-        RegisterForIOSPushNotificationResult() {}
-
-		RegisterForIOSPushNotificationResult(const rapidjson::Value& obj)
+        RegisterForIOSPushNotificationResult() :
+			PlayFabBaseModel()
+			{}
+		
+		RegisterForIOSPushNotificationResult(const RegisterForIOSPushNotificationResult& src) :
+			PlayFabBaseModel()
+			{}
+			
+		RegisterForIOSPushNotificationResult(const rapidjson::Value& obj) : RegisterForIOSPushNotificationResult()
         {
             readFromValue(obj);
         }
@@ -1572,9 +2451,17 @@ namespace PlayFab
 		
 		std::string DeviceToken;
 	
-        AndroidDevicePushNotificationRegistrationRequest() {}
-
-		AndroidDevicePushNotificationRegistrationRequest(const rapidjson::Value& obj)
+        AndroidDevicePushNotificationRegistrationRequest() :
+			PlayFabBaseModel(),
+			DeviceToken()
+			{}
+		
+		AndroidDevicePushNotificationRegistrationRequest(const AndroidDevicePushNotificationRegistrationRequest& src) :
+			PlayFabBaseModel(),
+			DeviceToken(src.DeviceToken)
+			{}
+			
+		AndroidDevicePushNotificationRegistrationRequest(const rapidjson::Value& obj) : AndroidDevicePushNotificationRegistrationRequest()
         {
             readFromValue(obj);
         }
@@ -1589,9 +2476,15 @@ namespace PlayFab
     {
 		
 	
-        AndroidDevicePushNotificationRegistrationResult() {}
-
-		AndroidDevicePushNotificationRegistrationResult(const rapidjson::Value& obj)
+        AndroidDevicePushNotificationRegistrationResult() :
+			PlayFabBaseModel()
+			{}
+		
+		AndroidDevicePushNotificationRegistrationResult(const AndroidDevicePushNotificationRegistrationResult& src) :
+			PlayFabBaseModel()
+			{}
+			
+		AndroidDevicePushNotificationRegistrationResult(const rapidjson::Value& obj) : AndroidDevicePushNotificationRegistrationResult()
         {
             readFromValue(obj);
         }
@@ -1610,9 +2503,23 @@ namespace PlayFab
 		std::string CurrencyCode;
 		double PurchasePrice;
 	
-        ValidateIOSReceiptRequest() {}
-
-		ValidateIOSReceiptRequest(const rapidjson::Value& obj)
+        ValidateIOSReceiptRequest() :
+			PlayFabBaseModel(),
+			ReceiptData(),
+			ObjectName(),
+			CurrencyCode(),
+			PurchasePrice(0)
+			{}
+		
+		ValidateIOSReceiptRequest(const ValidateIOSReceiptRequest& src) :
+			PlayFabBaseModel(),
+			ReceiptData(src.ReceiptData),
+			ObjectName(src.ObjectName),
+			CurrencyCode(src.CurrencyCode),
+			PurchasePrice(src.PurchasePrice)
+			{}
+			
+		ValidateIOSReceiptRequest(const rapidjson::Value& obj) : ValidateIOSReceiptRequest()
         {
             readFromValue(obj);
         }
@@ -1627,9 +2534,15 @@ namespace PlayFab
     {
 		
 	
-        ValidateIOSReceiptResult() {}
-
-		ValidateIOSReceiptResult(const rapidjson::Value& obj)
+        ValidateIOSReceiptResult() :
+			PlayFabBaseModel()
+			{}
+		
+		ValidateIOSReceiptResult(const ValidateIOSReceiptResult& src) :
+			PlayFabBaseModel()
+			{}
+			
+		ValidateIOSReceiptResult(const rapidjson::Value& obj) : ValidateIOSReceiptResult()
         {
             readFromValue(obj);
         }
@@ -1646,9 +2559,19 @@ namespace PlayFab
 		std::string TitleId;
 		std::string AccessToken;
 	
-        LoginWithGoogleAccountRequest() {}
-
-		LoginWithGoogleAccountRequest(const rapidjson::Value& obj)
+        LoginWithGoogleAccountRequest() :
+			PlayFabBaseModel(),
+			TitleId(),
+			AccessToken()
+			{}
+		
+		LoginWithGoogleAccountRequest(const LoginWithGoogleAccountRequest& src) :
+			PlayFabBaseModel(),
+			TitleId(src.TitleId),
+			AccessToken(src.AccessToken)
+			{}
+			
+		LoginWithGoogleAccountRequest(const rapidjson::Value& obj) : LoginWithGoogleAccountRequest()
         {
             readFromValue(obj);
         }
@@ -1667,9 +2590,23 @@ namespace PlayFab
 		std::string purchaseToken;
 		std::string accessToken;
 	
-        ValidateGooglePlayPurchaseRequest() {}
-
-		ValidateGooglePlayPurchaseRequest(const rapidjson::Value& obj)
+        ValidateGooglePlayPurchaseRequest() :
+			PlayFabBaseModel(),
+			packageName(),
+			productId(),
+			purchaseToken(),
+			accessToken()
+			{}
+		
+		ValidateGooglePlayPurchaseRequest(const ValidateGooglePlayPurchaseRequest& src) :
+			PlayFabBaseModel(),
+			packageName(src.packageName),
+			productId(src.productId),
+			purchaseToken(src.purchaseToken),
+			accessToken(src.accessToken)
+			{}
+			
+		ValidateGooglePlayPurchaseRequest(const rapidjson::Value& obj) : ValidateGooglePlayPurchaseRequest()
         {
             readFromValue(obj);
         }
@@ -1689,9 +2626,25 @@ namespace PlayFab
 		Int32 consumptionState;
 		std::string developerPayload;
 	
-        ValidateGooglePlayPurchaseResult() {}
-
-		ValidateGooglePlayPurchaseResult(const rapidjson::Value& obj)
+        ValidateGooglePlayPurchaseResult() :
+			PlayFabBaseModel(),
+			kind(),
+			purchaseTime(),
+			puchaseState(0),
+			consumptionState(0),
+			developerPayload()
+			{}
+		
+		ValidateGooglePlayPurchaseResult(const ValidateGooglePlayPurchaseResult& src) :
+			PlayFabBaseModel(),
+			kind(src.kind),
+			purchaseTime(src.purchaseTime),
+			puchaseState(src.puchaseState),
+			consumptionState(src.consumptionState),
+			developerPayload(src.developerPayload)
+			{}
+			
+		ValidateGooglePlayPurchaseResult(const rapidjson::Value& obj) : ValidateGooglePlayPurchaseResult()
         {
             readFromValue(obj);
         }
@@ -1710,9 +2663,23 @@ namespace PlayFab
 		std::string FriendEmail;
 		std::string FriendTitleDisplayName;
 	
-        AddFriendRequest() {}
-
-		AddFriendRequest(const rapidjson::Value& obj)
+        AddFriendRequest() :
+			PlayFabBaseModel(),
+			FriendPlayFabId(),
+			FriendUsername(),
+			FriendEmail(),
+			FriendTitleDisplayName()
+			{}
+		
+		AddFriendRequest(const AddFriendRequest& src) :
+			PlayFabBaseModel(),
+			FriendPlayFabId(src.FriendPlayFabId),
+			FriendUsername(src.FriendUsername),
+			FriendEmail(src.FriendEmail),
+			FriendTitleDisplayName(src.FriendTitleDisplayName)
+			{}
+			
+		AddFriendRequest(const rapidjson::Value& obj) : AddFriendRequest()
         {
             readFromValue(obj);
         }
@@ -1728,49 +2695,22 @@ namespace PlayFab
 		
 		bool Created;
 	
-        AddFriendResult() {}
-
-		AddFriendResult(const rapidjson::Value& obj)
+        AddFriendResult() :
+			PlayFabBaseModel(),
+			Created(false)
+			{}
+		
+		AddFriendResult(const AddFriendResult& src) :
+			PlayFabBaseModel(),
+			Created(src.Created)
+			{}
+			
+		AddFriendResult(const rapidjson::Value& obj) : AddFriendResult()
         {
             readFromValue(obj);
         }
 		
 		~AddFriendResult();
-		
-        void writeJSON(PFStringJsonWriter& writer);
-        bool readFromValue(const rapidjson::Value& obj);
-    };
-	
-	struct RemoveFriendRequest : public PlayFabBaseModel
-    {
-		
-		std::string FriendPlayFabId;
-	
-        RemoveFriendRequest() {}
-
-		RemoveFriendRequest(const rapidjson::Value& obj)
-        {
-            readFromValue(obj);
-        }
-		
-		~RemoveFriendRequest();
-		
-        void writeJSON(PFStringJsonWriter& writer);
-        bool readFromValue(const rapidjson::Value& obj);
-    };
-	
-	struct RemoveFriendResult : public PlayFabBaseModel
-    {
-		
-	
-        RemoveFriendResult() {}
-
-		RemoveFriendResult(const rapidjson::Value& obj)
-        {
-            readFromValue(obj);
-        }
-		
-		~RemoveFriendResult();
 		
         void writeJSON(PFStringJsonWriter& writer);
         bool readFromValue(const rapidjson::Value& obj);
@@ -1803,9 +2743,25 @@ namespace PlayFab
 		bool PasswordRestricted;
 		std::string ReplayLobbyId;
 	
-        StartGameRequest() {}
-
-		StartGameRequest(const rapidjson::Value& obj)
+        StartGameRequest() :
+			PlayFabBaseModel(),
+			BuildVersion(),
+			Region(),
+			GameMode(),
+			PasswordRestricted(false),
+			ReplayLobbyId()
+			{}
+		
+		StartGameRequest(const StartGameRequest& src) :
+			PlayFabBaseModel(),
+			BuildVersion(src.BuildVersion),
+			Region(src.Region),
+			GameMode(src.GameMode),
+			PasswordRestricted(src.PasswordRestricted),
+			ReplayLobbyId(src.ReplayLobbyId)
+			{}
+			
+		StartGameRequest(const rapidjson::Value& obj) : StartGameRequest()
         {
             readFromValue(obj);
         }
@@ -1826,9 +2782,27 @@ namespace PlayFab
 		std::string Expires;
 		std::string Password;
 	
-        StartGameResult() {}
-
-		StartGameResult(const rapidjson::Value& obj)
+        StartGameResult() :
+			PlayFabBaseModel(),
+			LobbyID(),
+			ServerHostname(),
+			ServerPort(),
+			Ticket(),
+			Expires(),
+			Password()
+			{}
+		
+		StartGameResult(const StartGameResult& src) :
+			PlayFabBaseModel(),
+			LobbyID(src.LobbyID),
+			ServerHostname(src.ServerHostname),
+			ServerPort(src.ServerPort),
+			Ticket(src.Ticket),
+			Expires(src.Expires),
+			Password(src.Password)
+			{}
+			
+		StartGameResult(const rapidjson::Value& obj) : StartGameResult()
         {
             readFromValue(obj);
         }
@@ -1848,9 +2822,25 @@ namespace PlayFab
 		std::string LobbyId;
 		OptionalBool EnableQueue;
 	
-        MatchmakeRequest() {}
-
-		MatchmakeRequest(const rapidjson::Value& obj)
+        MatchmakeRequest() :
+			PlayFabBaseModel(),
+			BuildVersion(),
+			Region(),
+			GameMode(),
+			LobbyId(),
+			EnableQueue()
+			{}
+		
+		MatchmakeRequest(const MatchmakeRequest& src) :
+			PlayFabBaseModel(),
+			BuildVersion(src.BuildVersion),
+			Region(src.Region),
+			GameMode(src.GameMode),
+			LobbyId(src.LobbyId),
+			EnableQueue(src.EnableQueue)
+			{}
+			
+		MatchmakeRequest(const rapidjson::Value& obj) : MatchmakeRequest()
         {
             readFromValue(obj);
         }
@@ -1885,9 +2875,33 @@ namespace PlayFab
 		Boxed<MatchmakeStatus> Status;
 		std::list<std::string> Queue;
 	
-        MatchmakeResult() {}
-
-		MatchmakeResult(const rapidjson::Value& obj)
+        MatchmakeResult() :
+			PlayFabBaseModel(),
+			LobbyID(),
+			ServerHostname(),
+			ServerPort(),
+			WebSocketPort(),
+			Ticket(),
+			Expires(),
+			PollWaitTimeMS(),
+			Status(),
+			Queue()
+			{}
+		
+		MatchmakeResult(const MatchmakeResult& src) :
+			PlayFabBaseModel(),
+			LobbyID(src.LobbyID),
+			ServerHostname(src.ServerHostname),
+			ServerPort(src.ServerPort),
+			WebSocketPort(src.WebSocketPort),
+			Ticket(src.Ticket),
+			Expires(src.Expires),
+			PollWaitTimeMS(src.PollWaitTimeMS),
+			Status(src.Status),
+			Queue(src.Queue)
+			{}
+			
+		MatchmakeResult(const rapidjson::Value& obj) : MatchmakeResult()
         {
             readFromValue(obj);
         }
@@ -1905,9 +2919,21 @@ namespace PlayFab
 		std::string BuildVersion;
 		std::string IncludeState;
 	
-        CurrentGamesRequest() {}
-
-		CurrentGamesRequest(const rapidjson::Value& obj)
+        CurrentGamesRequest() :
+			PlayFabBaseModel(),
+			Region(),
+			BuildVersion(),
+			IncludeState()
+			{}
+		
+		CurrentGamesRequest(const CurrentGamesRequest& src) :
+			PlayFabBaseModel(),
+			Region(src.Region),
+			BuildVersion(src.BuildVersion),
+			IncludeState(src.IncludeState)
+			{}
+			
+		CurrentGamesRequest(const rapidjson::Value& obj) : CurrentGamesRequest()
         {
             readFromValue(obj);
         }
@@ -1932,9 +2958,35 @@ namespace PlayFab
 		std::string GameServerState;
 		std::string TitleData;
 	
-        GameInfo() {}
-
-		GameInfo(const rapidjson::Value& obj)
+        GameInfo() :
+			PlayFabBaseModel(),
+			Region(),
+			LobbyID(),
+			BuildVersion(),
+			GameMode(),
+			Map(),
+			MaxPlayers(0),
+			PlayerUsernames(),
+			RunTime(0),
+			GameServerState(),
+			TitleData()
+			{}
+		
+		GameInfo(const GameInfo& src) :
+			PlayFabBaseModel(),
+			Region(src.Region),
+			LobbyID(src.LobbyID),
+			BuildVersion(src.BuildVersion),
+			GameMode(src.GameMode),
+			Map(src.Map),
+			MaxPlayers(src.MaxPlayers),
+			PlayerUsernames(src.PlayerUsernames),
+			RunTime(src.RunTime),
+			GameServerState(src.GameServerState),
+			TitleData(src.TitleData)
+			{}
+			
+		GameInfo(const rapidjson::Value& obj) : GameInfo()
         {
             readFromValue(obj);
         }
@@ -1953,9 +3005,23 @@ namespace PlayFab
 		Int32 GameCount;
 		OptionalBool IncompleteResult;
 	
-        CurrentGamesResult() {}
-
-		CurrentGamesResult(const rapidjson::Value& obj)
+        CurrentGamesResult() :
+			PlayFabBaseModel(),
+			Games(),
+			PlayerCount(0),
+			GameCount(0),
+			IncompleteResult()
+			{}
+		
+		CurrentGamesResult(const CurrentGamesResult& src) :
+			PlayFabBaseModel(),
+			Games(src.Games),
+			PlayerCount(src.PlayerCount),
+			GameCount(src.GameCount),
+			IncompleteResult(src.IncompleteResult)
+			{}
+			
+		CurrentGamesResult(const rapidjson::Value& obj) : CurrentGamesResult()
         {
             readFromValue(obj);
         }
@@ -1972,9 +3038,19 @@ namespace PlayFab
 		std::string BuildVersion;
 		std::string TitleId;
 	
-        GameServerRegionsRequest() {}
-
-		GameServerRegionsRequest(const rapidjson::Value& obj)
+        GameServerRegionsRequest() :
+			PlayFabBaseModel(),
+			BuildVersion(),
+			TitleId()
+			{}
+		
+		GameServerRegionsRequest(const GameServerRegionsRequest& src) :
+			PlayFabBaseModel(),
+			BuildVersion(src.BuildVersion),
+			TitleId(src.TitleId)
+			{}
+			
+		GameServerRegionsRequest(const rapidjson::Value& obj) : GameServerRegionsRequest()
         {
             readFromValue(obj);
         }
@@ -1992,9 +3068,21 @@ namespace PlayFab
 		Uint32 GameCount;
 		Uint32 GamePlayersCount;
 	
-        GameModeInfo() {}
-
-		GameModeInfo(const rapidjson::Value& obj)
+        GameModeInfo() :
+			PlayFabBaseModel(),
+			GameMode(),
+			GameCount(0),
+			GamePlayersCount(0)
+			{}
+		
+		GameModeInfo(const GameModeInfo& src) :
+			PlayFabBaseModel(),
+			GameMode(src.GameMode),
+			GameCount(src.GameCount),
+			GamePlayersCount(src.GamePlayersCount)
+			{}
+			
+		GameModeInfo(const rapidjson::Value& obj) : GameModeInfo()
         {
             readFromValue(obj);
         }
@@ -2016,9 +3104,29 @@ namespace PlayFab
 		Uint32 GamePlayersCount;
 		std::list<GameModeInfo> GameModes;
 	
-        RegionInfo() {}
-
-		RegionInfo(const rapidjson::Value& obj)
+        RegionInfo() :
+			PlayFabBaseModel(),
+			Region(),
+			Name(),
+			Available(false),
+			PingUrl(),
+			GameCount(0),
+			GamePlayersCount(0),
+			GameModes()
+			{}
+		
+		RegionInfo(const RegionInfo& src) :
+			PlayFabBaseModel(),
+			Region(src.Region),
+			Name(src.Name),
+			Available(src.Available),
+			PingUrl(src.PingUrl),
+			GameCount(src.GameCount),
+			GamePlayersCount(src.GamePlayersCount),
+			GameModes(src.GameModes)
+			{}
+			
+		RegionInfo(const rapidjson::Value& obj) : RegionInfo()
         {
             readFromValue(obj);
         }
@@ -2034,9 +3142,17 @@ namespace PlayFab
 		
 		std::list<RegionInfo> Regions;
 	
-        GameServerRegionsResult() {}
-
-		GameServerRegionsResult(const rapidjson::Value& obj)
+        GameServerRegionsResult() :
+			PlayFabBaseModel(),
+			Regions()
+			{}
+		
+		GameServerRegionsResult(const GameServerRegionsResult& src) :
+			PlayFabBaseModel(),
+			Regions(src.Regions)
+			{}
+			
+		GameServerRegionsResult(const rapidjson::Value& obj) : GameServerRegionsResult()
         {
             readFromValue(obj);
         }
@@ -2054,9 +3170,21 @@ namespace PlayFab
 		Region Region;
 		std::string TitleId;
 	
-        RegionPlaylistsRequest() {}
-
-		RegionPlaylistsRequest(const rapidjson::Value& obj)
+        RegionPlaylistsRequest() :
+			PlayFabBaseModel(),
+			BuildVersion(),
+			Region(),
+			TitleId()
+			{}
+		
+		RegionPlaylistsRequest(const RegionPlaylistsRequest& src) :
+			PlayFabBaseModel(),
+			BuildVersion(src.BuildVersion),
+			Region(src.Region),
+			TitleId(src.TitleId)
+			{}
+			
+		RegionPlaylistsRequest(const rapidjson::Value& obj) : RegionPlaylistsRequest()
         {
             readFromValue(obj);
         }
@@ -2074,9 +3202,21 @@ namespace PlayFab
 		Uint32 GameCount;
 		Uint32 GamePlayersCount;
 	
-        PlaylistInfo() {}
-
-		PlaylistInfo(const rapidjson::Value& obj)
+        PlaylistInfo() :
+			PlayFabBaseModel(),
+			PlaylistId(),
+			GameCount(0),
+			GamePlayersCount(0)
+			{}
+		
+		PlaylistInfo(const PlaylistInfo& src) :
+			PlayFabBaseModel(),
+			PlaylistId(src.PlaylistId),
+			GameCount(src.GameCount),
+			GamePlayersCount(src.GamePlayersCount)
+			{}
+			
+		PlaylistInfo(const rapidjson::Value& obj) : PlaylistInfo()
         {
             readFromValue(obj);
         }
@@ -2092,9 +3232,17 @@ namespace PlayFab
 		
 		std::list<PlaylistInfo> Playlists;
 	
-        RegionPlaylistsResult() {}
-
-		RegionPlaylistsResult(const rapidjson::Value& obj)
+        RegionPlaylistsResult() :
+			PlayFabBaseModel(),
+			Playlists()
+			{}
+		
+		RegionPlaylistsResult(const RegionPlaylistsResult& src) :
+			PlayFabBaseModel(),
+			Playlists(src.Playlists)
+			{}
+			
+		RegionPlaylistsResult(const rapidjson::Value& obj) : RegionPlaylistsResult()
         {
             readFromValue(obj);
         }

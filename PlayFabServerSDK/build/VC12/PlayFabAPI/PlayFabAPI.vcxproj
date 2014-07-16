@@ -36,7 +36,7 @@
     <ClInclude Include="..\..\..\include\playfab\PlayFabError.h" />
     <ClInclude Include="..\..\..\include\playfab\PlayFabResultHandler.h" />
     <ClInclude Include="..\..\..\include\playfab\PlayFabSettings.h" />
-    <ClInclude Include="..\..\..\source\curl\HttpRequesterCURL.h" />
+    <ClInclude Include="..\..\..\include\playfab\HttpRequesterCURL.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3F59DDF6-0BAE-4F81-BC48-2659A1706826}</ProjectGuid>

@@ -11,16 +11,19 @@
 
 namespace PlayFab
 {
-	typedef void(*AuthUserCallback)(AuthUserResponse& result, void* userData);
-	typedef void(*PlayerJoinedCallback)(PlayerJoinedResponse& result, void* userData);
-	typedef void(*PlayerLeftCallback)(PlayerLeftResponse& result, void* userData);
-	typedef void(*StartGameCallback)(StartGameResponse& result, void* userData);
-	typedef void(*UserInfoCallback)(UserInfoResponse& result, void* userData);
 	
     
     class PlayFabMatchmakerAPI
     {
     public:
+		
+		typedef void(*AuthUserCallback)(AuthUserResponse& result, void* userData);
+		typedef void(*PlayerJoinedCallback)(PlayerJoinedResponse& result, void* userData);
+		typedef void(*PlayerLeftCallback)(PlayerLeftResponse& result, void* userData);
+		typedef void(*StartGameCallback)(StartGameResponse& result, void* userData);
+		typedef void(*UserInfoCallback)(UserInfoResponse& result, void* userData);
+		
+	
         PlayFabMatchmakerAPI();
         PlayFabMatchmakerAPI(IHttpRequester* requester, bool ownRequester);
         ~PlayFabMatchmakerAPI();
@@ -40,7 +43,6 @@ namespace PlayFab
 		
 		void UserInfo(UserInfoRequest& request, UserInfoCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-  
 
     private:
 

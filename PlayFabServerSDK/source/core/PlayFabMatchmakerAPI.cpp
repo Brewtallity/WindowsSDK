@@ -2,7 +2,7 @@
 #include "playfab/HttpRequest.h"
 #include "playfab/PlayFabSettings.h"
 #include "playfab/PlayFabResultHandler.h"
-#include "HttpRequesterCURL.h"
+#include "playfab/HttpRequesterCURL.h"
 
 #include <string>
 

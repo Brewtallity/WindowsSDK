@@ -2,7 +2,7 @@
 #include "playfab/HttpRequest.h"
 #include "playfab/PlayFabSettings.h"
 #include "playfab/PlayFabResultHandler.h"
-#include "HttpRequesterCURL.h"
+#include "playfab/HttpRequesterCURL.h"
 
 #include <string>
 
@@ -519,7 +519,7 @@ void PlayFabClientAPI::OnSendAccountRecoveryEmailResult(int httpStatus, HttpRequ
 
 
 void PlayFabClientAPI::GetAccountInfo(
-    GetAccountInfoRequest& request,
+    
     GetAccountInfoCallback callback,
     ErrorCallback errorCallback,
     void* userData
@@ -534,7 +534,7 @@ void PlayFabClientAPI::GetAccountInfo(
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
-    httpRequest->SetBody(request.toJSONString());
+    httpRequest->SetBody("{}");
     httpRequest->CompressBody();
 
     mHttpRequester->AddRequest(httpRequest, OnGetAccountInfoResult, this);
@@ -743,7 +743,7 @@ void PlayFabClientAPI::OnLinkSteamAccountResult(int httpStatus, HttpRequest* req
 
 
 void PlayFabClientAPI::UnlinkFacebookAccount(
-    UnlinkFacebookAccountRequest& request,
+    
     UnlinkFacebookAccountCallback callback,
     ErrorCallback errorCallback,
     void* userData
@@ -758,7 +758,7 @@ void PlayFabClientAPI::UnlinkFacebookAccount(
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
-    httpRequest->SetBody(request.toJSONString());
+    httpRequest->SetBody("{}");
     httpRequest->CompressBody();
 
     mHttpRequester->AddRequest(httpRequest, OnUnlinkFacebookAccountResult, this);
@@ -799,7 +799,7 @@ void PlayFabClientAPI::OnUnlinkFacebookAccountResult(int httpStatus, HttpRequest
 
 
 void PlayFabClientAPI::UnlinkGameCenterAccount(
-    UnlinkGameCenterAccountRequest& request,
+    
     UnlinkGameCenterAccountCallback callback,
     ErrorCallback errorCallback,
     void* userData
@@ -814,7 +814,7 @@ void PlayFabClientAPI::UnlinkGameCenterAccount(
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
-    httpRequest->SetBody(request.toJSONString());
+    httpRequest->SetBody("{}");
     httpRequest->CompressBody();
 
     mHttpRequester->AddRequest(httpRequest, OnUnlinkGameCenterAccountResult, this);
@@ -1471,7 +1471,7 @@ void PlayFabClientAPI::OnConfirmPurchaseResult(int httpStatus, HttpRequest* requ
 
 
 void PlayFabClientAPI::GetUserInventory(
-    GetUserInventoryRequest& request,
+    
     GetUserInventoryCallback callback,
     ErrorCallback errorCallback,
     void* userData
@@ -1486,7 +1486,7 @@ void PlayFabClientAPI::GetUserInventory(
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
-    httpRequest->SetBody(request.toJSONString());
+    httpRequest->SetBody("{}");
     httpRequest->CompressBody();
 
     mHttpRequester->AddRequest(httpRequest, OnGetUserInventoryResult, this);

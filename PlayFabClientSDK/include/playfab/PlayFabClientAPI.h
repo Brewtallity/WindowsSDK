@@ -11,55 +11,58 @@
 
 namespace PlayFab
 {
-	typedef void(*LoginWithAndroidDeviceIDCallback)(LoginResult& result, void* userData);
-	typedef void(*LoginWithFacebookCallback)(LoginResult& result, void* userData);
-	typedef void(*LoginWithGoogleAccountCallback)(LoginResult& result, void* userData);
-	typedef void(*LoginWithIOSDeviceIDCallback)(LoginResult& result, void* userData);
-	typedef void(*LoginWithPlayFabCallback)(LoginResult& result, void* userData);
-	typedef void(*LoginWithSteamCallback)(LoginResult& result, void* userData);
-	typedef void(*RegisterPlayFabUserCallback)(RegisterPlayFabUserResult& result, void* userData);
-	typedef void(*SendAccountRecoveryEmailCallback)(SendAccountRecoveryEmailResult& result, void* userData);
-	typedef void(*GetAccountInfoCallback)(GetAccountInfoResult& result, void* userData);
-	typedef void(*LinkFacebookAccountCallback)(LinkFacebookAccountResult& result, void* userData);
-	typedef void(*LinkGameCenterAccountCallback)(LinkGameCenterAccountResult& result, void* userData);
-	typedef void(*LinkSteamAccountCallback)(LinkSteamAccountResult& result, void* userData);
-	typedef void(*UnlinkFacebookAccountCallback)(UnlinkFacebookAccountResult& result, void* userData);
-	typedef void(*UnlinkGameCenterAccountCallback)(UnlinkGameCenterAccountResult& result, void* userData);
-	typedef void(*UnlinkSteamAccountCallback)(UnlinkSteamAccountResult& result, void* userData);
-	typedef void(*UpdateEmailAddressCallback)(UpdateEmailAddressResult& result, void* userData);
-	typedef void(*UpdatePasswordCallback)(UpdatePasswordResult& result, void* userData);
-	typedef void(*UpdateUserTitleDisplayNameCallback)(UpdateUserTitleDisplayNameResult& result, void* userData);
-	typedef void(*GetUserDataCallback)(GetUserDataResult& result, void* userData);
-	typedef void(*GetUserReadOnlyDataCallback)(GetUserDataResult& result, void* userData);
-	typedef void(*UpdateUserDataCallback)(UpdateUserDataResult& result, void* userData);
-	typedef void(*GetCatalogItemsCallback)(GetCatalogItemsResult& result, void* userData);
-	typedef void(*GetTitleDataCallback)(GetTitleDataResult& result, void* userData);
-	typedef void(*GetTitleNewsCallback)(GetTitleNewsResult& result, void* userData);
-	typedef void(*ConfirmPurchaseCallback)(ConfirmPurchaseResult& result, void* userData);
-	typedef void(*GetUserInventoryCallback)(GetUserInventoryResult& result, void* userData);
-	typedef void(*PayForPurchaseCallback)(PayForPurchaseResult& result, void* userData);
-	typedef void(*RedeemCouponCallback)(RedeemCouponResult& result, void* userData);
-	typedef void(*StartPurchaseCallback)(StartPurchaseResult& result, void* userData);
-	typedef void(*UnlockContainerItemCallback)(UnlockContainerItemResult& result, void* userData);
-	typedef void(*AddFriendCallback)(AddFriendResult& result, void* userData);
-	typedef void(*GetFriendsListCallback)(GetFriendsListResult& result, void* userData);
-	typedef void(*RemoveFriendCallback)(RemoveFriendResult& result, void* userData);
-	typedef void(*SetFriendTagsCallback)(SetFriendTagsResult& result, void* userData);
-	typedef void(*RegisterForIOSPushNotificationCallback)(RegisterForIOSPushNotificationResult& result, void* userData);
-	typedef void(*ValidateIOSReceiptCallback)(ValidateIOSReceiptResult& result, void* userData);
-	typedef void(*GetCurrentGamesCallback)(CurrentGamesResult& result, void* userData);
-	typedef void(*GetGameServerRegionsCallback)(GameServerRegionsResult& result, void* userData);
-	typedef void(*GetRegionPlaylistsCallback)(RegionPlaylistsResult& result, void* userData);
-	typedef void(*MatchmakeCallback)(MatchmakeResult& result, void* userData);
-	typedef void(*StartGameCallback)(StartGameResult& result, void* userData);
-	typedef void(*AndroidDevicePushNotificationRegistrationCallback)(AndroidDevicePushNotificationRegistrationResult& result, void* userData);
-	typedef void(*ValidateGooglePlayPurchaseCallback)(ValidateGooglePlayPurchaseResult& result, void* userData);
-	typedef void(*LogEventCallback)(LogEventResult& result, void* userData);
 	
     
     class PlayFabClientAPI
     {
     public:
+		
+		typedef void(*LoginWithAndroidDeviceIDCallback)(LoginResult& result, void* userData);
+		typedef void(*LoginWithFacebookCallback)(LoginResult& result, void* userData);
+		typedef void(*LoginWithGoogleAccountCallback)(LoginResult& result, void* userData);
+		typedef void(*LoginWithIOSDeviceIDCallback)(LoginResult& result, void* userData);
+		typedef void(*LoginWithPlayFabCallback)(LoginResult& result, void* userData);
+		typedef void(*LoginWithSteamCallback)(LoginResult& result, void* userData);
+		typedef void(*RegisterPlayFabUserCallback)(RegisterPlayFabUserResult& result, void* userData);
+		typedef void(*SendAccountRecoveryEmailCallback)(SendAccountRecoveryEmailResult& result, void* userData);
+		typedef void(*GetAccountInfoCallback)(GetAccountInfoResult& result, void* userData);
+		typedef void(*LinkFacebookAccountCallback)(LinkFacebookAccountResult& result, void* userData);
+		typedef void(*LinkGameCenterAccountCallback)(LinkGameCenterAccountResult& result, void* userData);
+		typedef void(*LinkSteamAccountCallback)(LinkSteamAccountResult& result, void* userData);
+		typedef void(*UnlinkFacebookAccountCallback)(UnlinkFacebookAccountResult& result, void* userData);
+		typedef void(*UnlinkGameCenterAccountCallback)(UnlinkGameCenterAccountResult& result, void* userData);
+		typedef void(*UnlinkSteamAccountCallback)(UnlinkSteamAccountResult& result, void* userData);
+		typedef void(*UpdateEmailAddressCallback)(UpdateEmailAddressResult& result, void* userData);
+		typedef void(*UpdatePasswordCallback)(UpdatePasswordResult& result, void* userData);
+		typedef void(*UpdateUserTitleDisplayNameCallback)(UpdateUserTitleDisplayNameResult& result, void* userData);
+		typedef void(*GetUserDataCallback)(GetUserDataResult& result, void* userData);
+		typedef void(*GetUserReadOnlyDataCallback)(GetUserDataResult& result, void* userData);
+		typedef void(*UpdateUserDataCallback)(UpdateUserDataResult& result, void* userData);
+		typedef void(*GetCatalogItemsCallback)(GetCatalogItemsResult& result, void* userData);
+		typedef void(*GetTitleDataCallback)(GetTitleDataResult& result, void* userData);
+		typedef void(*GetTitleNewsCallback)(GetTitleNewsResult& result, void* userData);
+		typedef void(*ConfirmPurchaseCallback)(ConfirmPurchaseResult& result, void* userData);
+		typedef void(*GetUserInventoryCallback)(GetUserInventoryResult& result, void* userData);
+		typedef void(*PayForPurchaseCallback)(PayForPurchaseResult& result, void* userData);
+		typedef void(*RedeemCouponCallback)(RedeemCouponResult& result, void* userData);
+		typedef void(*StartPurchaseCallback)(StartPurchaseResult& result, void* userData);
+		typedef void(*UnlockContainerItemCallback)(UnlockContainerItemResult& result, void* userData);
+		typedef void(*AddFriendCallback)(AddFriendResult& result, void* userData);
+		typedef void(*GetFriendsListCallback)(GetFriendsListResult& result, void* userData);
+		typedef void(*RemoveFriendCallback)(RemoveFriendResult& result, void* userData);
+		typedef void(*SetFriendTagsCallback)(SetFriendTagsResult& result, void* userData);
+		typedef void(*RegisterForIOSPushNotificationCallback)(RegisterForIOSPushNotificationResult& result, void* userData);
+		typedef void(*ValidateIOSReceiptCallback)(ValidateIOSReceiptResult& result, void* userData);
+		typedef void(*GetCurrentGamesCallback)(CurrentGamesResult& result, void* userData);
+		typedef void(*GetGameServerRegionsCallback)(GameServerRegionsResult& result, void* userData);
+		typedef void(*GetRegionPlaylistsCallback)(RegionPlaylistsResult& result, void* userData);
+		typedef void(*MatchmakeCallback)(MatchmakeResult& result, void* userData);
+		typedef void(*StartGameCallback)(StartGameResult& result, void* userData);
+		typedef void(*AndroidDevicePushNotificationRegistrationCallback)(AndroidDevicePushNotificationRegistrationResult& result, void* userData);
+		typedef void(*ValidateGooglePlayPurchaseCallback)(ValidateGooglePlayPurchaseResult& result, void* userData);
+		typedef void(*LogEventCallback)(LogEventResult& result, void* userData);
+		
+	
         PlayFabClientAPI();
         PlayFabClientAPI(IHttpRequester* requester, bool ownRequester);
         ~PlayFabClientAPI();
@@ -85,7 +88,7 @@ namespace PlayFab
 		
 		void SendAccountRecoveryEmail(SendAccountRecoveryEmailRequest& request, SendAccountRecoveryEmailCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void GetAccountInfo(GetAccountInfoRequest& request, GetAccountInfoCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void GetAccountInfo(GetAccountInfoCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 		void LinkFacebookAccount(LinkFacebookAccountRequest& request, LinkFacebookAccountCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
@@ -93,9 +96,9 @@ namespace PlayFab
 		
 		void LinkSteamAccount(LinkSteamAccountRequest& request, LinkSteamAccountCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void UnlinkFacebookAccount(UnlinkFacebookAccountRequest& request, UnlinkFacebookAccountCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void UnlinkFacebookAccount(UnlinkFacebookAccountCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void UnlinkGameCenterAccount(UnlinkGameCenterAccountRequest& request, UnlinkGameCenterAccountCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void UnlinkGameCenterAccount(UnlinkGameCenterAccountCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 		void UnlinkSteamAccount(LinkSteamAccountRequest& request, UnlinkSteamAccountCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
@@ -119,7 +122,7 @@ namespace PlayFab
 		
 		void ConfirmPurchase(ConfirmPurchaseRequest& request, ConfirmPurchaseCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void GetUserInventory(GetUserInventoryRequest& request, GetUserInventoryCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void GetUserInventory(GetUserInventoryCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 		void PayForPurchase(PayForPurchaseRequest& request, PayForPurchaseCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
@@ -157,7 +160,6 @@ namespace PlayFab
 		
 		void LogEvent(LogEventRequest& request, LogEventCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-  
 
     private:
 

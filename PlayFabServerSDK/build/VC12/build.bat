@@ -14,3 +14,6 @@ rd PlayFabAPI\x64 /s /q
 rd Debug /s /q
 rd Release /s /q
 rd x64 /s /q
+rd PlayFabAPITest\Debug /s /q
+rd PlayFabAPITest\Release /s /q
+rd PlayFabAPITest\x64 /s /q

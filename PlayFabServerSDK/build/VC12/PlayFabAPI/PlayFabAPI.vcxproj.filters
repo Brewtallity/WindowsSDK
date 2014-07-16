@@ -58,7 +58,7 @@
     <ClInclude Include="..\..\..\include\playfab\PlayFabError.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\source\curl\HttpRequesterCURL.h">
+    <ClInclude Include="..\..\..\include\playfab\HttpRequesterCURL.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\include\playfab\PlayFabSettings.h">
