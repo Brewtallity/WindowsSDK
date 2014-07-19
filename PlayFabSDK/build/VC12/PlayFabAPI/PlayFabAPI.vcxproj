@@ -19,24 +19,34 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\source\core\PlayFabAdminAPI.cpp" /><ClCompile Include="..\..\..\source\core\PlayFabMatchmakerAPI.cpp" /><ClCompile Include="..\..\..\source\core\PlayFabServerAPI.cpp" /><ClCompile Include="..\..\..\source\core\PlayFabClientAPI.cpp" />
+    <ClCompile Include="..\..\..\source\core\PlayFabAdminAPI.cpp" />
+	<ClCompile Include="..\..\..\source\core\PlayFabMatchmakerAPI.cpp" />
+	<ClCompile Include="..\..\..\source\core\PlayFabServerAPI.cpp" />
+	<ClCompile Include="..\..\..\source\core\PlayFabClientAPI.cpp" />
+	
     <ClCompile Include="..\..\..\source\core\HttpRequest.cpp" />
     <ClCompile Include="..\..\..\source\core\PlayFabBaseModel.cpp" />
     <ClCompile Include="..\..\..\source\core\PlayFabSettings.cpp" />
     <ClCompile Include="..\..\..\source\core\PlayFabDataModels.cpp" />
     <ClCompile Include="..\..\..\source\core\PlayFabResultHandler.cpp" />
     <ClCompile Include="..\..\..\source\curl\HttpRequesterCURL.cpp" />
+	<ClCompile Include="..\..\..\source\core\PlayFabVersion.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\include\playfab\HttpRequest.h" />
     <ClInclude Include="..\..\..\include\playfab\IHttpRequester.h" />
     <ClInclude Include="..\..\..\include\playfab\PlayFabBaseModel.h" />
-    <ClInclude Include="..\..\..\include\playfab\PlayFabAdminAPI.h" /><ClInclude Include="..\..\..\include\playfab\PlayFabMatchmakerAPI.h" /><ClInclude Include="..\..\..\include\playfab\PlayFabServerAPI.h" /><ClInclude Include="..\..\..\include\playfab\PlayFabClientAPI.h" />
+    <ClInclude Include="..\..\..\include\playfab\PlayFabAdminAPI.h" />
+	<ClInclude Include="..\..\..\include\playfab\PlayFabMatchmakerAPI.h" />
+	<ClInclude Include="..\..\..\include\playfab\PlayFabServerAPI.h" />
+	<ClInclude Include="..\..\..\include\playfab\PlayFabClientAPI.h" />
+	
     <ClInclude Include="..\..\..\include\playfab\PlayFabDataModels.h" />
     <ClInclude Include="..\..\..\include\playfab\PlayFabError.h" />
     <ClInclude Include="..\..\..\include\playfab\PlayFabResultHandler.h" />
     <ClInclude Include="..\..\..\include\playfab\PlayFabSettings.h" />
     <ClInclude Include="..\..\..\include\playfab\HttpRequesterCURL.h" />
+	<ClInclude Include="..\..\..\include\playfab\PlayFabVersion.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3F59DDF6-0BAE-4F81-BC48-2659A1706826}</ProjectGuid>

@@ -44,6 +44,7 @@ namespace PlayFab
 		typedef void(*ConfirmPurchaseCallback)(ConfirmPurchaseResult& result, void* userData);
 		typedef void(*GetUserInventoryCallback)(GetUserInventoryResult& result, void* userData);
 		typedef void(*PayForPurchaseCallback)(PayForPurchaseResult& result, void* userData);
+		typedef void(*PurchaseItemCallback)(PurchaseItemResult& result, void* userData);
 		typedef void(*RedeemCouponCallback)(RedeemCouponResult& result, void* userData);
 		typedef void(*StartPurchaseCallback)(StartPurchaseResult& result, void* userData);
 		typedef void(*UnlockContainerItemCallback)(UnlockContainerItemResult& result, void* userData);
@@ -60,7 +61,6 @@ namespace PlayFab
 		typedef void(*StartGameCallback)(StartGameResult& result, void* userData);
 		typedef void(*AndroidDevicePushNotificationRegistrationCallback)(AndroidDevicePushNotificationRegistrationResult& result, void* userData);
 		typedef void(*ValidateGooglePlayPurchaseCallback)(ValidateGooglePlayPurchaseResult& result, void* userData);
-		typedef void(*LogEventCallback)(LogEventResult& result, void* userData);
 		
 	
         PlayFabClientAPI();
@@ -126,6 +126,8 @@ namespace PlayFab
 		
 		void PayForPurchase(PayForPurchaseRequest& request, PayForPurchaseCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
+		void PurchaseItem(PurchaseItemRequest& request, PurchaseItemCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		
 		void RedeemCoupon(RedeemCouponRequest& request, RedeemCouponCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 		void StartPurchase(StartPurchaseRequest& request, StartPurchaseCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
@@ -157,8 +159,6 @@ namespace PlayFab
 		void AndroidDevicePushNotificationRegistration(AndroidDevicePushNotificationRegistrationRequest& request, AndroidDevicePushNotificationRegistrationCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 		void ValidateGooglePlayPurchase(ValidateGooglePlayPurchaseRequest& request, ValidateGooglePlayPurchaseCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
-		
-		void LogEvent(LogEventRequest& request, LogEventCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 
     private:
@@ -219,6 +219,8 @@ namespace PlayFab
 		
 		static void OnPayForPurchaseResult(int httpStatus, HttpRequest* request, void* userData);
 		
+		static void OnPurchaseItemResult(int httpStatus, HttpRequest* request, void* userData);
+		
 		static void OnRedeemCouponResult(int httpStatus, HttpRequest* request, void* userData);
 		
 		static void OnStartPurchaseResult(int httpStatus, HttpRequest* request, void* userData);
@@ -250,8 +252,6 @@ namespace PlayFab
 		static void OnAndroidDevicePushNotificationRegistrationResult(int httpStatus, HttpRequest* request, void* userData);
 		
 		static void OnValidateGooglePlayPurchaseResult(int httpStatus, HttpRequest* request, void* userData);
-		
-		static void OnLogEventResult(int httpStatus, HttpRequest* request, void* userData);
 		
  
         bool mOwnsRequester;
