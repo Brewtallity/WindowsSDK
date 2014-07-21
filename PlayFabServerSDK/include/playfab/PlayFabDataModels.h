@@ -761,27 +761,190 @@ namespace PlayFab
         bool readFromValue(const rapidjson::Value& obj);
     };
 	
-	struct GetUserAccountInfoRequest : public PlayFabBaseModel
+	struct GetUserInventoryRequest : public PlayFabBaseModel
     {
 		
 		std::string PlayFabId;
+		std::string CatalogVersion;
 	
-        GetUserAccountInfoRequest() :
+        GetUserInventoryRequest() :
 			PlayFabBaseModel(),
-			PlayFabId()
+			PlayFabId(),
+			CatalogVersion()
 			{}
 		
-		GetUserAccountInfoRequest(const GetUserAccountInfoRequest& src) :
+		GetUserInventoryRequest(const GetUserInventoryRequest& src) :
 			PlayFabBaseModel(),
-			PlayFabId(src.PlayFabId)
+			PlayFabId(src.PlayFabId),
+			CatalogVersion(src.CatalogVersion)
 			{}
 			
-		GetUserAccountInfoRequest(const rapidjson::Value& obj) : GetUserAccountInfoRequest()
+		GetUserInventoryRequest(const rapidjson::Value& obj) : GetUserInventoryRequest()
         {
             readFromValue(obj);
         }
 		
-		~GetUserAccountInfoRequest();
+		~GetUserInventoryRequest();
+		
+        void writeJSON(PFStringJsonWriter& writer);
+        bool readFromValue(const rapidjson::Value& obj);
+    };
+	
+	struct ItemInstance : public PlayFabBaseModel
+    {
+		
+		std::string ItemId;
+		std::string ItemInstanceId;
+		std::string ItemClass;
+		std::string PurchaseDate;
+		std::string Expiration;
+		OptionalUint32 RemainingUses;
+		std::string Annotation;
+		std::string CatalogVersion;
+		std::string BundleParent;
+	
+        ItemInstance() :
+			PlayFabBaseModel(),
+			ItemId(),
+			ItemInstanceId(),
+			ItemClass(),
+			PurchaseDate(),
+			Expiration(),
+			RemainingUses(),
+			Annotation(),
+			CatalogVersion(),
+			BundleParent()
+			{}
+		
+		ItemInstance(const ItemInstance& src) :
+			PlayFabBaseModel(),
+			ItemId(src.ItemId),
+			ItemInstanceId(src.ItemInstanceId),
+			ItemClass(src.ItemClass),
+			PurchaseDate(src.PurchaseDate),
+			Expiration(src.Expiration),
+			RemainingUses(src.RemainingUses),
+			Annotation(src.Annotation),
+			CatalogVersion(src.CatalogVersion),
+			BundleParent(src.BundleParent)
+			{}
+			
+		ItemInstance(const rapidjson::Value& obj) : ItemInstance()
+        {
+            readFromValue(obj);
+        }
+		
+		~ItemInstance();
+		
+        void writeJSON(PFStringJsonWriter& writer);
+        bool readFromValue(const rapidjson::Value& obj);
+    };
+	
+	struct GetUserInventoryResult : public PlayFabBaseModel
+    {
+		
+		std::list<ItemInstance> Inventory;
+	
+        GetUserInventoryResult() :
+			PlayFabBaseModel(),
+			Inventory()
+			{}
+		
+		GetUserInventoryResult(const GetUserInventoryResult& src) :
+			PlayFabBaseModel(),
+			Inventory(src.Inventory)
+			{}
+			
+		GetUserInventoryResult(const rapidjson::Value& obj) : GetUserInventoryResult()
+        {
+            readFromValue(obj);
+        }
+		
+		~GetUserInventoryResult();
+		
+        void writeJSON(PFStringJsonWriter& writer);
+        bool readFromValue(const rapidjson::Value& obj);
+    };
+	
+	struct ListBuildsRequest : public PlayFabBaseModel
+    {
+		
+	
+        ListBuildsRequest() :
+			PlayFabBaseModel()
+			{}
+		
+		ListBuildsRequest(const ListBuildsRequest& src) :
+			PlayFabBaseModel()
+			{}
+			
+		ListBuildsRequest(const rapidjson::Value& obj) : ListBuildsRequest()
+        {
+            readFromValue(obj);
+        }
+		
+		~ListBuildsRequest();
+		
+        void writeJSON(PFStringJsonWriter& writer);
+        bool readFromValue(const rapidjson::Value& obj);
+    };
+	
+	struct ListBuildsResult : public PlayFabBaseModel
+    {
+		
+		std::list<GetServerBuildInfoResult> Builds;
+	
+        ListBuildsResult() :
+			PlayFabBaseModel(),
+			Builds()
+			{}
+		
+		ListBuildsResult(const ListBuildsResult& src) :
+			PlayFabBaseModel(),
+			Builds(src.Builds)
+			{}
+			
+		ListBuildsResult(const rapidjson::Value& obj) : ListBuildsResult()
+        {
+            readFromValue(obj);
+        }
+		
+		~ListBuildsResult();
+		
+        void writeJSON(PFStringJsonWriter& writer);
+        bool readFromValue(const rapidjson::Value& obj);
+    };
+	
+	struct LookupUserAccountInfoRequest : public PlayFabBaseModel
+    {
+		
+		std::string PlayFabId;
+		std::string Email;
+		std::string Username;
+		std::string TitleDisplayName;
+	
+        LookupUserAccountInfoRequest() :
+			PlayFabBaseModel(),
+			PlayFabId(),
+			Email(),
+			Username(),
+			TitleDisplayName()
+			{}
+		
+		LookupUserAccountInfoRequest(const LookupUserAccountInfoRequest& src) :
+			PlayFabBaseModel(),
+			PlayFabId(src.PlayFabId),
+			Email(src.Email),
+			Username(src.Username),
+			TitleDisplayName(src.TitleDisplayName)
+			{}
+			
+		LookupUserAccountInfoRequest(const rapidjson::Value& obj) : LookupUserAccountInfoRequest()
+        {
+            readFromValue(obj);
+        }
+		
+		~LookupUserAccountInfoRequest();
 		
         void writeJSON(PFStringJsonWriter& writer);
         bool readFromValue(const rapidjson::Value& obj);
@@ -1023,181 +1186,27 @@ namespace PlayFab
         bool readFromValue(const rapidjson::Value& obj);
     };
 	
-	struct GetUserAccountInfoResult : public PlayFabBaseModel
+	struct LookupUserAccountInfoResult : public PlayFabBaseModel
     {
 		
 		UserAccountInfo* UserInfo;
 	
-        GetUserAccountInfoResult() :
+        LookupUserAccountInfoResult() :
 			PlayFabBaseModel(),
 			UserInfo(NULL)
 			{}
 		
-		GetUserAccountInfoResult(const GetUserAccountInfoResult& src) :
+		LookupUserAccountInfoResult(const LookupUserAccountInfoResult& src) :
 			PlayFabBaseModel(),
 			UserInfo(src.UserInfo ? new UserAccountInfo(*src.UserInfo) : NULL)
 			{}
 			
-		GetUserAccountInfoResult(const rapidjson::Value& obj) : GetUserAccountInfoResult()
+		LookupUserAccountInfoResult(const rapidjson::Value& obj) : LookupUserAccountInfoResult()
         {
             readFromValue(obj);
         }
 		
-		~GetUserAccountInfoResult();
-		
-        void writeJSON(PFStringJsonWriter& writer);
-        bool readFromValue(const rapidjson::Value& obj);
-    };
-	
-	struct GetUserInventoryRequest : public PlayFabBaseModel
-    {
-		
-		std::string PlayFabId;
-		std::string CatalogVersion;
-	
-        GetUserInventoryRequest() :
-			PlayFabBaseModel(),
-			PlayFabId(),
-			CatalogVersion()
-			{}
-		
-		GetUserInventoryRequest(const GetUserInventoryRequest& src) :
-			PlayFabBaseModel(),
-			PlayFabId(src.PlayFabId),
-			CatalogVersion(src.CatalogVersion)
-			{}
-			
-		GetUserInventoryRequest(const rapidjson::Value& obj) : GetUserInventoryRequest()
-        {
-            readFromValue(obj);
-        }
-		
-		~GetUserInventoryRequest();
-		
-        void writeJSON(PFStringJsonWriter& writer);
-        bool readFromValue(const rapidjson::Value& obj);
-    };
-	
-	struct ItemInstance : public PlayFabBaseModel
-    {
-		
-		std::string ItemId;
-		std::string ItemInstanceId;
-		std::string ItemClass;
-		std::string PurchaseDate;
-		std::string Expiration;
-		OptionalUint32 RemainingUses;
-		std::string Annotation;
-		std::string CatalogVersion;
-		std::string BundleParent;
-	
-        ItemInstance() :
-			PlayFabBaseModel(),
-			ItemId(),
-			ItemInstanceId(),
-			ItemClass(),
-			PurchaseDate(),
-			Expiration(),
-			RemainingUses(),
-			Annotation(),
-			CatalogVersion(),
-			BundleParent()
-			{}
-		
-		ItemInstance(const ItemInstance& src) :
-			PlayFabBaseModel(),
-			ItemId(src.ItemId),
-			ItemInstanceId(src.ItemInstanceId),
-			ItemClass(src.ItemClass),
-			PurchaseDate(src.PurchaseDate),
-			Expiration(src.Expiration),
-			RemainingUses(src.RemainingUses),
-			Annotation(src.Annotation),
-			CatalogVersion(src.CatalogVersion),
-			BundleParent(src.BundleParent)
-			{}
-			
-		ItemInstance(const rapidjson::Value& obj) : ItemInstance()
-        {
-            readFromValue(obj);
-        }
-		
-		~ItemInstance();
-		
-        void writeJSON(PFStringJsonWriter& writer);
-        bool readFromValue(const rapidjson::Value& obj);
-    };
-	
-	struct GetUserInventoryResult : public PlayFabBaseModel
-    {
-		
-		std::list<ItemInstance> Inventory;
-	
-        GetUserInventoryResult() :
-			PlayFabBaseModel(),
-			Inventory()
-			{}
-		
-		GetUserInventoryResult(const GetUserInventoryResult& src) :
-			PlayFabBaseModel(),
-			Inventory(src.Inventory)
-			{}
-			
-		GetUserInventoryResult(const rapidjson::Value& obj) : GetUserInventoryResult()
-        {
-            readFromValue(obj);
-        }
-		
-		~GetUserInventoryResult();
-		
-        void writeJSON(PFStringJsonWriter& writer);
-        bool readFromValue(const rapidjson::Value& obj);
-    };
-	
-	struct ListBuildsRequest : public PlayFabBaseModel
-    {
-		
-	
-        ListBuildsRequest() :
-			PlayFabBaseModel()
-			{}
-		
-		ListBuildsRequest(const ListBuildsRequest& src) :
-			PlayFabBaseModel()
-			{}
-			
-		ListBuildsRequest(const rapidjson::Value& obj) : ListBuildsRequest()
-        {
-            readFromValue(obj);
-        }
-		
-		~ListBuildsRequest();
-		
-        void writeJSON(PFStringJsonWriter& writer);
-        bool readFromValue(const rapidjson::Value& obj);
-    };
-	
-	struct ListBuildsResult : public PlayFabBaseModel
-    {
-		
-		std::list<GetServerBuildInfoResult> Builds;
-	
-        ListBuildsResult() :
-			PlayFabBaseModel(),
-			Builds()
-			{}
-		
-		ListBuildsResult(const ListBuildsResult& src) :
-			PlayFabBaseModel(),
-			Builds(src.Builds)
-			{}
-			
-		ListBuildsResult(const rapidjson::Value& obj) : ListBuildsResult()
-        {
-            readFromValue(obj);
-        }
-		
-		~ListBuildsResult();
+		~LookupUserAccountInfoResult();
 		
         void writeJSON(PFStringJsonWriter& writer);
         bool readFromValue(const rapidjson::Value& obj);
@@ -2123,6 +2132,58 @@ namespace PlayFab
         }
 		
 		~AwardSteamAchievementResult();
+		
+        void writeJSON(PFStringJsonWriter& writer);
+        bool readFromValue(const rapidjson::Value& obj);
+    };
+	
+	struct GetUserAccountInfoRequest : public PlayFabBaseModel
+    {
+		
+		std::string PlayFabId;
+	
+        GetUserAccountInfoRequest() :
+			PlayFabBaseModel(),
+			PlayFabId()
+			{}
+		
+		GetUserAccountInfoRequest(const GetUserAccountInfoRequest& src) :
+			PlayFabBaseModel(),
+			PlayFabId(src.PlayFabId)
+			{}
+			
+		GetUserAccountInfoRequest(const rapidjson::Value& obj) : GetUserAccountInfoRequest()
+        {
+            readFromValue(obj);
+        }
+		
+		~GetUserAccountInfoRequest();
+		
+        void writeJSON(PFStringJsonWriter& writer);
+        bool readFromValue(const rapidjson::Value& obj);
+    };
+	
+	struct GetUserAccountInfoResult : public PlayFabBaseModel
+    {
+		
+		UserAccountInfo* UserInfo;
+	
+        GetUserAccountInfoResult() :
+			PlayFabBaseModel(),
+			UserInfo(NULL)
+			{}
+		
+		GetUserAccountInfoResult(const GetUserAccountInfoResult& src) :
+			PlayFabBaseModel(),
+			UserInfo(src.UserInfo ? new UserAccountInfo(*src.UserInfo) : NULL)
+			{}
+			
+		GetUserAccountInfoResult(const rapidjson::Value& obj) : GetUserAccountInfoResult()
+        {
+            readFromValue(obj);
+        }
+		
+		~GetUserAccountInfoResult();
 		
         void writeJSON(PFStringJsonWriter& writer);
         bool readFromValue(const rapidjson::Value& obj);

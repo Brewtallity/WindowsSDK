@@ -60,7 +60,7 @@ void PlayFabAdminAPI::Update()
 
 
 void PlayFabAdminAPI::GetUserAccountInfo(
-    GetUserAccountInfoRequest& request,
+    LookupUserAccountInfoRequest& request,
     GetUserAccountInfoCallback callback,
     ErrorCallback errorCallback,
     void* userData
@@ -84,7 +84,7 @@ void PlayFabAdminAPI::GetUserAccountInfo(
 
 void PlayFabAdminAPI::OnGetUserAccountInfoResult(int httpStatus, HttpRequest* request, void* userData)
 {
-    GetUserAccountInfoResult outResult;
+    LookupUserAccountInfoResult outResult;
     PlayFabError errorResult;
 
     bool success = PlayFabRequestHandler::DecodeRequest(httpStatus, request, userData, outResult, errorResult);

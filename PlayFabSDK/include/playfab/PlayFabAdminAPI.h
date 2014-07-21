@@ -17,7 +17,7 @@ namespace PlayFab
     {
     public:
 		
-		typedef void(*GetUserAccountInfoCallback)(GetUserAccountInfoResult& result, void* userData);
+		typedef void(*GetUserAccountInfoCallback)(LookupUserAccountInfoResult& result, void* userData);
 		typedef void(*SendAccountRecoveryEmailCallback)(SendAccountRecoveryEmailResult& result, void* userData);
 		typedef void(*UpdateUserTitleDisplayNameCallback)(UpdateUserTitleDisplayNameResult& result, void* userData);
 		typedef void(*GetCatalogItemsCallback)(GetCatalogItemsResult& result, void* userData);
@@ -48,7 +48,7 @@ namespace PlayFab
 
         // ------------ Generated API calls
 		
-		void GetUserAccountInfo(GetUserAccountInfoRequest& request, GetUserAccountInfoCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void GetUserAccountInfo(LookupUserAccountInfoRequest& request, GetUserAccountInfoCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 		void SendAccountRecoveryEmail(SendAccountRecoveryEmailRequest& request, SendAccountRecoveryEmailCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
