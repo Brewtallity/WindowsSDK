@@ -3,7 +3,7 @@
 
 #include "playfab/IHttpRequester.h"
 #include "playfab/PlayFabError.h"
-#include "playfab/PlayFabDataModels.h"
+#include "playfab/PlayFabAdminDataModels.h"
 #include "playfab/PlayFabSettings.h"
 
 #include <string>
@@ -17,26 +17,26 @@ namespace PlayFab
     {
     public:
 		
-		typedef void(*GetUserAccountInfoCallback)(LookupUserAccountInfoResult& result, void* userData);
-		typedef void(*SendAccountRecoveryEmailCallback)(SendAccountRecoveryEmailResult& result, void* userData);
-		typedef void(*UpdateUserTitleDisplayNameCallback)(UpdateUserTitleDisplayNameResult& result, void* userData);
-		typedef void(*GetCatalogItemsCallback)(GetCatalogItemsResult& result, void* userData);
-		typedef void(*GetRandomResultTablesCallback)(GetRandomResultTablesResult& result, void* userData);
-		typedef void(*GetTitleDataCallback)(GetTitleDataResult& result, void* userData);
-		typedef void(*SetCatalogItemsCallback)(UpdateCatalogItemsResult& result, void* userData);
-		typedef void(*SetTitleDataCallback)(SetTitleDataResult& result, void* userData);
-		typedef void(*UpdateCatalogItemsCallback)(UpdateCatalogItemsResult& result, void* userData);
-		typedef void(*UpdateRandomResultTablesCallback)(UpdateRandomResultTablesResult& result, void* userData);
-		typedef void(*GetUserInventoryCallback)(GetUserInventoryResult& result, void* userData);
-		typedef void(*RevokeInventoryItemCallback)(RevokeInventoryResult& result, void* userData);
-		typedef void(*GetMatchmakerGameInfoCallback)(GetMatchmakerGameInfoResult& result, void* userData);
-		typedef void(*GetMatchmakerGameModesCallback)(GetMatchmakerGameModesResult& result, void* userData);
-		typedef void(*ModifyMatchmakerGameModesCallback)(ModifyMatchmakerGameModesResult& result, void* userData);
-		typedef void(*AddServerBuildCallback)(AddServerBuildResult& result, void* userData);
-		typedef void(*GetServerBuildInfoCallback)(GetServerBuildInfoResult& result, void* userData);
-		typedef void(*ListServerBuildsCallback)(ListBuildsResult& result, void* userData);
-		typedef void(*ModifyServerBuildCallback)(ModifyServerBuildResult& result, void* userData);
-		typedef void(*RemoveServerBuildCallback)(RemoveServerBuildResult& result, void* userData);
+		typedef void(*GetUserAccountInfoCallback)(AdminModels::LookupUserAccountInfoResult& result, void* userData);
+		typedef void(*SendAccountRecoveryEmailCallback)(AdminModels::SendAccountRecoveryEmailResult& result, void* userData);
+		typedef void(*UpdateUserTitleDisplayNameCallback)(AdminModels::UpdateUserTitleDisplayNameResult& result, void* userData);
+		typedef void(*GetCatalogItemsCallback)(AdminModels::GetCatalogItemsResult& result, void* userData);
+		typedef void(*GetRandomResultTablesCallback)(AdminModels::GetRandomResultTablesResult& result, void* userData);
+		typedef void(*GetTitleDataCallback)(AdminModels::GetTitleDataResult& result, void* userData);
+		typedef void(*SetCatalogItemsCallback)(AdminModels::UpdateCatalogItemsResult& result, void* userData);
+		typedef void(*SetTitleDataCallback)(AdminModels::SetTitleDataResult& result, void* userData);
+		typedef void(*UpdateCatalogItemsCallback)(AdminModels::UpdateCatalogItemsResult& result, void* userData);
+		typedef void(*UpdateRandomResultTablesCallback)(AdminModels::UpdateRandomResultTablesResult& result, void* userData);
+		typedef void(*GetUserInventoryCallback)(AdminModels::GetUserInventoryResult& result, void* userData);
+		typedef void(*RevokeInventoryItemCallback)(AdminModels::RevokeInventoryResult& result, void* userData);
+		typedef void(*GetMatchmakerGameInfoCallback)(AdminModels::GetMatchmakerGameInfoResult& result, void* userData);
+		typedef void(*GetMatchmakerGameModesCallback)(AdminModels::GetMatchmakerGameModesResult& result, void* userData);
+		typedef void(*ModifyMatchmakerGameModesCallback)(AdminModels::ModifyMatchmakerGameModesResult& result, void* userData);
+		typedef void(*AddServerBuildCallback)(AdminModels::AddServerBuildResult& result, void* userData);
+		typedef void(*GetServerBuildInfoCallback)(AdminModels::GetServerBuildInfoResult& result, void* userData);
+		typedef void(*ListServerBuildsCallback)(AdminModels::ListBuildsResult& result, void* userData);
+		typedef void(*ModifyServerBuildCallback)(AdminModels::ModifyServerBuildResult& result, void* userData);
+		typedef void(*RemoveServerBuildCallback)(AdminModels::RemoveServerBuildResult& result, void* userData);
 		
 	
         PlayFabAdminAPI();
@@ -48,45 +48,45 @@ namespace PlayFab
 
         // ------------ Generated API calls
 		
-		void GetUserAccountInfo(LookupUserAccountInfoRequest& request, GetUserAccountInfoCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void GetUserAccountInfo(AdminModels::LookupUserAccountInfoRequest& request, GetUserAccountInfoCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void SendAccountRecoveryEmail(SendAccountRecoveryEmailRequest& request, SendAccountRecoveryEmailCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void SendAccountRecoveryEmail(AdminModels::SendAccountRecoveryEmailRequest& request, SendAccountRecoveryEmailCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void UpdateUserTitleDisplayName(UpdateUserTitleDisplayNameRequest& request, UpdateUserTitleDisplayNameCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void UpdateUserTitleDisplayName(AdminModels::UpdateUserTitleDisplayNameRequest& request, UpdateUserTitleDisplayNameCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void GetCatalogItems(GetCatalogItemsRequest& request, GetCatalogItemsCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void GetCatalogItems(AdminModels::GetCatalogItemsRequest& request, GetCatalogItemsCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 		void GetRandomResultTables(GetRandomResultTablesCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void GetTitleData(GetTitleDataRequest& request, GetTitleDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void GetTitleData(AdminModels::GetTitleDataRequest& request, GetTitleDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void SetCatalogItems(UpdateCatalogItemsRequest& request, SetCatalogItemsCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void SetCatalogItems(AdminModels::UpdateCatalogItemsRequest& request, SetCatalogItemsCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void SetTitleData(SetTitleDataRequest& request, SetTitleDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void SetTitleData(AdminModels::SetTitleDataRequest& request, SetTitleDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void UpdateCatalogItems(UpdateCatalogItemsRequest& request, UpdateCatalogItemsCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void UpdateCatalogItems(AdminModels::UpdateCatalogItemsRequest& request, UpdateCatalogItemsCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void UpdateRandomResultTables(UpdateRandomResultTablesRequest& request, UpdateRandomResultTablesCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void UpdateRandomResultTables(AdminModels::UpdateRandomResultTablesRequest& request, UpdateRandomResultTablesCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void GetUserInventory(GetUserInventoryRequest& request, GetUserInventoryCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void GetUserInventory(AdminModels::GetUserInventoryRequest& request, GetUserInventoryCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void RevokeInventoryItem(RevokeInventoryItemRequest& request, RevokeInventoryItemCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void RevokeInventoryItem(AdminModels::RevokeInventoryItemRequest& request, RevokeInventoryItemCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void GetMatchmakerGameInfo(GetMatchmakerGameInfoRequest& request, GetMatchmakerGameInfoCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void GetMatchmakerGameInfo(AdminModels::GetMatchmakerGameInfoRequest& request, GetMatchmakerGameInfoCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void GetMatchmakerGameModes(GetMatchmakerGameModesRequest& request, GetMatchmakerGameModesCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void GetMatchmakerGameModes(AdminModels::GetMatchmakerGameModesRequest& request, GetMatchmakerGameModesCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void ModifyMatchmakerGameModes(ModifyMatchmakerGameModesRequest& request, ModifyMatchmakerGameModesCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void ModifyMatchmakerGameModes(AdminModels::ModifyMatchmakerGameModesRequest& request, ModifyMatchmakerGameModesCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void AddServerBuild(AddServerBuildRequest& request, AddServerBuildCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void AddServerBuild(AdminModels::AddServerBuildRequest& request, AddServerBuildCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void GetServerBuildInfo(GetServerBuildInfoRequest& request, GetServerBuildInfoCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void GetServerBuildInfo(AdminModels::GetServerBuildInfoRequest& request, GetServerBuildInfoCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 		void ListServerBuilds(ListServerBuildsCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void ModifyServerBuild(ModifyServerBuildRequest& request, ModifyServerBuildCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void ModifyServerBuild(AdminModels::ModifyServerBuildRequest& request, ModifyServerBuildCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void RemoveServerBuild(RemoveServerBuildRequest& request, RemoveServerBuildCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void RemoveServerBuild(AdminModels::RemoveServerBuildRequest& request, RemoveServerBuildCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 
     private:

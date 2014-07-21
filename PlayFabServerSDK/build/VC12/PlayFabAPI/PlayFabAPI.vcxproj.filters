@@ -20,9 +20,18 @@
     </ClCompile>
     <ClCompile Include="..\..\..\source\core\PlayFabAdminAPI.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+	<ClCompile Include="..\..\..\source\core\PlayFabAdminDataModels.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile><ClCompile Include="..\..\..\source\core\PlayFabMatchmakerAPI.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+	<ClCompile Include="..\..\..\source\core\PlayFabMatchmakerDataModels.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile><ClCompile Include="..\..\..\source\core\PlayFabServerAPI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+	<ClCompile Include="..\..\..\source\core\PlayFabServerDataModels.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\curl\HttpRequesterCURL.cpp">
@@ -53,9 +62,18 @@
     </ClInclude>
 	<ClInclude Include="..\..\..\include\playfab\PlayFabAdminAPI.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+	<ClInclude Include="..\..\..\include\playfab\PlayFabAdminDataModels.h">
+      <Filter>Header Files</Filter>
     </ClInclude><ClInclude Include="..\..\..\include\playfab\PlayFabMatchmakerAPI.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+	<ClInclude Include="..\..\..\include\playfab\PlayFabMatchmakerDataModels.h">
+      <Filter>Header Files</Filter>
     </ClInclude><ClInclude Include="..\..\..\include\playfab\PlayFabServerAPI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+	<ClInclude Include="..\..\..\include\playfab\PlayFabServerDataModels.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\include\playfab\PlayFabError.h">

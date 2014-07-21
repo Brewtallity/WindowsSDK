@@ -3,7 +3,7 @@
 
 #include "playfab/IHttpRequester.h"
 #include "playfab/PlayFabError.h"
-#include "playfab/PlayFabDataModels.h"
+#include "playfab/PlayFabMatchmakerDataModels.h"
 #include "playfab/PlayFabSettings.h"
 
 #include <string>
@@ -17,11 +17,11 @@ namespace PlayFab
     {
     public:
 		
-		typedef void(*AuthUserCallback)(AuthUserResponse& result, void* userData);
-		typedef void(*PlayerJoinedCallback)(PlayerJoinedResponse& result, void* userData);
-		typedef void(*PlayerLeftCallback)(PlayerLeftResponse& result, void* userData);
-		typedef void(*StartGameCallback)(StartGameResponse& result, void* userData);
-		typedef void(*UserInfoCallback)(UserInfoResponse& result, void* userData);
+		typedef void(*AuthUserCallback)(MatchmakerModels::AuthUserResponse& result, void* userData);
+		typedef void(*PlayerJoinedCallback)(MatchmakerModels::PlayerJoinedResponse& result, void* userData);
+		typedef void(*PlayerLeftCallback)(MatchmakerModels::PlayerLeftResponse& result, void* userData);
+		typedef void(*StartGameCallback)(MatchmakerModels::StartGameResponse& result, void* userData);
+		typedef void(*UserInfoCallback)(MatchmakerModels::UserInfoResponse& result, void* userData);
 		
 	
         PlayFabMatchmakerAPI();
@@ -33,15 +33,15 @@ namespace PlayFab
 
         // ------------ Generated API calls
 		
-		void AuthUser(AuthUserRequest& request, AuthUserCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void AuthUser(MatchmakerModels::AuthUserRequest& request, AuthUserCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void PlayerJoined(PlayerJoinedRequest& request, PlayerJoinedCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void PlayerJoined(MatchmakerModels::PlayerJoinedRequest& request, PlayerJoinedCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void PlayerLeft(PlayerLeftRequest& request, PlayerLeftCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void PlayerLeft(MatchmakerModels::PlayerLeftRequest& request, PlayerLeftCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void StartGame(StartGameRequest& request, StartGameCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void StartGame(MatchmakerModels::StartGameRequest& request, StartGameCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void UserInfo(UserInfoRequest& request, UserInfoCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void UserInfo(MatchmakerModels::UserInfoRequest& request, UserInfoCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 
     private:

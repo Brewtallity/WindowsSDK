@@ -9,6 +9,7 @@
 
 
 using namespace PlayFab;
+using namespace PlayFab::AdminModels;
 
 PlayFabAdminAPI::PlayFabAdminAPI()
     : PlayFabAdminAPI(NULL, false)

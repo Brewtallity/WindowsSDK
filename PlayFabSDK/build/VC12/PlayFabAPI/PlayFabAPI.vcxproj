@@ -20,14 +20,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\source\core\PlayFabAdminAPI.cpp" />
+	<ClCompile Include="..\..\..\source\core\PlayFabAdminDataModels.cpp" />
 	<ClCompile Include="..\..\..\source\core\PlayFabMatchmakerAPI.cpp" />
+	<ClCompile Include="..\..\..\source\core\PlayFabMatchmakerDataModels.cpp" />
 	<ClCompile Include="..\..\..\source\core\PlayFabServerAPI.cpp" />
+	<ClCompile Include="..\..\..\source\core\PlayFabServerDataModels.cpp" />
 	<ClCompile Include="..\..\..\source\core\PlayFabClientAPI.cpp" />
-	
-    <ClCompile Include="..\..\..\source\core\HttpRequest.cpp" />
+	<ClCompile Include="..\..\..\source\core\PlayFabClientDataModels.cpp" />
+	<ClCompile Include="..\..\..\source\core\HttpRequest.cpp" />
     <ClCompile Include="..\..\..\source\core\PlayFabBaseModel.cpp" />
     <ClCompile Include="..\..\..\source\core\PlayFabSettings.cpp" />
-    <ClCompile Include="..\..\..\source\core\PlayFabDataModels.cpp" />
     <ClCompile Include="..\..\..\source\core\PlayFabResultHandler.cpp" />
     <ClCompile Include="..\..\..\source\curl\HttpRequesterCURL.cpp" />
 	<ClCompile Include="..\..\..\source\core\PlayFabVersion.cpp" />
@@ -37,11 +39,14 @@
     <ClInclude Include="..\..\..\include\playfab\IHttpRequester.h" />
     <ClInclude Include="..\..\..\include\playfab\PlayFabBaseModel.h" />
     <ClInclude Include="..\..\..\include\playfab\PlayFabAdminAPI.h" />
+	<ClInclude Include="..\..\..\include\playfab\PlayFabAdminDataModels.h" />
 	<ClInclude Include="..\..\..\include\playfab\PlayFabMatchmakerAPI.h" />
+	<ClInclude Include="..\..\..\include\playfab\PlayFabMatchmakerDataModels.h" />
 	<ClInclude Include="..\..\..\include\playfab\PlayFabServerAPI.h" />
+	<ClInclude Include="..\..\..\include\playfab\PlayFabServerDataModels.h" />
 	<ClInclude Include="..\..\..\include\playfab\PlayFabClientAPI.h" />
-	
-    <ClInclude Include="..\..\..\include\playfab\PlayFabDataModels.h" />
+	<ClInclude Include="..\..\..\include\playfab\PlayFabClientDataModels.h" />
+	<ClInclude Include="..\..\..\include\playfab\PlayFabDataModels.h" />
     <ClInclude Include="..\..\..\include\playfab\PlayFabError.h" />
     <ClInclude Include="..\..\..\include\playfab\PlayFabResultHandler.h" />
     <ClInclude Include="..\..\..\include\playfab\PlayFabSettings.h" />

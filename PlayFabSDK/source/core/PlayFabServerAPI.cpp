@@ -9,6 +9,7 @@
 
 
 using namespace PlayFab;
+using namespace PlayFab::ServerModels;
 
 PlayFabServerAPI::PlayFabServerAPI()
     : PlayFabServerAPI(NULL, false)

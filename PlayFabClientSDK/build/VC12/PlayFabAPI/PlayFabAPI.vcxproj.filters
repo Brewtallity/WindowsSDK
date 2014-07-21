@@ -21,6 +21,9 @@
     <ClCompile Include="..\..\..\source\core\PlayFabClientAPI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+	<ClCompile Include="..\..\..\source\core\PlayFabClientDataModels.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\source\curl\HttpRequesterCURL.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -48,6 +51,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
 	<ClInclude Include="..\..\..\include\playfab\PlayFabClientAPI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+	<ClInclude Include="..\..\..\include\playfab\PlayFabClientDataModels.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\include\playfab\PlayFabError.h">

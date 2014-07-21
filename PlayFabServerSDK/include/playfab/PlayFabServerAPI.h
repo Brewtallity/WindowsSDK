@@ -3,7 +3,7 @@
 
 #include "playfab/IHttpRequester.h"
 #include "playfab/PlayFabError.h"
-#include "playfab/PlayFabDataModels.h"
+#include "playfab/PlayFabServerDataModels.h"
 #include "playfab/PlayFabSettings.h"
 
 #include <string>
@@ -17,23 +17,23 @@ namespace PlayFab
     {
     public:
 		
-		typedef void(*GetUserAccountInfoCallback)(GetUserAccountInfoResult& result, void* userData);
-		typedef void(*GetUserDataCallback)(GetUserDataResult& result, void* userData);
-		typedef void(*GetUserInternalDataCallback)(GetUserDataResult& result, void* userData);
-		typedef void(*GetUserReadOnlyDataCallback)(GetUserDataResult& result, void* userData);
-		typedef void(*UpdateUserDataCallback)(UpdateUserDataResult& result, void* userData);
-		typedef void(*UpdateUserInternalDataCallback)(UpdateUserDataResult& result, void* userData);
-		typedef void(*UpdateUserReadOnlyDataCallback)(UpdateUserDataResult& result, void* userData);
-		typedef void(*GetCatalogItemsCallback)(GetCatalogItemsResult& result, void* userData);
-		typedef void(*GetTitleDataCallback)(GetTitleDataResult& result, void* userData);
-		typedef void(*SetTitleDataCallback)(SetTitleDataResult& result, void* userData);
-		typedef void(*AddUserVirtualCurrencyCallback)(ModifyUserVirtualCurrencyResult& result, void* userData);
-		typedef void(*GetUserInventoryCallback)(GetUserInventoryResult& result, void* userData);
-		typedef void(*GrantItemsToUsersCallback)(GrantItemsToUsersResult& result, void* userData);
-		typedef void(*SubtractUserVirtualCurrencyCallback)(ModifyUserVirtualCurrencyResult& result, void* userData);
-		typedef void(*NotifyMatchmakerPlayerLeftCallback)(NotifyMatchmakerPlayerLeftResult& result, void* userData);
-		typedef void(*RedeemMatchmakerTicketCallback)(RedeemMatchmakerTicketResult& result, void* userData);
-		typedef void(*AwardSteamAchievementCallback)(AwardSteamAchievementResult& result, void* userData);
+		typedef void(*GetUserAccountInfoCallback)(ServerModels::GetUserAccountInfoResult& result, void* userData);
+		typedef void(*GetUserDataCallback)(ServerModels::GetUserDataResult& result, void* userData);
+		typedef void(*GetUserInternalDataCallback)(ServerModels::GetUserDataResult& result, void* userData);
+		typedef void(*GetUserReadOnlyDataCallback)(ServerModels::GetUserDataResult& result, void* userData);
+		typedef void(*UpdateUserDataCallback)(ServerModels::UpdateUserDataResult& result, void* userData);
+		typedef void(*UpdateUserInternalDataCallback)(ServerModels::UpdateUserDataResult& result, void* userData);
+		typedef void(*UpdateUserReadOnlyDataCallback)(ServerModels::UpdateUserDataResult& result, void* userData);
+		typedef void(*GetCatalogItemsCallback)(ServerModels::GetCatalogItemsResult& result, void* userData);
+		typedef void(*GetTitleDataCallback)(ServerModels::GetTitleDataResult& result, void* userData);
+		typedef void(*SetTitleDataCallback)(ServerModels::SetTitleDataResult& result, void* userData);
+		typedef void(*AddUserVirtualCurrencyCallback)(ServerModels::ModifyUserVirtualCurrencyResult& result, void* userData);
+		typedef void(*GetUserInventoryCallback)(ServerModels::GetUserInventoryResult& result, void* userData);
+		typedef void(*GrantItemsToUsersCallback)(ServerModels::GrantItemsToUsersResult& result, void* userData);
+		typedef void(*SubtractUserVirtualCurrencyCallback)(ServerModels::ModifyUserVirtualCurrencyResult& result, void* userData);
+		typedef void(*NotifyMatchmakerPlayerLeftCallback)(ServerModels::NotifyMatchmakerPlayerLeftResult& result, void* userData);
+		typedef void(*RedeemMatchmakerTicketCallback)(ServerModels::RedeemMatchmakerTicketResult& result, void* userData);
+		typedef void(*AwardSteamAchievementCallback)(ServerModels::AwardSteamAchievementResult& result, void* userData);
 		
 	
         PlayFabServerAPI();
@@ -45,39 +45,39 @@ namespace PlayFab
 
         // ------------ Generated API calls
 		
-		void GetUserAccountInfo(GetUserAccountInfoRequest& request, GetUserAccountInfoCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void GetUserAccountInfo(ServerModels::GetUserAccountInfoRequest& request, GetUserAccountInfoCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void GetUserData(GetUserDataRequest& request, GetUserDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void GetUserData(ServerModels::GetUserDataRequest& request, GetUserDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void GetUserInternalData(GetUserDataRequest& request, GetUserInternalDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void GetUserInternalData(ServerModels::GetUserDataRequest& request, GetUserInternalDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void GetUserReadOnlyData(GetUserDataRequest& request, GetUserReadOnlyDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void GetUserReadOnlyData(ServerModels::GetUserDataRequest& request, GetUserReadOnlyDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void UpdateUserData(UpdateUserDataRequest& request, UpdateUserDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void UpdateUserData(ServerModels::UpdateUserDataRequest& request, UpdateUserDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void UpdateUserInternalData(UpdateUserDataRequest& request, UpdateUserInternalDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void UpdateUserInternalData(ServerModels::UpdateUserDataRequest& request, UpdateUserInternalDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void UpdateUserReadOnlyData(UpdateUserDataRequest& request, UpdateUserReadOnlyDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void UpdateUserReadOnlyData(ServerModels::UpdateUserDataRequest& request, UpdateUserReadOnlyDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void GetCatalogItems(GetCatalogItemsRequest& request, GetCatalogItemsCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void GetCatalogItems(ServerModels::GetCatalogItemsRequest& request, GetCatalogItemsCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void GetTitleData(GetTitleDataRequest& request, GetTitleDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void GetTitleData(ServerModels::GetTitleDataRequest& request, GetTitleDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void SetTitleData(SetTitleDataRequest& request, SetTitleDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void SetTitleData(ServerModels::SetTitleDataRequest& request, SetTitleDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void AddUserVirtualCurrency(AddUserVirtualCurrencyRequest& request, AddUserVirtualCurrencyCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void AddUserVirtualCurrency(ServerModels::AddUserVirtualCurrencyRequest& request, AddUserVirtualCurrencyCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void GetUserInventory(GetUserInventoryRequest& request, GetUserInventoryCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void GetUserInventory(ServerModels::GetUserInventoryRequest& request, GetUserInventoryCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void GrantItemsToUsers(GrantItemsToUsersRequest& request, GrantItemsToUsersCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void GrantItemsToUsers(ServerModels::GrantItemsToUsersRequest& request, GrantItemsToUsersCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void SubtractUserVirtualCurrency(SubtractUserVirtualCurrencyRequest& request, SubtractUserVirtualCurrencyCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void SubtractUserVirtualCurrency(ServerModels::SubtractUserVirtualCurrencyRequest& request, SubtractUserVirtualCurrencyCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void NotifyMatchmakerPlayerLeft(NotifyMatchmakerPlayerLeftRequest& request, NotifyMatchmakerPlayerLeftCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void NotifyMatchmakerPlayerLeft(ServerModels::NotifyMatchmakerPlayerLeftRequest& request, NotifyMatchmakerPlayerLeftCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void RedeemMatchmakerTicket(RedeemMatchmakerTicketRequest& request, RedeemMatchmakerTicketCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void RedeemMatchmakerTicket(ServerModels::RedeemMatchmakerTicketRequest& request, RedeemMatchmakerTicketCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void AwardSteamAchievement(AwardSteamAchievementRequest& request, AwardSteamAchievementCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void AwardSteamAchievement(ServerModels::AwardSteamAchievementRequest& request, AwardSteamAchievementCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 
     private:

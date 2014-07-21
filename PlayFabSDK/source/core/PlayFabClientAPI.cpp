@@ -9,6 +9,7 @@
 
 
 using namespace PlayFab;
+using namespace PlayFab::ClientModels;
 
 PlayFabClientAPI::PlayFabClientAPI()
     : PlayFabClientAPI(NULL, false)

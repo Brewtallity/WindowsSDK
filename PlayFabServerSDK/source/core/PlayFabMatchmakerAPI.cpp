@@ -9,6 +9,7 @@
 
 
 using namespace PlayFab;
+using namespace PlayFab::MatchmakerModels;
 
 PlayFabMatchmakerAPI::PlayFabMatchmakerAPI()
     : PlayFabMatchmakerAPI(NULL, false)

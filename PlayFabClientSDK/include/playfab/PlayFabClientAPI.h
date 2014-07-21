@@ -3,7 +3,7 @@
 
 #include "playfab/IHttpRequester.h"
 #include "playfab/PlayFabError.h"
-#include "playfab/PlayFabDataModels.h"
+#include "playfab/PlayFabClientDataModels.h"
 #include "playfab/PlayFabSettings.h"
 
 #include <string>
@@ -17,50 +17,50 @@ namespace PlayFab
     {
     public:
 		
-		typedef void(*LoginWithAndroidDeviceIDCallback)(LoginResult& result, void* userData);
-		typedef void(*LoginWithFacebookCallback)(LoginResult& result, void* userData);
-		typedef void(*LoginWithGoogleAccountCallback)(LoginResult& result, void* userData);
-		typedef void(*LoginWithIOSDeviceIDCallback)(LoginResult& result, void* userData);
-		typedef void(*LoginWithPlayFabCallback)(LoginResult& result, void* userData);
-		typedef void(*LoginWithSteamCallback)(LoginResult& result, void* userData);
-		typedef void(*RegisterPlayFabUserCallback)(RegisterPlayFabUserResult& result, void* userData);
-		typedef void(*SendAccountRecoveryEmailCallback)(SendAccountRecoveryEmailResult& result, void* userData);
-		typedef void(*GetAccountInfoCallback)(GetAccountInfoResult& result, void* userData);
-		typedef void(*LinkFacebookAccountCallback)(LinkFacebookAccountResult& result, void* userData);
-		typedef void(*LinkGameCenterAccountCallback)(LinkGameCenterAccountResult& result, void* userData);
-		typedef void(*LinkSteamAccountCallback)(LinkSteamAccountResult& result, void* userData);
-		typedef void(*UnlinkFacebookAccountCallback)(UnlinkFacebookAccountResult& result, void* userData);
-		typedef void(*UnlinkGameCenterAccountCallback)(UnlinkGameCenterAccountResult& result, void* userData);
-		typedef void(*UnlinkSteamAccountCallback)(UnlinkSteamAccountResult& result, void* userData);
-		typedef void(*UpdateEmailAddressCallback)(UpdateEmailAddressResult& result, void* userData);
-		typedef void(*UpdatePasswordCallback)(UpdatePasswordResult& result, void* userData);
-		typedef void(*UpdateUserTitleDisplayNameCallback)(UpdateUserTitleDisplayNameResult& result, void* userData);
-		typedef void(*GetUserDataCallback)(GetUserDataResult& result, void* userData);
-		typedef void(*GetUserReadOnlyDataCallback)(GetUserDataResult& result, void* userData);
-		typedef void(*UpdateUserDataCallback)(UpdateUserDataResult& result, void* userData);
-		typedef void(*GetCatalogItemsCallback)(GetCatalogItemsResult& result, void* userData);
-		typedef void(*GetTitleDataCallback)(GetTitleDataResult& result, void* userData);
-		typedef void(*GetTitleNewsCallback)(GetTitleNewsResult& result, void* userData);
-		typedef void(*ConfirmPurchaseCallback)(ConfirmPurchaseResult& result, void* userData);
-		typedef void(*GetUserInventoryCallback)(GetUserInventoryResult& result, void* userData);
-		typedef void(*PayForPurchaseCallback)(PayForPurchaseResult& result, void* userData);
-		typedef void(*PurchaseItemCallback)(PurchaseItemResult& result, void* userData);
-		typedef void(*RedeemCouponCallback)(RedeemCouponResult& result, void* userData);
-		typedef void(*StartPurchaseCallback)(StartPurchaseResult& result, void* userData);
-		typedef void(*UnlockContainerItemCallback)(UnlockContainerItemResult& result, void* userData);
-		typedef void(*AddFriendCallback)(AddFriendResult& result, void* userData);
-		typedef void(*GetFriendsListCallback)(GetFriendsListResult& result, void* userData);
-		typedef void(*RemoveFriendCallback)(RemoveFriendResult& result, void* userData);
-		typedef void(*SetFriendTagsCallback)(SetFriendTagsResult& result, void* userData);
-		typedef void(*RegisterForIOSPushNotificationCallback)(RegisterForIOSPushNotificationResult& result, void* userData);
-		typedef void(*ValidateIOSReceiptCallback)(ValidateIOSReceiptResult& result, void* userData);
-		typedef void(*GetCurrentGamesCallback)(CurrentGamesResult& result, void* userData);
-		typedef void(*GetGameServerRegionsCallback)(GameServerRegionsResult& result, void* userData);
-		typedef void(*GetRegionPlaylistsCallback)(RegionPlaylistsResult& result, void* userData);
-		typedef void(*MatchmakeCallback)(MatchmakeResult& result, void* userData);
-		typedef void(*StartGameCallback)(StartGameResult& result, void* userData);
-		typedef void(*AndroidDevicePushNotificationRegistrationCallback)(AndroidDevicePushNotificationRegistrationResult& result, void* userData);
-		typedef void(*ValidateGooglePlayPurchaseCallback)(ValidateGooglePlayPurchaseResult& result, void* userData);
+		typedef void(*LoginWithAndroidDeviceIDCallback)(ClientModels::LoginResult& result, void* userData);
+		typedef void(*LoginWithFacebookCallback)(ClientModels::LoginResult& result, void* userData);
+		typedef void(*LoginWithGoogleAccountCallback)(ClientModels::LoginResult& result, void* userData);
+		typedef void(*LoginWithIOSDeviceIDCallback)(ClientModels::LoginResult& result, void* userData);
+		typedef void(*LoginWithPlayFabCallback)(ClientModels::LoginResult& result, void* userData);
+		typedef void(*LoginWithSteamCallback)(ClientModels::LoginResult& result, void* userData);
+		typedef void(*RegisterPlayFabUserCallback)(ClientModels::RegisterPlayFabUserResult& result, void* userData);
+		typedef void(*SendAccountRecoveryEmailCallback)(ClientModels::SendAccountRecoveryEmailResult& result, void* userData);
+		typedef void(*GetAccountInfoCallback)(ClientModels::GetAccountInfoResult& result, void* userData);
+		typedef void(*LinkFacebookAccountCallback)(ClientModels::LinkFacebookAccountResult& result, void* userData);
+		typedef void(*LinkGameCenterAccountCallback)(ClientModels::LinkGameCenterAccountResult& result, void* userData);
+		typedef void(*LinkSteamAccountCallback)(ClientModels::LinkSteamAccountResult& result, void* userData);
+		typedef void(*UnlinkFacebookAccountCallback)(ClientModels::UnlinkFacebookAccountResult& result, void* userData);
+		typedef void(*UnlinkGameCenterAccountCallback)(ClientModels::UnlinkGameCenterAccountResult& result, void* userData);
+		typedef void(*UnlinkSteamAccountCallback)(ClientModels::UnlinkSteamAccountResult& result, void* userData);
+		typedef void(*UpdateEmailAddressCallback)(ClientModels::UpdateEmailAddressResult& result, void* userData);
+		typedef void(*UpdatePasswordCallback)(ClientModels::UpdatePasswordResult& result, void* userData);
+		typedef void(*UpdateUserTitleDisplayNameCallback)(ClientModels::UpdateUserTitleDisplayNameResult& result, void* userData);
+		typedef void(*GetUserDataCallback)(ClientModels::GetUserDataResult& result, void* userData);
+		typedef void(*GetUserReadOnlyDataCallback)(ClientModels::GetUserDataResult& result, void* userData);
+		typedef void(*UpdateUserDataCallback)(ClientModels::UpdateUserDataResult& result, void* userData);
+		typedef void(*GetCatalogItemsCallback)(ClientModels::GetCatalogItemsResult& result, void* userData);
+		typedef void(*GetTitleDataCallback)(ClientModels::GetTitleDataResult& result, void* userData);
+		typedef void(*GetTitleNewsCallback)(ClientModels::GetTitleNewsResult& result, void* userData);
+		typedef void(*ConfirmPurchaseCallback)(ClientModels::ConfirmPurchaseResult& result, void* userData);
+		typedef void(*GetUserInventoryCallback)(ClientModels::GetUserInventoryResult& result, void* userData);
+		typedef void(*PayForPurchaseCallback)(ClientModels::PayForPurchaseResult& result, void* userData);
+		typedef void(*PurchaseItemCallback)(ClientModels::PurchaseItemResult& result, void* userData);
+		typedef void(*RedeemCouponCallback)(ClientModels::RedeemCouponResult& result, void* userData);
+		typedef void(*StartPurchaseCallback)(ClientModels::StartPurchaseResult& result, void* userData);
+		typedef void(*UnlockContainerItemCallback)(ClientModels::UnlockContainerItemResult& result, void* userData);
+		typedef void(*AddFriendCallback)(ClientModels::AddFriendResult& result, void* userData);
+		typedef void(*GetFriendsListCallback)(ClientModels::GetFriendsListResult& result, void* userData);
+		typedef void(*RemoveFriendCallback)(ClientModels::RemoveFriendResult& result, void* userData);
+		typedef void(*SetFriendTagsCallback)(ClientModels::SetFriendTagsResult& result, void* userData);
+		typedef void(*RegisterForIOSPushNotificationCallback)(ClientModels::RegisterForIOSPushNotificationResult& result, void* userData);
+		typedef void(*ValidateIOSReceiptCallback)(ClientModels::ValidateIOSReceiptResult& result, void* userData);
+		typedef void(*GetCurrentGamesCallback)(ClientModels::CurrentGamesResult& result, void* userData);
+		typedef void(*GetGameServerRegionsCallback)(ClientModels::GameServerRegionsResult& result, void* userData);
+		typedef void(*GetRegionPlaylistsCallback)(ClientModels::RegionPlaylistsResult& result, void* userData);
+		typedef void(*MatchmakeCallback)(ClientModels::MatchmakeResult& result, void* userData);
+		typedef void(*StartGameCallback)(ClientModels::StartGameResult& result, void* userData);
+		typedef void(*AndroidDevicePushNotificationRegistrationCallback)(ClientModels::AndroidDevicePushNotificationRegistrationResult& result, void* userData);
+		typedef void(*ValidateGooglePlayPurchaseCallback)(ClientModels::ValidateGooglePlayPurchaseResult& result, void* userData);
 		
 	
         PlayFabClientAPI();
@@ -72,93 +72,93 @@ namespace PlayFab
 
         // ------------ Generated API calls
 		
-		void LoginWithAndroidDeviceID(LoginWithAndroidDeviceIDRequest& request, LoginWithAndroidDeviceIDCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void LoginWithAndroidDeviceID(ClientModels::LoginWithAndroidDeviceIDRequest& request, LoginWithAndroidDeviceIDCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void LoginWithFacebook(LoginWithFacebookRequest& request, LoginWithFacebookCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void LoginWithFacebook(ClientModels::LoginWithFacebookRequest& request, LoginWithFacebookCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void LoginWithGoogleAccount(LoginWithGoogleAccountRequest& request, LoginWithGoogleAccountCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void LoginWithGoogleAccount(ClientModels::LoginWithGoogleAccountRequest& request, LoginWithGoogleAccountCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void LoginWithIOSDeviceID(LoginWithIOSDeviceIDRequest& request, LoginWithIOSDeviceIDCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void LoginWithIOSDeviceID(ClientModels::LoginWithIOSDeviceIDRequest& request, LoginWithIOSDeviceIDCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void LoginWithPlayFab(LoginWithPlayFabRequest& request, LoginWithPlayFabCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void LoginWithPlayFab(ClientModels::LoginWithPlayFabRequest& request, LoginWithPlayFabCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void LoginWithSteam(LoginWithSteamRequest& request, LoginWithSteamCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void LoginWithSteam(ClientModels::LoginWithSteamRequest& request, LoginWithSteamCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void RegisterPlayFabUser(RegisterPlayFabUserRequest& request, RegisterPlayFabUserCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void RegisterPlayFabUser(ClientModels::RegisterPlayFabUserRequest& request, RegisterPlayFabUserCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void SendAccountRecoveryEmail(SendAccountRecoveryEmailRequest& request, SendAccountRecoveryEmailCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void SendAccountRecoveryEmail(ClientModels::SendAccountRecoveryEmailRequest& request, SendAccountRecoveryEmailCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 		void GetAccountInfo(GetAccountInfoCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void LinkFacebookAccount(LinkFacebookAccountRequest& request, LinkFacebookAccountCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void LinkFacebookAccount(ClientModels::LinkFacebookAccountRequest& request, LinkFacebookAccountCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void LinkGameCenterAccount(LinkGameCenterAccountRequest& request, LinkGameCenterAccountCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void LinkGameCenterAccount(ClientModels::LinkGameCenterAccountRequest& request, LinkGameCenterAccountCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void LinkSteamAccount(LinkSteamAccountRequest& request, LinkSteamAccountCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void LinkSteamAccount(ClientModels::LinkSteamAccountRequest& request, LinkSteamAccountCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 		void UnlinkFacebookAccount(UnlinkFacebookAccountCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 		void UnlinkGameCenterAccount(UnlinkGameCenterAccountCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void UnlinkSteamAccount(LinkSteamAccountRequest& request, UnlinkSteamAccountCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void UnlinkSteamAccount(ClientModels::LinkSteamAccountRequest& request, UnlinkSteamAccountCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void UpdateEmailAddress(UpdateEmailAddressRequest& request, UpdateEmailAddressCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void UpdateEmailAddress(ClientModels::UpdateEmailAddressRequest& request, UpdateEmailAddressCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void UpdatePassword(UpdatePasswordRequest& request, UpdatePasswordCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void UpdatePassword(ClientModels::UpdatePasswordRequest& request, UpdatePasswordCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void UpdateUserTitleDisplayName(UpdateUserTitleDisplayNameRequest& request, UpdateUserTitleDisplayNameCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void UpdateUserTitleDisplayName(ClientModels::UpdateUserTitleDisplayNameRequest& request, UpdateUserTitleDisplayNameCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void GetUserData(GetUserDataRequest& request, GetUserDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void GetUserData(ClientModels::GetUserDataRequest& request, GetUserDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void GetUserReadOnlyData(GetUserDataRequest& request, GetUserReadOnlyDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void GetUserReadOnlyData(ClientModels::GetUserDataRequest& request, GetUserReadOnlyDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void UpdateUserData(UpdateUserDataRequest& request, UpdateUserDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void UpdateUserData(ClientModels::UpdateUserDataRequest& request, UpdateUserDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void GetCatalogItems(GetCatalogItemsRequest& request, GetCatalogItemsCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void GetCatalogItems(ClientModels::GetCatalogItemsRequest& request, GetCatalogItemsCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void GetTitleData(GetTitleDataRequest& request, GetTitleDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void GetTitleData(ClientModels::GetTitleDataRequest& request, GetTitleDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void GetTitleNews(GetTitleNewsRequest& request, GetTitleNewsCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void GetTitleNews(ClientModels::GetTitleNewsRequest& request, GetTitleNewsCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void ConfirmPurchase(ConfirmPurchaseRequest& request, ConfirmPurchaseCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void ConfirmPurchase(ClientModels::ConfirmPurchaseRequest& request, ConfirmPurchaseCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 		void GetUserInventory(GetUserInventoryCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void PayForPurchase(PayForPurchaseRequest& request, PayForPurchaseCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void PayForPurchase(ClientModels::PayForPurchaseRequest& request, PayForPurchaseCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void PurchaseItem(PurchaseItemRequest& request, PurchaseItemCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void PurchaseItem(ClientModels::PurchaseItemRequest& request, PurchaseItemCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void RedeemCoupon(RedeemCouponRequest& request, RedeemCouponCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void RedeemCoupon(ClientModels::RedeemCouponRequest& request, RedeemCouponCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void StartPurchase(StartPurchaseRequest& request, StartPurchaseCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void StartPurchase(ClientModels::StartPurchaseRequest& request, StartPurchaseCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void UnlockContainerItem(UnlockContainerItemRequest& request, UnlockContainerItemCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void UnlockContainerItem(ClientModels::UnlockContainerItemRequest& request, UnlockContainerItemCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void AddFriend(AddFriendRequest& request, AddFriendCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void AddFriend(ClientModels::AddFriendRequest& request, AddFriendCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void GetFriendsList(GetFriendsListRequest& request, GetFriendsListCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void GetFriendsList(ClientModels::GetFriendsListRequest& request, GetFriendsListCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void RemoveFriend(RemoveFriendRequest& request, RemoveFriendCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void RemoveFriend(ClientModels::RemoveFriendRequest& request, RemoveFriendCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void SetFriendTags(SetFriendTagsRequest& request, SetFriendTagsCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void SetFriendTags(ClientModels::SetFriendTagsRequest& request, SetFriendTagsCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void RegisterForIOSPushNotification(RegisterForIOSPushNotificationRequest& request, RegisterForIOSPushNotificationCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void RegisterForIOSPushNotification(ClientModels::RegisterForIOSPushNotificationRequest& request, RegisterForIOSPushNotificationCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void ValidateIOSReceipt(ValidateIOSReceiptRequest& request, ValidateIOSReceiptCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void ValidateIOSReceipt(ClientModels::ValidateIOSReceiptRequest& request, ValidateIOSReceiptCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void GetCurrentGames(CurrentGamesRequest& request, GetCurrentGamesCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void GetCurrentGames(ClientModels::CurrentGamesRequest& request, GetCurrentGamesCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void GetGameServerRegions(GameServerRegionsRequest& request, GetGameServerRegionsCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void GetGameServerRegions(ClientModels::GameServerRegionsRequest& request, GetGameServerRegionsCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void GetRegionPlaylists(RegionPlaylistsRequest& request, GetRegionPlaylistsCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void GetRegionPlaylists(ClientModels::RegionPlaylistsRequest& request, GetRegionPlaylistsCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void Matchmake(MatchmakeRequest& request, MatchmakeCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void Matchmake(ClientModels::MatchmakeRequest& request, MatchmakeCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void StartGame(StartGameRequest& request, StartGameCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void StartGame(ClientModels::StartGameRequest& request, StartGameCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void AndroidDevicePushNotificationRegistration(AndroidDevicePushNotificationRegistrationRequest& request, AndroidDevicePushNotificationRegistrationCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void AndroidDevicePushNotificationRegistration(ClientModels::AndroidDevicePushNotificationRegistrationRequest& request, AndroidDevicePushNotificationRegistrationCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void ValidateGooglePlayPurchase(ValidateGooglePlayPurchaseRequest& request, ValidateGooglePlayPurchaseCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void ValidateGooglePlayPurchase(ClientModels::ValidateGooglePlayPurchaseRequest& request, ValidateGooglePlayPurchaseCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 
     private:
