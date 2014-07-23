@@ -91,6 +91,105 @@ namespace AdminModels
         bool readFromValue(const rapidjson::Value& obj);
     };
 	
+	struct BanAccountRequest : public PlayFabBaseModel
+    {
+		
+		std::string TitleId;
+		std::string PlayFabId;
+		std::string BannedByPlayFabId;
+		std::string Reason;
+		std::string IPAddress;
+		std::string MACAddress;
+		OptionalUint32 DurationInHours;
+		std::string Notes;
+		std::string UniqueBanId;
+	
+        BanAccountRequest() :
+			PlayFabBaseModel(),
+			TitleId(),
+			PlayFabId(),
+			BannedByPlayFabId(),
+			Reason(),
+			IPAddress(),
+			MACAddress(),
+			DurationInHours(),
+			Notes(),
+			UniqueBanId()
+			{}
+		
+		BanAccountRequest(const BanAccountRequest& src) :
+			PlayFabBaseModel(),
+			TitleId(src.TitleId),
+			PlayFabId(src.PlayFabId),
+			BannedByPlayFabId(src.BannedByPlayFabId),
+			Reason(src.Reason),
+			IPAddress(src.IPAddress),
+			MACAddress(src.MACAddress),
+			DurationInHours(src.DurationInHours),
+			Notes(src.Notes),
+			UniqueBanId(src.UniqueBanId)
+			{}
+			
+		BanAccountRequest(const rapidjson::Value& obj) : BanAccountRequest()
+        {
+            readFromValue(obj);
+        }
+		
+		~BanAccountRequest();
+		
+        void writeJSON(PFStringJsonWriter& writer);
+        bool readFromValue(const rapidjson::Value& obj);
+    };
+	
+	struct BanMultipleAccountsRequest : public PlayFabBaseModel
+    {
+		
+		std::list<BanAccountRequest> accounts;
+	
+        BanMultipleAccountsRequest() :
+			PlayFabBaseModel(),
+			accounts()
+			{}
+		
+		BanMultipleAccountsRequest(const BanMultipleAccountsRequest& src) :
+			PlayFabBaseModel(),
+			accounts(src.accounts)
+			{}
+			
+		BanMultipleAccountsRequest(const rapidjson::Value& obj) : BanMultipleAccountsRequest()
+        {
+            readFromValue(obj);
+        }
+		
+		~BanMultipleAccountsRequest();
+		
+        void writeJSON(PFStringJsonWriter& writer);
+        bool readFromValue(const rapidjson::Value& obj);
+    };
+	
+	struct BanMultipleAccountsResult : public PlayFabBaseModel
+    {
+		
+	
+        BanMultipleAccountsResult() :
+			PlayFabBaseModel()
+			{}
+		
+		BanMultipleAccountsResult(const BanMultipleAccountsResult& src) :
+			PlayFabBaseModel()
+			{}
+			
+		BanMultipleAccountsResult(const rapidjson::Value& obj) : BanMultipleAccountsResult()
+        {
+            readFromValue(obj);
+        }
+		
+		~BanMultipleAccountsResult();
+		
+        void writeJSON(PFStringJsonWriter& writer);
+        bool readFromValue(const rapidjson::Value& obj);
+    };
+	
 	struct CatalogItemConsumableInfo : public PlayFabBaseModel
     {
 		

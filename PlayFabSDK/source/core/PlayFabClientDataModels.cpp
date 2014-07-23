@@ -712,6 +712,60 @@ bool ConfirmPurchaseResult::readFromValue(const rapidjson::Value& obj)
 }
 
 
+ConsumeItemRequest::~ConsumeItemRequest()
+{
+	
+}
+
+void ConsumeItemRequest::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	writer.String("ItemInstanceId"); writer.String(ItemInstanceId.c_str());
+	
+	writer.String("ConsumeCount"); writer.Int(ConsumeCount);
+	
+	
+	writer.EndObject();
+}
+
+bool ConsumeItemRequest::readFromValue(const rapidjson::Value& obj)
+{
+	
+	const Value::Member* ItemInstanceId_member = obj.FindMember("ItemInstanceId");
+	if (ItemInstanceId_member != NULL) ItemInstanceId = ItemInstanceId_member->value.GetString();
+	
+	const Value::Member* ConsumeCount_member = obj.FindMember("ConsumeCount");
+	if (ConsumeCount_member != NULL) ConsumeCount = ConsumeCount_member->value.GetInt();
+	
+	
+	return true;
+}
+
+
+ConsumeItemResult::~ConsumeItemResult()
+{
+	
+}
+
+void ConsumeItemResult::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	
+	writer.EndObject();
+}
+
+bool ConsumeItemResult::readFromValue(const rapidjson::Value& obj)
+{
+	
+	
+	return true;
+}
+
+
 void PlayFab::ClientModels::writeCurrencyEnumJSON(Currency enumVal, PFStringJsonWriter& writer)
 {
 	switch(enumVal)

@@ -444,6 +444,58 @@ namespace ClientModels
         bool readFromValue(const rapidjson::Value& obj);
     };
 	
+	struct ConsumeItemRequest : public PlayFabBaseModel
+    {
+		
+		std::string ItemInstanceId;
+		Int32 ConsumeCount;
+	
+        ConsumeItemRequest() :
+			PlayFabBaseModel(),
+			ItemInstanceId(),
+			ConsumeCount(0)
+			{}
+		
+		ConsumeItemRequest(const ConsumeItemRequest& src) :
+			PlayFabBaseModel(),
+			ItemInstanceId(src.ItemInstanceId),
+			ConsumeCount(src.ConsumeCount)
+			{}
+			
+		ConsumeItemRequest(const rapidjson::Value& obj) : ConsumeItemRequest()
+        {
+            readFromValue(obj);
+        }
+		
+		~ConsumeItemRequest();
+		
+        void writeJSON(PFStringJsonWriter& writer);
+        bool readFromValue(const rapidjson::Value& obj);
+    };
+	
+	struct ConsumeItemResult : public PlayFabBaseModel
+    {
+		
+	
+        ConsumeItemResult() :
+			PlayFabBaseModel()
+			{}
+		
+		ConsumeItemResult(const ConsumeItemResult& src) :
+			PlayFabBaseModel()
+			{}
+			
+		ConsumeItemResult(const rapidjson::Value& obj) : ConsumeItemResult()
+        {
+            readFromValue(obj);
+        }
+		
+		~ConsumeItemResult();
+		
+        void writeJSON(PFStringJsonWriter& writer);
+        bool readFromValue(const rapidjson::Value& obj);
+    };
+	
 	enum Currency
 	{
 		CurrencyUSD,
