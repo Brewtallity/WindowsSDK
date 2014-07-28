@@ -20,15 +20,26 @@ namespace PlayFab
 		typedef void(*GetUserAccountInfoCallback)(AdminModels::LookupUserAccountInfoResult& result, void* userData);
 		typedef void(*SendAccountRecoveryEmailCallback)(AdminModels::SendAccountRecoveryEmailResult& result, void* userData);
 		typedef void(*UpdateUserTitleDisplayNameCallback)(AdminModels::UpdateUserTitleDisplayNameResult& result, void* userData);
+		typedef void(*GetUserDataCallback)(AdminModels::GetUserDataResult& result, void* userData);
+		typedef void(*GetUserInternalDataCallback)(AdminModels::GetUserDataResult& result, void* userData);
+		typedef void(*GetUserReadOnlyDataCallback)(AdminModels::GetUserDataResult& result, void* userData);
+		typedef void(*UpdateUserDataCallback)(AdminModels::UpdateUserDataResult& result, void* userData);
+		typedef void(*UpdateUserInternalDataCallback)(AdminModels::UpdateUserDataResult& result, void* userData);
+		typedef void(*UpdateUserReadOnlyDataCallback)(AdminModels::UpdateUserDataResult& result, void* userData);
+		typedef void(*AddVirtualCurrencyTypesCallback)(AdminModels::BlankResult& result, void* userData);
 		typedef void(*GetCatalogItemsCallback)(AdminModels::GetCatalogItemsResult& result, void* userData);
 		typedef void(*GetRandomResultTablesCallback)(AdminModels::GetRandomResultTablesResult& result, void* userData);
 		typedef void(*GetTitleDataCallback)(AdminModels::GetTitleDataResult& result, void* userData);
+		typedef void(*ListVirualCurrencyTypesCallback)(AdminModels::ListVirtualCurrencyTypesResult& result, void* userData);
 		typedef void(*SetCatalogItemsCallback)(AdminModels::UpdateCatalogItemsResult& result, void* userData);
 		typedef void(*SetTitleDataCallback)(AdminModels::SetTitleDataResult& result, void* userData);
 		typedef void(*UpdateCatalogItemsCallback)(AdminModels::UpdateCatalogItemsResult& result, void* userData);
 		typedef void(*UpdateRandomResultTablesCallback)(AdminModels::UpdateRandomResultTablesResult& result, void* userData);
+		typedef void(*AddUserVirtualCurrencyCallback)(AdminModels::ModifyUserVirtualCurrencyResult& result, void* userData);
 		typedef void(*GetUserInventoryCallback)(AdminModels::GetUserInventoryResult& result, void* userData);
+		typedef void(*GrantItemsToUsersCallback)(AdminModels::GrantItemsToUsersResult& result, void* userData);
 		typedef void(*RevokeInventoryItemCallback)(AdminModels::RevokeInventoryResult& result, void* userData);
+		typedef void(*SubtractUserVirtualCurrencyCallback)(AdminModels::ModifyUserVirtualCurrencyResult& result, void* userData);
 		typedef void(*GetMatchmakerGameInfoCallback)(AdminModels::GetMatchmakerGameInfoResult& result, void* userData);
 		typedef void(*GetMatchmakerGameModesCallback)(AdminModels::GetMatchmakerGameModesResult& result, void* userData);
 		typedef void(*ModifyMatchmakerGameModesCallback)(AdminModels::ModifyMatchmakerGameModesResult& result, void* userData);
@@ -54,11 +65,27 @@ namespace PlayFab
 		
 		void UpdateUserTitleDisplayName(AdminModels::UpdateUserTitleDisplayNameRequest& request, UpdateUserTitleDisplayNameCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
+		void GetUserData(AdminModels::GetUserDataRequest& request, GetUserDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		
+		void GetUserInternalData(AdminModels::GetUserDataRequest& request, GetUserInternalDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		
+		void GetUserReadOnlyData(AdminModels::GetUserDataRequest& request, GetUserReadOnlyDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		
+		void UpdateUserData(AdminModels::UpdateUserDataRequest& request, UpdateUserDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		
+		void UpdateUserInternalData(AdminModels::UpdateUserDataRequest& request, UpdateUserInternalDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		
+		void UpdateUserReadOnlyData(AdminModels::UpdateUserDataRequest& request, UpdateUserReadOnlyDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		
+		void AddVirtualCurrencyTypes(AdminModels::AddVirtualCurrencyTypesRequest& request, AddVirtualCurrencyTypesCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		
 		void GetCatalogItems(AdminModels::GetCatalogItemsRequest& request, GetCatalogItemsCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 		void GetRandomResultTables(GetRandomResultTablesCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 		void GetTitleData(AdminModels::GetTitleDataRequest& request, GetTitleDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		
+		void ListVirualCurrencyTypes(ListVirualCurrencyTypesCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 		void SetCatalogItems(AdminModels::UpdateCatalogItemsRequest& request, SetCatalogItemsCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
@@ -68,9 +95,15 @@ namespace PlayFab
 		
 		void UpdateRandomResultTables(AdminModels::UpdateRandomResultTablesRequest& request, UpdateRandomResultTablesCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
+		void AddUserVirtualCurrency(AdminModels::AddUserVirtualCurrencyRequest& request, AddUserVirtualCurrencyCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		
 		void GetUserInventory(AdminModels::GetUserInventoryRequest& request, GetUserInventoryCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
+		void GrantItemsToUsers(AdminModels::GrantItemsToUsersRequest& request, GrantItemsToUsersCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		
 		void RevokeInventoryItem(AdminModels::RevokeInventoryItemRequest& request, RevokeInventoryItemCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		
+		void SubtractUserVirtualCurrency(AdminModels::SubtractUserVirtualCurrencyRequest& request, SubtractUserVirtualCurrencyCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 		void GetMatchmakerGameInfo(AdminModels::GetMatchmakerGameInfoRequest& request, GetMatchmakerGameInfoCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
@@ -99,11 +132,27 @@ namespace PlayFab
 		
 		static void OnUpdateUserTitleDisplayNameResult(int httpStatus, HttpRequest* request, void* userData);
 		
+		static void OnGetUserDataResult(int httpStatus, HttpRequest* request, void* userData);
+		
+		static void OnGetUserInternalDataResult(int httpStatus, HttpRequest* request, void* userData);
+		
+		static void OnGetUserReadOnlyDataResult(int httpStatus, HttpRequest* request, void* userData);
+		
+		static void OnUpdateUserDataResult(int httpStatus, HttpRequest* request, void* userData);
+		
+		static void OnUpdateUserInternalDataResult(int httpStatus, HttpRequest* request, void* userData);
+		
+		static void OnUpdateUserReadOnlyDataResult(int httpStatus, HttpRequest* request, void* userData);
+		
+		static void OnAddVirtualCurrencyTypesResult(int httpStatus, HttpRequest* request, void* userData);
+		
 		static void OnGetCatalogItemsResult(int httpStatus, HttpRequest* request, void* userData);
 		
 		static void OnGetRandomResultTablesResult(int httpStatus, HttpRequest* request, void* userData);
 		
 		static void OnGetTitleDataResult(int httpStatus, HttpRequest* request, void* userData);
+		
+		static void OnListVirualCurrencyTypesResult(int httpStatus, HttpRequest* request, void* userData);
 		
 		static void OnSetCatalogItemsResult(int httpStatus, HttpRequest* request, void* userData);
 		
@@ -113,9 +162,15 @@ namespace PlayFab
 		
 		static void OnUpdateRandomResultTablesResult(int httpStatus, HttpRequest* request, void* userData);
 		
+		static void OnAddUserVirtualCurrencyResult(int httpStatus, HttpRequest* request, void* userData);
+		
 		static void OnGetUserInventoryResult(int httpStatus, HttpRequest* request, void* userData);
 		
+		static void OnGrantItemsToUsersResult(int httpStatus, HttpRequest* request, void* userData);
+		
 		static void OnRevokeInventoryItemResult(int httpStatus, HttpRequest* request, void* userData);
+		
+		static void OnSubtractUserVirtualCurrencyResult(int httpStatus, HttpRequest* request, void* userData);
 		
 		static void OnGetMatchmakerGameInfoResult(int httpStatus, HttpRequest* request, void* userData);
 		

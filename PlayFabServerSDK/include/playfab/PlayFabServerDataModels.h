@@ -849,15 +849,18 @@ namespace ServerModels
     {
 		
 		std::list<ItemInstance> Inventory;
+		std::map<std::string, Int32> VirtualCurrency;
 	
         GetUserInventoryResult() :
 			PlayFabBaseModel(),
-			Inventory()
+			Inventory(),
+			VirtualCurrency()
 			{}
 		
 		GetUserInventoryResult(const GetUserInventoryResult& src) :
 			PlayFabBaseModel(),
-			Inventory(src.Inventory)
+			Inventory(src.Inventory),
+			VirtualCurrency(src.VirtualCurrency)
 			{}
 			
 		GetUserInventoryResult(const rapidjson::Value& obj) : GetUserInventoryResult()
@@ -1186,19 +1189,13 @@ namespace ServerModels
 	struct SetTitleDataResult : public PlayFabBaseModel
     {
 		
-		std::string Key;
-		std::string Value;
 	
         SetTitleDataResult() :
-			PlayFabBaseModel(),
-			Key(),
-			Value()
+			PlayFabBaseModel()
 			{}
 		
 		SetTitleDataResult(const SetTitleDataResult& src) :
-			PlayFabBaseModel(),
-			Key(src.Key),
-			Value(src.Value)
+			PlayFabBaseModel()
 			{}
 			
 		SetTitleDataResult(const rapidjson::Value& obj) : SetTitleDataResult()

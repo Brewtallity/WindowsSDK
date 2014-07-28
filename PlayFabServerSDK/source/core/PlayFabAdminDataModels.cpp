@@ -135,104 +135,73 @@ bool AddServerBuildResult::readFromValue(const rapidjson::Value& obj)
 }
 
 
-BanAccountRequest::~BanAccountRequest()
+AddUserVirtualCurrencyRequest::~AddUserVirtualCurrencyRequest()
 {
 	
 }
 
-void BanAccountRequest::writeJSON(PFStringJsonWriter& writer)
+void AddUserVirtualCurrencyRequest::writeJSON(PFStringJsonWriter& writer)
 {
     writer.StartObject();
 
 	
-	writer.String("TitleId"); writer.String(TitleId.c_str());
-	
 	writer.String("PlayFabId"); writer.String(PlayFabId.c_str());
 	
-	writer.String("BannedByPlayFabId"); writer.String(BannedByPlayFabId.c_str());
+	writer.String("VirtualCurrency"); writer.String(VirtualCurrency.c_str());
 	
-	writer.String("Reason"); writer.String(Reason.c_str());
-	
-	if(IPAddress.length() > 0) { writer.String("IPAddress"); writer.String(IPAddress.c_str()); }
-	
-	if(MACAddress.length() > 0) { writer.String("MACAddress"); writer.String(MACAddress.c_str()); }
-	
-	if(DurationInHours.notNull()) { writer.String("DurationInHours"); writer.Uint(DurationInHours); }
-	
-	if(Notes.length() > 0) { writer.String("Notes"); writer.String(Notes.c_str()); }
-	
-	if(UniqueBanId.length() > 0) { writer.String("UniqueBanId"); writer.String(UniqueBanId.c_str()); }
+	writer.String("Amount"); writer.Int(Amount);
 	
 	
 	writer.EndObject();
 }
 
-bool BanAccountRequest::readFromValue(const rapidjson::Value& obj)
+bool AddUserVirtualCurrencyRequest::readFromValue(const rapidjson::Value& obj)
 {
-	
-	const Value::Member* TitleId_member = obj.FindMember("TitleId");
-	if (TitleId_member != NULL) TitleId = TitleId_member->value.GetString();
 	
 	const Value::Member* PlayFabId_member = obj.FindMember("PlayFabId");
 	if (PlayFabId_member != NULL) PlayFabId = PlayFabId_member->value.GetString();
 	
-	const Value::Member* BannedByPlayFabId_member = obj.FindMember("BannedByPlayFabId");
-	if (BannedByPlayFabId_member != NULL) BannedByPlayFabId = BannedByPlayFabId_member->value.GetString();
+	const Value::Member* VirtualCurrency_member = obj.FindMember("VirtualCurrency");
+	if (VirtualCurrency_member != NULL) VirtualCurrency = VirtualCurrency_member->value.GetString();
 	
-	const Value::Member* Reason_member = obj.FindMember("Reason");
-	if (Reason_member != NULL) Reason = Reason_member->value.GetString();
-	
-	const Value::Member* IPAddress_member = obj.FindMember("IPAddress");
-	if (IPAddress_member != NULL) IPAddress = IPAddress_member->value.GetString();
-	
-	const Value::Member* MACAddress_member = obj.FindMember("MACAddress");
-	if (MACAddress_member != NULL) MACAddress = MACAddress_member->value.GetString();
-	
-	const Value::Member* DurationInHours_member = obj.FindMember("DurationInHours");
-	if (DurationInHours_member != NULL) DurationInHours = DurationInHours_member->value.GetUint();
-	
-	const Value::Member* Notes_member = obj.FindMember("Notes");
-	if (Notes_member != NULL) Notes = Notes_member->value.GetString();
-	
-	const Value::Member* UniqueBanId_member = obj.FindMember("UniqueBanId");
-	if (UniqueBanId_member != NULL) UniqueBanId = UniqueBanId_member->value.GetString();
+	const Value::Member* Amount_member = obj.FindMember("Amount");
+	if (Amount_member != NULL) Amount = Amount_member->value.GetInt();
 	
 	
 	return true;
 }
 
 
-BanMultipleAccountsRequest::~BanMultipleAccountsRequest()
+AddVirtualCurrencyTypesRequest::~AddVirtualCurrencyTypesRequest()
 {
 	
 }
 
-void BanMultipleAccountsRequest::writeJSON(PFStringJsonWriter& writer)
+void AddVirtualCurrencyTypesRequest::writeJSON(PFStringJsonWriter& writer)
 {
     writer.StartObject();
 
 	
-	if(!accounts.empty()) {
-	writer.String("accounts");
+	writer.String("VirtualCurrencyIds");
 	writer.StartArray();
-	for (std::list<BanAccountRequest>::iterator iter = accounts.begin(); iter != accounts.end(); iter++) {
-		iter->writeJSON(writer);
+	for (std::list<std::string>::iterator iter = VirtualCurrencyIds.begin(); iter != VirtualCurrencyIds.end(); iter++) {
+		writer.String(iter->c_str());
 	}
 	writer.EndArray();
-	 }
+	
 	
 	
 	writer.EndObject();
 }
 
-bool BanMultipleAccountsRequest::readFromValue(const rapidjson::Value& obj)
+bool AddVirtualCurrencyTypesRequest::readFromValue(const rapidjson::Value& obj)
 {
 	
-	const Value::Member* accounts_member = obj.FindMember("accounts");
-	if (accounts_member != NULL) {
-		const rapidjson::Value& memberList = accounts_member->value;
+	const Value::Member* VirtualCurrencyIds_member = obj.FindMember("VirtualCurrencyIds");
+	if (VirtualCurrencyIds_member != NULL) {
+		const rapidjson::Value& memberList = VirtualCurrencyIds_member->value;
 		for (SizeType i = 0; i < memberList.Size(); i++) {
-			accounts.push_back(BanAccountRequest(memberList[i]));
+			VirtualCurrencyIds.push_back(memberList[i].GetString());
 		}
 	}
 	
@@ -241,12 +210,12 @@ bool BanMultipleAccountsRequest::readFromValue(const rapidjson::Value& obj)
 }
 
 
-BanMultipleAccountsResult::~BanMultipleAccountsResult()
+BlankResult::~BlankResult()
 {
 	
 }
 
-void BanMultipleAccountsResult::writeJSON(PFStringJsonWriter& writer)
+void BlankResult::writeJSON(PFStringJsonWriter& writer)
 {
     writer.StartObject();
 
@@ -255,7 +224,7 @@ void BanMultipleAccountsResult::writeJSON(PFStringJsonWriter& writer)
 	writer.EndObject();
 }
 
-bool BanMultipleAccountsResult::readFromValue(const rapidjson::Value& obj)
+bool BlankResult::readFromValue(const rapidjson::Value& obj)
 {
 	
 	
@@ -1308,6 +1277,93 @@ bool GetTitleDataResult::readFromValue(const rapidjson::Value& obj)
 }
 
 
+GetUserDataRequest::~GetUserDataRequest()
+{
+	
+}
+
+void GetUserDataRequest::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	writer.String("PlayFabId"); writer.String(PlayFabId.c_str());
+	
+	if(!Keys.empty()) {
+	writer.String("Keys");
+	writer.StartArray();
+	for (std::list<std::string>::iterator iter = Keys.begin(); iter != Keys.end(); iter++) {
+		writer.String(iter->c_str());
+	}
+	writer.EndArray();
+	 }
+	
+	
+	writer.EndObject();
+}
+
+bool GetUserDataRequest::readFromValue(const rapidjson::Value& obj)
+{
+	
+	const Value::Member* PlayFabId_member = obj.FindMember("PlayFabId");
+	if (PlayFabId_member != NULL) PlayFabId = PlayFabId_member->value.GetString();
+	
+	const Value::Member* Keys_member = obj.FindMember("Keys");
+	if (Keys_member != NULL) {
+		const rapidjson::Value& memberList = Keys_member->value;
+		for (SizeType i = 0; i < memberList.Size(); i++) {
+			Keys.push_back(memberList[i].GetString());
+		}
+	}
+	
+	
+	return true;
+}
+
+
+GetUserDataResult::~GetUserDataResult()
+{
+	
+}
+
+void GetUserDataResult::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	if(PlayFabId.length() > 0) { writer.String("PlayFabId"); writer.String(PlayFabId.c_str()); }
+	
+	if(!Data.empty()) {
+	writer.String("Data");
+	writer.StartObject();
+	for (std::map<std::string, std::string>::iterator iter = Data.begin(); iter != Data.end(); ++iter) {
+		writer.String(iter->first.c_str()); writer.String(iter->second.c_str());
+	}
+	writer.EndObject();
+	}
+	
+	
+	writer.EndObject();
+}
+
+bool GetUserDataResult::readFromValue(const rapidjson::Value& obj)
+{
+	
+	const Value::Member* PlayFabId_member = obj.FindMember("PlayFabId");
+	if (PlayFabId_member != NULL) PlayFabId = PlayFabId_member->value.GetString();
+	
+	const Value::Member* Data_member = obj.FindMember("Data");
+	if (Data_member != NULL) {
+		for (Value::ConstMemberIterator iter = Data_member->value.MemberBegin(); iter != Data_member->value.MemberEnd(); ++iter) {
+			Data[iter->name.GetString()] = iter->value.GetString();
+		}
+	}
+	
+	
+	return true;
+}
+
+
 GetUserInventoryRequest::~GetUserInventoryRequest()
 {
 	
@@ -1426,6 +1482,15 @@ void GetUserInventoryResult::writeJSON(PFStringJsonWriter& writer)
 	writer.EndArray();
 	 }
 	
+	if(!VirtualCurrency.empty()) {
+	writer.String("VirtualCurrency");
+	writer.StartObject();
+	for (std::map<std::string, Int32>::iterator iter = VirtualCurrency.begin(); iter != VirtualCurrency.end(); ++iter) {
+		writer.String(iter->first.c_str()); writer.Int(iter->second);
+	}
+	writer.EndObject();
+	}
+	
 	
 	writer.EndObject();
 }
@@ -1438,6 +1503,175 @@ bool GetUserInventoryResult::readFromValue(const rapidjson::Value& obj)
 		const rapidjson::Value& memberList = Inventory_member->value;
 		for (SizeType i = 0; i < memberList.Size(); i++) {
 			Inventory.push_back(ItemInstance(memberList[i]));
+		}
+	}
+	
+	const Value::Member* VirtualCurrency_member = obj.FindMember("VirtualCurrency");
+	if (VirtualCurrency_member != NULL) {
+		for (Value::ConstMemberIterator iter = VirtualCurrency_member->value.MemberBegin(); iter != VirtualCurrency_member->value.MemberEnd(); ++iter) {
+			VirtualCurrency[iter->name.GetString()] = iter->value.GetInt();
+		}
+	}
+	
+	
+	return true;
+}
+
+
+ItemGrant::~ItemGrant()
+{
+	
+}
+
+void ItemGrant::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	writer.String("PlayFabId"); writer.String(PlayFabId.c_str());
+	
+	writer.String("ItemId"); writer.String(ItemId.c_str());
+	
+	if(Annotation.length() > 0) { writer.String("Annotation"); writer.String(Annotation.c_str()); }
+	
+	
+	writer.EndObject();
+}
+
+bool ItemGrant::readFromValue(const rapidjson::Value& obj)
+{
+	
+	const Value::Member* PlayFabId_member = obj.FindMember("PlayFabId");
+	if (PlayFabId_member != NULL) PlayFabId = PlayFabId_member->value.GetString();
+	
+	const Value::Member* ItemId_member = obj.FindMember("ItemId");
+	if (ItemId_member != NULL) ItemId = ItemId_member->value.GetString();
+	
+	const Value::Member* Annotation_member = obj.FindMember("Annotation");
+	if (Annotation_member != NULL) Annotation = Annotation_member->value.GetString();
+	
+	
+	return true;
+}
+
+
+GrantItemsToUsersRequest::~GrantItemsToUsersRequest()
+{
+	
+}
+
+void GrantItemsToUsersRequest::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	if(CatalogVersion.length() > 0) { writer.String("CatalogVersion"); writer.String(CatalogVersion.c_str()); }
+	
+	if(!ItemGrants.empty()) {
+	writer.String("ItemGrants");
+	writer.StartArray();
+	for (std::list<ItemGrant>::iterator iter = ItemGrants.begin(); iter != ItemGrants.end(); iter++) {
+		iter->writeJSON(writer);
+	}
+	writer.EndArray();
+	 }
+	
+	
+	writer.EndObject();
+}
+
+bool GrantItemsToUsersRequest::readFromValue(const rapidjson::Value& obj)
+{
+	
+	const Value::Member* CatalogVersion_member = obj.FindMember("CatalogVersion");
+	if (CatalogVersion_member != NULL) CatalogVersion = CatalogVersion_member->value.GetString();
+	
+	const Value::Member* ItemGrants_member = obj.FindMember("ItemGrants");
+	if (ItemGrants_member != NULL) {
+		const rapidjson::Value& memberList = ItemGrants_member->value;
+		for (SizeType i = 0; i < memberList.Size(); i++) {
+			ItemGrants.push_back(ItemGrant(memberList[i]));
+		}
+	}
+	
+	
+	return true;
+}
+
+
+ItemGrantResult::~ItemGrantResult()
+{
+	
+}
+
+void ItemGrantResult::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	writer.String("PlayFabId"); writer.String(PlayFabId.c_str());
+	
+	writer.String("ItemId"); writer.String(ItemId.c_str());
+	
+	if(Annotation.length() > 0) { writer.String("Annotation"); writer.String(Annotation.c_str()); }
+	
+	writer.String("Result"); writer.Bool(Result);
+	
+	
+	writer.EndObject();
+}
+
+bool ItemGrantResult::readFromValue(const rapidjson::Value& obj)
+{
+	
+	const Value::Member* PlayFabId_member = obj.FindMember("PlayFabId");
+	if (PlayFabId_member != NULL) PlayFabId = PlayFabId_member->value.GetString();
+	
+	const Value::Member* ItemId_member = obj.FindMember("ItemId");
+	if (ItemId_member != NULL) ItemId = ItemId_member->value.GetString();
+	
+	const Value::Member* Annotation_member = obj.FindMember("Annotation");
+	if (Annotation_member != NULL) Annotation = Annotation_member->value.GetString();
+	
+	const Value::Member* Result_member = obj.FindMember("Result");
+	if (Result_member != NULL) Result = Result_member->value.GetBool();
+	
+	
+	return true;
+}
+
+
+GrantItemsToUsersResult::~GrantItemsToUsersResult()
+{
+	
+}
+
+void GrantItemsToUsersResult::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	if(!ItemGrantResults.empty()) {
+	writer.String("ItemGrantResults");
+	writer.StartArray();
+	for (std::list<ItemGrantResult>::iterator iter = ItemGrantResults.begin(); iter != ItemGrantResults.end(); iter++) {
+		iter->writeJSON(writer);
+	}
+	writer.EndArray();
+	 }
+	
+	
+	writer.EndObject();
+}
+
+bool GrantItemsToUsersResult::readFromValue(const rapidjson::Value& obj)
+{
+	
+	const Value::Member* ItemGrantResults_member = obj.FindMember("ItemGrantResults");
+	if (ItemGrantResults_member != NULL) {
+		const rapidjson::Value& memberList = ItemGrantResults_member->value;
+		for (SizeType i = 0; i < memberList.Size(); i++) {
+			ItemGrantResults.push_back(ItemGrantResult(memberList[i]));
 		}
 	}
 	
@@ -1499,6 +1733,67 @@ bool ListBuildsResult::readFromValue(const rapidjson::Value& obj)
 		const rapidjson::Value& memberList = Builds_member->value;
 		for (SizeType i = 0; i < memberList.Size(); i++) {
 			Builds.push_back(GetServerBuildInfoResult(memberList[i]));
+		}
+	}
+	
+	
+	return true;
+}
+
+
+ListVirtualCurrencyTypesRequest::~ListVirtualCurrencyTypesRequest()
+{
+	
+}
+
+void ListVirtualCurrencyTypesRequest::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	
+	writer.EndObject();
+}
+
+bool ListVirtualCurrencyTypesRequest::readFromValue(const rapidjson::Value& obj)
+{
+	
+	
+	return true;
+}
+
+
+ListVirtualCurrencyTypesResult::~ListVirtualCurrencyTypesResult()
+{
+	
+}
+
+void ListVirtualCurrencyTypesResult::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	if(!VirtualCurrencyIds.empty()) {
+	writer.String("VirtualCurrencyIds");
+	writer.StartArray();
+	for (std::list<std::string>::iterator iter = VirtualCurrencyIds.begin(); iter != VirtualCurrencyIds.end(); iter++) {
+		writer.String(iter->c_str());
+	}
+	writer.EndArray();
+	 }
+	
+	
+	writer.EndObject();
+}
+
+bool ListVirtualCurrencyTypesResult::readFromValue(const rapidjson::Value& obj)
+{
+	
+	const Value::Member* VirtualCurrencyIds_member = obj.FindMember("VirtualCurrencyIds");
+	if (VirtualCurrencyIds_member != NULL) {
+		const rapidjson::Value& memberList = VirtualCurrencyIds_member->value;
+		for (SizeType i = 0; i < memberList.Size(); i++) {
+			VirtualCurrencyIds.push_back(memberList[i].GetString());
 		}
 	}
 	
@@ -2086,6 +2381,38 @@ bool ModifyServerBuildResult::readFromValue(const rapidjson::Value& obj)
 }
 
 
+ModifyUserVirtualCurrencyResult::~ModifyUserVirtualCurrencyResult()
+{
+	
+}
+
+void ModifyUserVirtualCurrencyResult::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	if(VirtualCurrency.length() > 0) { writer.String("VirtualCurrency"); writer.String(VirtualCurrency.c_str()); }
+	
+	writer.String("Balance"); writer.Int(Balance);
+	
+	
+	writer.EndObject();
+}
+
+bool ModifyUserVirtualCurrencyResult::readFromValue(const rapidjson::Value& obj)
+{
+	
+	const Value::Member* VirtualCurrency_member = obj.FindMember("VirtualCurrency");
+	if (VirtualCurrency_member != NULL) VirtualCurrency = VirtualCurrency_member->value.GetString();
+	
+	const Value::Member* Balance_member = obj.FindMember("Balance");
+	if (Balance_member != NULL) Balance = Balance_member->value.GetInt();
+	
+	
+	return true;
+}
+
+
 RemoveServerBuildRequest::~RemoveServerBuildRequest()
 {
 	
@@ -2285,10 +2612,6 @@ void SetTitleDataResult::writeJSON(PFStringJsonWriter& writer)
     writer.StartObject();
 
 	
-	if(Key.length() > 0) { writer.String("Key"); writer.String(Key.c_str()); }
-	
-	if(Value.length() > 0) { writer.String("Value"); writer.String(Value.c_str()); }
-	
 	
 	writer.EndObject();
 }
@@ -2296,11 +2619,42 @@ void SetTitleDataResult::writeJSON(PFStringJsonWriter& writer)
 bool SetTitleDataResult::readFromValue(const rapidjson::Value& obj)
 {
 	
-	const Value::Member* Key_member = obj.FindMember("Key");
-	if (Key_member != NULL) Key = Key_member->value.GetString();
 	
-	const Value::Member* Value_member = obj.FindMember("Value");
-	if (Value_member != NULL) Value = Value_member->value.GetString();
+	return true;
+}
+
+
+SubtractUserVirtualCurrencyRequest::~SubtractUserVirtualCurrencyRequest()
+{
+	
+}
+
+void SubtractUserVirtualCurrencyRequest::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	writer.String("PlayFabId"); writer.String(PlayFabId.c_str());
+	
+	writer.String("VirtualCurrency"); writer.String(VirtualCurrency.c_str());
+	
+	writer.String("Amount"); writer.Int(Amount);
+	
+	
+	writer.EndObject();
+}
+
+bool SubtractUserVirtualCurrencyRequest::readFromValue(const rapidjson::Value& obj)
+{
+	
+	const Value::Member* PlayFabId_member = obj.FindMember("PlayFabId");
+	if (PlayFabId_member != NULL) PlayFabId = PlayFabId_member->value.GetString();
+	
+	const Value::Member* VirtualCurrency_member = obj.FindMember("VirtualCurrency");
+	if (VirtualCurrency_member != NULL) VirtualCurrency = VirtualCurrency_member->value.GetString();
+	
+	const Value::Member* Amount_member = obj.FindMember("Amount");
+	if (Amount_member != NULL) Amount = Amount_member->value.GetInt();
 	
 	
 	return true;
@@ -2391,8 +2745,6 @@ void UpdateRandomResultTablesRequest::writeJSON(PFStringJsonWriter& writer)
 	writer.EndArray();
 	 }
 	
-	writer.String("TitleId"); writer.String(TitleId.c_str());
-	
 	
 	writer.EndObject();
 }
@@ -2407,9 +2759,6 @@ bool UpdateRandomResultTablesRequest::readFromValue(const rapidjson::Value& obj)
 			Tables.push_back(RandomResultTable(memberList[i]));
 		}
 	}
-	
-	const Value::Member* TitleId_member = obj.FindMember("TitleId");
-	if (TitleId_member != NULL) TitleId = TitleId_member->value.GetString();
 	
 	
 	return true;
@@ -2431,6 +2780,71 @@ void UpdateRandomResultTablesResult::writeJSON(PFStringJsonWriter& writer)
 }
 
 bool UpdateRandomResultTablesResult::readFromValue(const rapidjson::Value& obj)
+{
+	
+	
+	return true;
+}
+
+
+UpdateUserDataRequest::~UpdateUserDataRequest()
+{
+	
+}
+
+void UpdateUserDataRequest::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	writer.String("PlayFabId"); writer.String(PlayFabId.c_str());
+	
+	if(!Data.empty()) {
+	writer.String("Data");
+	writer.StartObject();
+	for (std::map<std::string, std::string>::iterator iter = Data.begin(); iter != Data.end(); ++iter) {
+		writer.String(iter->first.c_str()); writer.String(iter->second.c_str());
+	}
+	writer.EndObject();
+	}
+	
+	
+	writer.EndObject();
+}
+
+bool UpdateUserDataRequest::readFromValue(const rapidjson::Value& obj)
+{
+	
+	const Value::Member* PlayFabId_member = obj.FindMember("PlayFabId");
+	if (PlayFabId_member != NULL) PlayFabId = PlayFabId_member->value.GetString();
+	
+	const Value::Member* Data_member = obj.FindMember("Data");
+	if (Data_member != NULL) {
+		for (Value::ConstMemberIterator iter = Data_member->value.MemberBegin(); iter != Data_member->value.MemberEnd(); ++iter) {
+			Data[iter->name.GetString()] = iter->value.GetString();
+		}
+	}
+	
+	
+	return true;
+}
+
+
+UpdateUserDataResult::~UpdateUserDataResult()
+{
+	
+}
+
+void UpdateUserDataResult::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	
+	writer.EndObject();
+}
+
+bool UpdateUserDataResult::readFromValue(const rapidjson::Value& obj)
 {
 	
 	

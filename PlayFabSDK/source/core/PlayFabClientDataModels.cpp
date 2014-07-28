@@ -3771,7 +3771,7 @@ void StartPurchaseRequest::writeJSON(PFStringJsonWriter& writer)
     writer.StartObject();
 
 	
-	if(CatalogVersion.length() > 0) { writer.String("CatalogVersion"); writer.String(CatalogVersion.c_str()); }
+	writer.String("CatalogVersion"); writer.String(CatalogVersion.c_str());
 	
 	writer.String("Items");
 	writer.StartArray();

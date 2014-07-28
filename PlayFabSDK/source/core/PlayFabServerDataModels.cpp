@@ -1262,6 +1262,15 @@ void GetUserInventoryResult::writeJSON(PFStringJsonWriter& writer)
 	writer.EndArray();
 	 }
 	
+	if(!VirtualCurrency.empty()) {
+	writer.String("VirtualCurrency");
+	writer.StartObject();
+	for (std::map<std::string, Int32>::iterator iter = VirtualCurrency.begin(); iter != VirtualCurrency.end(); ++iter) {
+		writer.String(iter->first.c_str()); writer.Int(iter->second);
+	}
+	writer.EndObject();
+	}
+	
 	
 	writer.EndObject();
 }
@@ -1274,6 +1283,13 @@ bool GetUserInventoryResult::readFromValue(const rapidjson::Value& obj)
 		const rapidjson::Value& memberList = Inventory_member->value;
 		for (SizeType i = 0; i < memberList.Size(); i++) {
 			Inventory.push_back(ItemInstance(memberList[i]));
+		}
+	}
+	
+	const Value::Member* VirtualCurrency_member = obj.FindMember("VirtualCurrency");
+	if (VirtualCurrency_member != NULL) {
+		for (Value::ConstMemberIterator iter = VirtualCurrency_member->value.MemberBegin(); iter != VirtualCurrency_member->value.MemberEnd(); ++iter) {
+			VirtualCurrency[iter->name.GetString()] = iter->value.GetInt();
 		}
 	}
 	
@@ -1329,7 +1345,7 @@ void GrantItemsToUsersRequest::writeJSON(PFStringJsonWriter& writer)
     writer.StartObject();
 
 	
-	writer.String("CatalogVersion"); writer.String(CatalogVersion.c_str());
+	if(CatalogVersion.length() > 0) { writer.String("CatalogVersion"); writer.String(CatalogVersion.c_str()); }
 	
 	if(!ItemGrants.empty()) {
 	writer.String("ItemGrants");
@@ -1680,22 +1696,12 @@ void SetTitleDataResult::writeJSON(PFStringJsonWriter& writer)
     writer.StartObject();
 
 	
-	if(Key.length() > 0) { writer.String("Key"); writer.String(Key.c_str()); }
-	
-	if(Value.length() > 0) { writer.String("Value"); writer.String(Value.c_str()); }
-	
 	
 	writer.EndObject();
 }
 
 bool SetTitleDataResult::readFromValue(const rapidjson::Value& obj)
 {
-	
-	const Value::Member* Key_member = obj.FindMember("Key");
-	if (Key_member != NULL) Key = Key_member->value.GetString();
-	
-	const Value::Member* Value_member = obj.FindMember("Value");
-	if (Value_member != NULL) Value = Value_member->value.GetString();
 	
 	
 	return true;
