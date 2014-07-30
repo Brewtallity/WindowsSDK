@@ -57,7 +57,7 @@ namespace AdminModels
 		bool Active;
 		std::list<std::string> ActiveRegions;
 		std::string Comment;
-		OptionalTime Timestamp;
+		time_t Timestamp;
 		std::string TitleId;
 	
         AddServerBuildResult() :
@@ -66,7 +66,7 @@ namespace AdminModels
 			Active(false),
 			ActiveRegions(),
 			Comment(),
-			Timestamp(),
+			Timestamp(0),
 			TitleId()
 			{}
 		
@@ -499,7 +499,7 @@ namespace AdminModels
 		
 		std::string LobbyId;
 		std::string TitleId;
-		OptionalTime StartTime;
+		time_t StartTime;
 		OptionalTime EndTime;
 		std::string Mode;
 		std::string BuildVersion;
@@ -514,7 +514,7 @@ namespace AdminModels
 			PlayFabBaseModel(),
 			LobbyId(),
 			TitleId(),
-			StartTime(),
+			StartTime(0),
 			EndTime(),
 			Mode(),
 			BuildVersion(),
@@ -758,7 +758,7 @@ namespace AdminModels
 		bool Active;
 		std::list<std::string> ActiveRegions;
 		std::string Comment;
-		OptionalTime Timestamp;
+		time_t Timestamp;
 		std::string TitleId;
 	
         GetServerBuildInfoResult() :
@@ -767,7 +767,7 @@ namespace AdminModels
 			Active(false),
 			ActiveRegions(),
 			Comment(),
-			Timestamp(),
+			Timestamp(0),
 			TitleId()
 			{}
 		
@@ -873,11 +873,40 @@ namespace AdminModels
         bool readFromValue(const rapidjson::Value& obj);
     };
 	
+	struct UserDataRecord : public PlayFabBaseModel
+    {
+		
+		std::string Value;
+		time_t LastUpdated;
+	
+        UserDataRecord() :
+			PlayFabBaseModel(),
+			Value(),
+			LastUpdated(0)
+			{}
+		
+		UserDataRecord(const UserDataRecord& src) :
+			PlayFabBaseModel(),
+			Value(src.Value),
+			LastUpdated(src.LastUpdated)
+			{}
+			
+		UserDataRecord(const rapidjson::Value& obj) : UserDataRecord()
+        {
+            readFromValue(obj);
+        }
+		
+		~UserDataRecord();
+		
+        void writeJSON(PFStringJsonWriter& writer);
+        bool readFromValue(const rapidjson::Value& obj);
+    };
+	
 	struct GetUserDataResult : public PlayFabBaseModel
     {
 		
 		std::string PlayFabId;
-		std::map<std::string, std::string> Data;
+		std::map<std::string, UserDataRecord> Data;
 	
         GetUserDataResult() :
 			PlayFabBaseModel(),
@@ -1289,7 +1318,7 @@ namespace AdminModels
 		
 		std::string DisplayName;
 		Boxed<UserOrigination> Origination;
-		OptionalTime Created;
+		time_t Created;
 		OptionalTime LastLogin;
 		OptionalTime FirstLogin;
 	
@@ -1297,7 +1326,7 @@ namespace AdminModels
 			PlayFabBaseModel(),
 			DisplayName(),
 			Origination(),
-			Created(),
+			Created(0),
 			LastLogin(),
 			FirstLogin()
 			{}
@@ -1458,7 +1487,7 @@ namespace AdminModels
     {
 		
 		std::string PlayFabId;
-		OptionalTime Created;
+		time_t Created;
 		std::string Username;
 		UserTitleInfo* TitleInfo;
 		UserPrivateAccountInfo* PrivateInfo;
@@ -1469,7 +1498,7 @@ namespace AdminModels
         UserAccountInfo() :
 			PlayFabBaseModel(),
 			PlayFabId(),
-			Created(),
+			Created(0),
 			Username(),
 			TitleInfo(NULL),
 			PrivateInfo(NULL),
@@ -1624,7 +1653,7 @@ namespace AdminModels
 		bool Active;
 		std::list<std::string> ActiveRegions;
 		std::string Comment;
-		OptionalTime Timestamp;
+		time_t Timestamp;
 		std::string TitleId;
 	
         ModifyServerBuildResult() :
@@ -1633,7 +1662,7 @@ namespace AdminModels
 			Active(false),
 			ActiveRegions(),
 			Comment(),
-			Timestamp(),
+			Timestamp(0),
 			TitleId()
 			{}
 		

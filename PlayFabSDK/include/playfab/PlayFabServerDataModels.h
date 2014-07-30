@@ -470,7 +470,7 @@ namespace ServerModels
 		
 		std::string DisplayName;
 		Boxed<UserOrigination> Origination;
-		OptionalTime Created;
+		time_t Created;
 		OptionalTime LastLogin;
 		OptionalTime FirstLogin;
 	
@@ -478,7 +478,7 @@ namespace ServerModels
 			PlayFabBaseModel(),
 			DisplayName(),
 			Origination(),
-			Created(),
+			Created(0),
 			LastLogin(),
 			FirstLogin()
 			{}
@@ -639,7 +639,7 @@ namespace ServerModels
     {
 		
 		std::string PlayFabId;
-		OptionalTime Created;
+		time_t Created;
 		std::string Username;
 		UserTitleInfo* TitleInfo;
 		UserPrivateAccountInfo* PrivateInfo;
@@ -650,7 +650,7 @@ namespace ServerModels
         UserAccountInfo() :
 			PlayFabBaseModel(),
 			PlayFabId(),
-			Created(),
+			Created(0),
 			Username(),
 			TitleInfo(NULL),
 			PrivateInfo(NULL),
@@ -737,11 +737,40 @@ namespace ServerModels
         bool readFromValue(const rapidjson::Value& obj);
     };
 	
+	struct UserDataRecord : public PlayFabBaseModel
+    {
+		
+		std::string Value;
+		time_t LastUpdated;
+	
+        UserDataRecord() :
+			PlayFabBaseModel(),
+			Value(),
+			LastUpdated(0)
+			{}
+		
+		UserDataRecord(const UserDataRecord& src) :
+			PlayFabBaseModel(),
+			Value(src.Value),
+			LastUpdated(src.LastUpdated)
+			{}
+			
+		UserDataRecord(const rapidjson::Value& obj) : UserDataRecord()
+        {
+            readFromValue(obj);
+        }
+		
+		~UserDataRecord();
+		
+        void writeJSON(PFStringJsonWriter& writer);
+        bool readFromValue(const rapidjson::Value& obj);
+    };
+	
 	struct GetUserDataResult : public PlayFabBaseModel
     {
 		
 		std::string PlayFabId;
-		std::map<std::string, std::string> Data;
+		std::map<std::string, UserDataRecord> Data;
 	
         GetUserDataResult() :
 			PlayFabBaseModel(),

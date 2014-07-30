@@ -416,13 +416,13 @@ namespace ClientModels
     {
 		
 		std::string OrderId;
-		OptionalTime PurchaseDate;
+		time_t PurchaseDate;
 		std::list<PurchasedItem> Items;
 	
         ConfirmPurchaseResult() :
 			PlayFabBaseModel(),
 			OrderId(),
-			PurchaseDate(),
+			PurchaseDate(0),
 			Items()
 			{}
 		
@@ -980,7 +980,7 @@ namespace ClientModels
 		
 		std::string DisplayName;
 		Boxed<UserOrigination> Origination;
-		OptionalTime Created;
+		time_t Created;
 		OptionalTime LastLogin;
 		OptionalTime FirstLogin;
 	
@@ -988,7 +988,7 @@ namespace ClientModels
 			PlayFabBaseModel(),
 			DisplayName(),
 			Origination(),
-			Created(),
+			Created(0),
 			LastLogin(),
 			FirstLogin()
 			{}
@@ -1043,7 +1043,7 @@ namespace ClientModels
     {
 		
 		std::string PlayFabId;
-		OptionalTime Created;
+		time_t Created;
 		std::string Username;
 		UserTitleInfo* TitleInfo;
 		UserPrivateAccountInfo* PrivateInfo;
@@ -1054,7 +1054,7 @@ namespace ClientModels
         UserAccountInfo() :
 			PlayFabBaseModel(),
 			PlayFabId(),
-			Created(),
+			Created(0),
 			Username(),
 			TitleInfo(NULL),
 			PrivateInfo(NULL),
@@ -1297,13 +1297,13 @@ namespace ClientModels
 	struct TitleNewsItem : public PlayFabBaseModel
     {
 		
-		OptionalTime Timestamp;
+		time_t Timestamp;
 		std::string Title;
 		std::string Body;
 	
         TitleNewsItem() :
 			PlayFabBaseModel(),
-			Timestamp(),
+			Timestamp(0),
 			Title(),
 			Body()
 			{}
@@ -1378,10 +1378,39 @@ namespace ClientModels
         bool readFromValue(const rapidjson::Value& obj);
     };
 	
+	struct UserDataRecord : public PlayFabBaseModel
+    {
+		
+		std::string Value;
+		time_t LastUpdated;
+	
+        UserDataRecord() :
+			PlayFabBaseModel(),
+			Value(),
+			LastUpdated(0)
+			{}
+		
+		UserDataRecord(const UserDataRecord& src) :
+			PlayFabBaseModel(),
+			Value(src.Value),
+			LastUpdated(src.LastUpdated)
+			{}
+			
+		UserDataRecord(const rapidjson::Value& obj) : UserDataRecord()
+        {
+            readFromValue(obj);
+        }
+		
+		~UserDataRecord();
+		
+        void writeJSON(PFStringJsonWriter& writer);
+        bool readFromValue(const rapidjson::Value& obj);
+    };
+	
 	struct GetUserDataResult : public PlayFabBaseModel
     {
 		
-		std::map<std::string, std::string> Data;
+		std::map<std::string, UserDataRecord> Data;
 	
         GetUserDataResult() :
 			PlayFabBaseModel(),
@@ -3247,7 +3276,7 @@ namespace ClientModels
     {
 		
 		std::string kind;
-		OptionalTime purchaseTime;
+		time_t purchaseTime;
 		Int32 puchaseState;
 		Int32 consumptionState;
 		std::string developerPayload;
@@ -3255,7 +3284,7 @@ namespace ClientModels
         ValidateGooglePlayPurchaseResult() :
 			PlayFabBaseModel(),
 			kind(),
-			purchaseTime(),
+			purchaseTime(0),
 			puchaseState(0),
 			consumptionState(0),
 			developerPayload()

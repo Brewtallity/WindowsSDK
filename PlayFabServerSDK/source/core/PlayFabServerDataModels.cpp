@@ -768,7 +768,7 @@ void UserTitleInfo::writeJSON(PFStringJsonWriter& writer)
 	
 	if(Origination.notNull()) { writer.String("Origination"); writeUserOriginationEnumJSON(Origination, writer); }
 	
-	if(Created.notNull()) { writer.String("Created"); writeDatetime(Created, writer); }
+	writer.String("Created"); writeDatetime(Created, writer);
 	
 	if(LastLogin.notNull()) { writer.String("LastLogin"); writeDatetime(LastLogin, writer); }
 	
@@ -979,7 +979,7 @@ void UserAccountInfo::writeJSON(PFStringJsonWriter& writer)
 	
 	if(PlayFabId.length() > 0) { writer.String("PlayFabId"); writer.String(PlayFabId.c_str()); }
 	
-	if(Created.notNull()) { writer.String("Created"); writeDatetime(Created, writer); }
+	writer.String("Created"); writeDatetime(Created, writer);
 	
 	if(Username.length() > 0) { writer.String("Username"); writer.String(Username.c_str()); }
 	
@@ -1101,6 +1101,38 @@ bool GetUserDataRequest::readFromValue(const rapidjson::Value& obj)
 }
 
 
+UserDataRecord::~UserDataRecord()
+{
+	
+}
+
+void UserDataRecord::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	if(Value.length() > 0) { writer.String("Value"); writer.String(Value.c_str()); }
+	
+	writer.String("LastUpdated"); writeDatetime(LastUpdated, writer);
+	
+	
+	writer.EndObject();
+}
+
+bool UserDataRecord::readFromValue(const rapidjson::Value& obj)
+{
+	
+	const Value::Member* Value_member = obj.FindMember("Value");
+	if (Value_member != NULL) Value = Value_member->value.GetString();
+	
+	const Value::Member* LastUpdated_member = obj.FindMember("LastUpdated");
+	if (LastUpdated_member != NULL) LastUpdated = readDatetime(LastUpdated_member->value);
+	
+	
+	return true;
+}
+
+
 GetUserDataResult::~GetUserDataResult()
 {
 	
@@ -1116,8 +1148,8 @@ void GetUserDataResult::writeJSON(PFStringJsonWriter& writer)
 	if(!Data.empty()) {
 	writer.String("Data");
 	writer.StartObject();
-	for (std::map<std::string, std::string>::iterator iter = Data.begin(); iter != Data.end(); ++iter) {
-		writer.String(iter->first.c_str()); writer.String(iter->second.c_str());
+	for (std::map<std::string, UserDataRecord>::iterator iter = Data.begin(); iter != Data.end(); ++iter) {
+		writer.String(iter->first.c_str()); iter->second.writeJSON(writer);
 	}
 	writer.EndObject();
 	}
@@ -1135,7 +1167,7 @@ bool GetUserDataResult::readFromValue(const rapidjson::Value& obj)
 	const Value::Member* Data_member = obj.FindMember("Data");
 	if (Data_member != NULL) {
 		for (Value::ConstMemberIterator iter = Data_member->value.MemberBegin(); iter != Data_member->value.MemberEnd(); ++iter) {
-			Data[iter->name.GetString()] = iter->value.GetString();
+			Data[iter->name.GetString()] = UserDataRecord(iter->value);
 		}
 	}
 	
