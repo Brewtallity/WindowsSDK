@@ -18,12 +18,16 @@ namespace PlayFab
     public:
 		
 		typedef void(*GetUserAccountInfoCallback)(ServerModels::GetUserAccountInfoResult& result, void* userData);
+		typedef void(*GetLeaderboardCallback)(ServerModels::GetLeaderboardResult& result, void* userData);
+		typedef void(*GetLeaderboardAroundUserCallback)(ServerModels::GetLeaderboardAroundUserResult& result, void* userData);
 		typedef void(*GetUserDataCallback)(ServerModels::GetUserDataResult& result, void* userData);
 		typedef void(*GetUserInternalDataCallback)(ServerModels::GetUserDataResult& result, void* userData);
 		typedef void(*GetUserReadOnlyDataCallback)(ServerModels::GetUserDataResult& result, void* userData);
+		typedef void(*GetUserStatisticsCallback)(ServerModels::GetUserStatisticsResult& result, void* userData);
 		typedef void(*UpdateUserDataCallback)(ServerModels::UpdateUserDataResult& result, void* userData);
 		typedef void(*UpdateUserInternalDataCallback)(ServerModels::UpdateUserDataResult& result, void* userData);
 		typedef void(*UpdateUserReadOnlyDataCallback)(ServerModels::UpdateUserDataResult& result, void* userData);
+		typedef void(*UpdateUserStatisticsCallback)(ServerModels::UpdateUserStatisticsResult& result, void* userData);
 		typedef void(*GetCatalogItemsCallback)(ServerModels::GetCatalogItemsResult& result, void* userData);
 		typedef void(*GetTitleDataCallback)(ServerModels::GetTitleDataResult& result, void* userData);
 		typedef void(*SetTitleDataCallback)(ServerModels::SetTitleDataResult& result, void* userData);
@@ -47,17 +51,25 @@ namespace PlayFab
 		
 		void GetUserAccountInfo(ServerModels::GetUserAccountInfoRequest& request, GetUserAccountInfoCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
+		void GetLeaderboard(ServerModels::GetLeaderboardRequest& request, GetLeaderboardCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		
+		void GetLeaderboardAroundUser(ServerModels::GetLeaderboardAroundUserRequest& request, GetLeaderboardAroundUserCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		
 		void GetUserData(ServerModels::GetUserDataRequest& request, GetUserDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 		void GetUserInternalData(ServerModels::GetUserDataRequest& request, GetUserInternalDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 		void GetUserReadOnlyData(ServerModels::GetUserDataRequest& request, GetUserReadOnlyDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
+		void GetUserStatistics(ServerModels::GetUserStatisticsRequest& request, GetUserStatisticsCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		
 		void UpdateUserData(ServerModels::UpdateUserDataRequest& request, UpdateUserDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 		void UpdateUserInternalData(ServerModels::UpdateUserDataRequest& request, UpdateUserInternalDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 		void UpdateUserReadOnlyData(ServerModels::UpdateUserDataRequest& request, UpdateUserReadOnlyDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		
+		void UpdateUserStatistics(ServerModels::UpdateUserStatisticsRequest& request, UpdateUserStatisticsCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 		void GetCatalogItems(ServerModels::GetCatalogItemsRequest& request, GetCatalogItemsCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
@@ -86,17 +98,25 @@ namespace PlayFab
 		
 		static void OnGetUserAccountInfoResult(int httpStatus, HttpRequest* request, void* userData);
 		
+		static void OnGetLeaderboardResult(int httpStatus, HttpRequest* request, void* userData);
+		
+		static void OnGetLeaderboardAroundUserResult(int httpStatus, HttpRequest* request, void* userData);
+		
 		static void OnGetUserDataResult(int httpStatus, HttpRequest* request, void* userData);
 		
 		static void OnGetUserInternalDataResult(int httpStatus, HttpRequest* request, void* userData);
 		
 		static void OnGetUserReadOnlyDataResult(int httpStatus, HttpRequest* request, void* userData);
 		
+		static void OnGetUserStatisticsResult(int httpStatus, HttpRequest* request, void* userData);
+		
 		static void OnUpdateUserDataResult(int httpStatus, HttpRequest* request, void* userData);
 		
 		static void OnUpdateUserInternalDataResult(int httpStatus, HttpRequest* request, void* userData);
 		
 		static void OnUpdateUserReadOnlyDataResult(int httpStatus, HttpRequest* request, void* userData);
+		
+		static void OnUpdateUserStatisticsResult(int httpStatus, HttpRequest* request, void* userData);
 		
 		static void OnGetCatalogItemsResult(int httpStatus, HttpRequest* request, void* userData);
 		

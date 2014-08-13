@@ -402,6 +402,63 @@ void PlayFabAdminAPI::OnGetUserReadOnlyDataResult(int httpStatus, HttpRequest* r
 }
 
 
+void PlayFabAdminAPI::ResetUserStatistics(
+    ResetUserStatisticsRequest& request,
+    ResetUserStatisticsCallback callback,
+    ErrorCallback errorCallback,
+    void* userData
+    )
+{
+    
+    HttpRequest* httpRequest = new HttpRequest("POST", PlayFabSettings::getURL("/Admin/ResetUserStatistics"));
+    httpRequest->SetHeader("Content-Type", "application/json");
+	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
+	httpRequest->SetHeader("X-SecretKey", PlayFabSettings::developerSecretKey);
+	
+    httpRequest->SetResultCallback(callback);
+    httpRequest->SetErrorCallback(errorCallback);
+    httpRequest->SetUserData(userData);
+
+    httpRequest->SetBody(request.toJSONString());
+    httpRequest->CompressBody();
+
+    mHttpRequester->AddRequest(httpRequest, OnResetUserStatisticsResult, this);
+}
+
+void PlayFabAdminAPI::OnResetUserStatisticsResult(int httpStatus, HttpRequest* request, void* userData)
+{
+    ResetUserStatisticsResult outResult;
+    PlayFabError errorResult;
+
+    bool success = PlayFabRequestHandler::DecodeRequest(httpStatus, request, userData, outResult, errorResult);
+
+    if (success)
+    {
+        
+
+        if (request->GetResultCallback() != NULL)
+        {
+            ResetUserStatisticsCallback successCallback = static_cast<ResetUserStatisticsCallback>(request->GetResultCallback());
+            successCallback(outResult, request->GetUserData());
+        }
+    }
+    else
+    {
+        if (PlayFabSettings::globalErrorHandler != NULL)
+        {
+            PlayFabSettings::globalErrorHandler(errorResult, request->GetUserData());
+        }
+
+        if (request->GetErrorCallback() != NULL)
+        {
+            request->GetErrorCallback()(errorResult, request->GetUserData());
+        }
+    }
+
+    delete request;
+}
+
+
 void PlayFabAdminAPI::UpdateUserData(
     UpdateUserDataRequest& request,
     UpdateUserDataCallback callback,
@@ -553,6 +610,63 @@ void PlayFabAdminAPI::OnUpdateUserReadOnlyDataResult(int httpStatus, HttpRequest
         if (request->GetResultCallback() != NULL)
         {
             UpdateUserReadOnlyDataCallback successCallback = static_cast<UpdateUserReadOnlyDataCallback>(request->GetResultCallback());
+            successCallback(outResult, request->GetUserData());
+        }
+    }
+    else
+    {
+        if (PlayFabSettings::globalErrorHandler != NULL)
+        {
+            PlayFabSettings::globalErrorHandler(errorResult, request->GetUserData());
+        }
+
+        if (request->GetErrorCallback() != NULL)
+        {
+            request->GetErrorCallback()(errorResult, request->GetUserData());
+        }
+    }
+
+    delete request;
+}
+
+
+void PlayFabAdminAPI::AddNews(
+    AddNewsRequest& request,
+    AddNewsCallback callback,
+    ErrorCallback errorCallback,
+    void* userData
+    )
+{
+    
+    HttpRequest* httpRequest = new HttpRequest("POST", PlayFabSettings::getURL("/Admin/AddNews"));
+    httpRequest->SetHeader("Content-Type", "application/json");
+	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
+	httpRequest->SetHeader("X-SecretKey", PlayFabSettings::developerSecretKey);
+	
+    httpRequest->SetResultCallback(callback);
+    httpRequest->SetErrorCallback(errorCallback);
+    httpRequest->SetUserData(userData);
+
+    httpRequest->SetBody(request.toJSONString());
+    httpRequest->CompressBody();
+
+    mHttpRequester->AddRequest(httpRequest, OnAddNewsResult, this);
+}
+
+void PlayFabAdminAPI::OnAddNewsResult(int httpStatus, HttpRequest* request, void* userData)
+{
+    AddNewsResult outResult;
+    PlayFabError errorResult;
+
+    bool success = PlayFabRequestHandler::DecodeRequest(httpStatus, request, userData, outResult, errorResult);
+
+    if (success)
+    {
+        
+
+        if (request->GetResultCallback() != NULL)
+        {
+            AddNewsCallback successCallback = static_cast<AddNewsCallback>(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -838,6 +952,63 @@ void PlayFabAdminAPI::OnListVirualCurrencyTypesResult(int httpStatus, HttpReques
         if (request->GetResultCallback() != NULL)
         {
             ListVirualCurrencyTypesCallback successCallback = static_cast<ListVirualCurrencyTypesCallback>(request->GetResultCallback());
+            successCallback(outResult, request->GetUserData());
+        }
+    }
+    else
+    {
+        if (PlayFabSettings::globalErrorHandler != NULL)
+        {
+            PlayFabSettings::globalErrorHandler(errorResult, request->GetUserData());
+        }
+
+        if (request->GetErrorCallback() != NULL)
+        {
+            request->GetErrorCallback()(errorResult, request->GetUserData());
+        }
+    }
+
+    delete request;
+}
+
+
+void PlayFabAdminAPI::RemoveTitleData(
+    RemoveTitleDataRequest& request,
+    RemoveTitleDataCallback callback,
+    ErrorCallback errorCallback,
+    void* userData
+    )
+{
+    
+    HttpRequest* httpRequest = new HttpRequest("POST", PlayFabSettings::getURL("/Admin/RemoveTitleData"));
+    httpRequest->SetHeader("Content-Type", "application/json");
+	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
+	httpRequest->SetHeader("X-SecretKey", PlayFabSettings::developerSecretKey);
+	
+    httpRequest->SetResultCallback(callback);
+    httpRequest->SetErrorCallback(errorCallback);
+    httpRequest->SetUserData(userData);
+
+    httpRequest->SetBody(request.toJSONString());
+    httpRequest->CompressBody();
+
+    mHttpRequester->AddRequest(httpRequest, OnRemoveTitleDataResult, this);
+}
+
+void PlayFabAdminAPI::OnRemoveTitleDataResult(int httpStatus, HttpRequest* request, void* userData)
+{
+    RemoveTitleDataResult outResult;
+    PlayFabError errorResult;
+
+    bool success = PlayFabRequestHandler::DecodeRequest(httpStatus, request, userData, outResult, errorResult);
+
+    if (success)
+    {
+        
+
+        if (request->GetResultCallback() != NULL)
+        {
+            RemoveTitleDataCallback successCallback = static_cast<RemoveTitleDataCallback>(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }

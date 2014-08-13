@@ -35,8 +35,11 @@ namespace PlayFab
 		typedef void(*UpdateEmailAddressCallback)(ClientModels::UpdateEmailAddressResult& result, void* userData);
 		typedef void(*UpdatePasswordCallback)(ClientModels::UpdatePasswordResult& result, void* userData);
 		typedef void(*UpdateUserTitleDisplayNameCallback)(ClientModels::UpdateUserTitleDisplayNameResult& result, void* userData);
+		typedef void(*GetLeaderboardCallback)(ClientModels::GetLeaderboardResult& result, void* userData);
+		typedef void(*GetLeaderboardAroundCurrentUserCallback)(ClientModels::GetLeaderboardAroundCurrentUserResult& result, void* userData);
 		typedef void(*GetUserDataCallback)(ClientModels::GetUserDataResult& result, void* userData);
 		typedef void(*GetUserReadOnlyDataCallback)(ClientModels::GetUserDataResult& result, void* userData);
+		typedef void(*GetUserStatisticsCallback)(ClientModels::GetUserStatisticsResult& result, void* userData);
 		typedef void(*UpdateUserDataCallback)(ClientModels::UpdateUserDataResult& result, void* userData);
 		typedef void(*GetCatalogItemsCallback)(ClientModels::GetCatalogItemsResult& result, void* userData);
 		typedef void(*GetTitleDataCallback)(ClientModels::GetTitleDataResult& result, void* userData);
@@ -62,6 +65,7 @@ namespace PlayFab
 		typedef void(*StartGameCallback)(ClientModels::StartGameResult& result, void* userData);
 		typedef void(*AndroidDevicePushNotificationRegistrationCallback)(ClientModels::AndroidDevicePushNotificationRegistrationResult& result, void* userData);
 		typedef void(*ValidateGooglePlayPurchaseCallback)(ClientModels::ValidateGooglePlayPurchaseResult& result, void* userData);
+		typedef void(*LogEventCallback)(ClientModels::LogEventResult& result, void* userData);
 		
 	
         PlayFabClientAPI();
@@ -109,9 +113,15 @@ namespace PlayFab
 		
 		void UpdateUserTitleDisplayName(ClientModels::UpdateUserTitleDisplayNameRequest& request, UpdateUserTitleDisplayNameCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
+		void GetLeaderboard(ClientModels::GetLeaderboardRequest& request, GetLeaderboardCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		
+		void GetLeaderboardAroundCurrentUser(ClientModels::GetLeaderboardAroundCurrentUserRequest& request, GetLeaderboardAroundCurrentUserCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		
 		void GetUserData(ClientModels::GetUserDataRequest& request, GetUserDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 		void GetUserReadOnlyData(ClientModels::GetUserDataRequest& request, GetUserReadOnlyDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		
+		void GetUserStatistics(GetUserStatisticsCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 		void UpdateUserData(ClientModels::UpdateUserDataRequest& request, UpdateUserDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
@@ -163,6 +173,8 @@ namespace PlayFab
 		
 		void ValidateGooglePlayPurchase(ClientModels::ValidateGooglePlayPurchaseRequest& request, ValidateGooglePlayPurchaseCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
+		void LogEvent(ClientModels::LogEventRequest& request, LogEventCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		
 
     private:
 
@@ -204,9 +216,15 @@ namespace PlayFab
 		
 		static void OnUpdateUserTitleDisplayNameResult(int httpStatus, HttpRequest* request, void* userData);
 		
+		static void OnGetLeaderboardResult(int httpStatus, HttpRequest* request, void* userData);
+		
+		static void OnGetLeaderboardAroundCurrentUserResult(int httpStatus, HttpRequest* request, void* userData);
+		
 		static void OnGetUserDataResult(int httpStatus, HttpRequest* request, void* userData);
 		
 		static void OnGetUserReadOnlyDataResult(int httpStatus, HttpRequest* request, void* userData);
+		
+		static void OnGetUserStatisticsResult(int httpStatus, HttpRequest* request, void* userData);
 		
 		static void OnUpdateUserDataResult(int httpStatus, HttpRequest* request, void* userData);
 		
@@ -257,6 +275,8 @@ namespace PlayFab
 		static void OnAndroidDevicePushNotificationRegistrationResult(int httpStatus, HttpRequest* request, void* userData);
 		
 		static void OnValidateGooglePlayPurchaseResult(int httpStatus, HttpRequest* request, void* userData);
+		
+		static void OnLogEventResult(int httpStatus, HttpRequest* request, void* userData);
 		
  
         bool mOwnsRequester;

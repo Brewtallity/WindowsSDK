@@ -9,6 +9,64 @@ namespace AdminModels
 {
 
 	
+	struct AddNewsRequest : public PlayFabBaseModel
+    {
+		
+		OptionalTime Timestamp;
+		std::string Title;
+		std::string Body;
+	
+        AddNewsRequest() :
+			PlayFabBaseModel(),
+			Timestamp(),
+			Title(),
+			Body()
+			{}
+		
+		AddNewsRequest(const AddNewsRequest& src) :
+			PlayFabBaseModel(),
+			Timestamp(src.Timestamp),
+			Title(src.Title),
+			Body(src.Body)
+			{}
+			
+		AddNewsRequest(const rapidjson::Value& obj) : AddNewsRequest()
+        {
+            readFromValue(obj);
+        }
+		
+		~AddNewsRequest();
+		
+        void writeJSON(PFStringJsonWriter& writer);
+        bool readFromValue(const rapidjson::Value& obj);
+    };
+	
+	struct AddNewsResult : public PlayFabBaseModel
+    {
+		
+		std::string NewsId;
+	
+        AddNewsResult() :
+			PlayFabBaseModel(),
+			NewsId()
+			{}
+		
+		AddNewsResult(const AddNewsResult& src) :
+			PlayFabBaseModel(),
+			NewsId(src.NewsId)
+			{}
+			
+		AddNewsResult(const rapidjson::Value& obj) : AddNewsResult()
+        {
+            readFromValue(obj);
+        }
+		
+		~AddNewsResult();
+		
+        void writeJSON(PFStringJsonWriter& writer);
+        bool readFromValue(const rapidjson::Value& obj);
+    };
+	
 	struct AddServerBuildRequest : public PlayFabBaseModel
     {
 		
@@ -1105,6 +1163,7 @@ namespace AdminModels
 		
 		std::string PlayFabId;
 		std::string ItemId;
+		std::string ItemInstanceId;
 		std::string Annotation;
 		bool Result;
 	
@@ -1112,6 +1171,7 @@ namespace AdminModels
 			PlayFabBaseModel(),
 			PlayFabId(),
 			ItemId(),
+			ItemInstanceId(),
 			Annotation(),
 			Result(false)
 			{}
@@ -1120,6 +1180,7 @@ namespace AdminModels
 			PlayFabBaseModel(),
 			PlayFabId(src.PlayFabId),
 			ItemId(src.ItemId),
+			ItemInstanceId(src.ItemInstanceId),
 			Annotation(src.Annotation),
 			Result(src.Result)
 			{}
@@ -1763,6 +1824,104 @@ namespace AdminModels
         }
 		
 		~RemoveServerBuildResult();
+		
+        void writeJSON(PFStringJsonWriter& writer);
+        bool readFromValue(const rapidjson::Value& obj);
+    };
+	
+	struct RemoveTitleDataRequest : public PlayFabBaseModel
+    {
+		
+		std::string Key;
+	
+        RemoveTitleDataRequest() :
+			PlayFabBaseModel(),
+			Key()
+			{}
+		
+		RemoveTitleDataRequest(const RemoveTitleDataRequest& src) :
+			PlayFabBaseModel(),
+			Key(src.Key)
+			{}
+			
+		RemoveTitleDataRequest(const rapidjson::Value& obj) : RemoveTitleDataRequest()
+        {
+            readFromValue(obj);
+        }
+		
+		~RemoveTitleDataRequest();
+		
+        void writeJSON(PFStringJsonWriter& writer);
+        bool readFromValue(const rapidjson::Value& obj);
+    };
+	
+	struct RemoveTitleDataResult : public PlayFabBaseModel
+    {
+		
+	
+        RemoveTitleDataResult() :
+			PlayFabBaseModel()
+			{}
+		
+		RemoveTitleDataResult(const RemoveTitleDataResult& src) :
+			PlayFabBaseModel()
+			{}
+			
+		RemoveTitleDataResult(const rapidjson::Value& obj) : RemoveTitleDataResult()
+        {
+            readFromValue(obj);
+        }
+		
+		~RemoveTitleDataResult();
+		
+        void writeJSON(PFStringJsonWriter& writer);
+        bool readFromValue(const rapidjson::Value& obj);
+    };
+	
+	struct ResetUserStatisticsRequest : public PlayFabBaseModel
+    {
+		
+		std::string PlayFabId;
+	
+        ResetUserStatisticsRequest() :
+			PlayFabBaseModel(),
+			PlayFabId()
+			{}
+		
+		ResetUserStatisticsRequest(const ResetUserStatisticsRequest& src) :
+			PlayFabBaseModel(),
+			PlayFabId(src.PlayFabId)
+			{}
+			
+		ResetUserStatisticsRequest(const rapidjson::Value& obj) : ResetUserStatisticsRequest()
+        {
+            readFromValue(obj);
+        }
+		
+		~ResetUserStatisticsRequest();
+		
+        void writeJSON(PFStringJsonWriter& writer);
+        bool readFromValue(const rapidjson::Value& obj);
+    };
+	
+	struct ResetUserStatisticsResult : public PlayFabBaseModel
+    {
+		
+	
+        ResetUserStatisticsResult() :
+			PlayFabBaseModel()
+			{}
+		
+		ResetUserStatisticsResult(const ResetUserStatisticsResult& src) :
+			PlayFabBaseModel()
+			{}
+			
+		ResetUserStatisticsResult(const rapidjson::Value& obj) : ResetUserStatisticsResult()
+        {
+            readFromValue(obj);
+        }
+		
+		~ResetUserStatisticsResult();
 		
         void writeJSON(PFStringJsonWriter& writer);
         bool readFromValue(const rapidjson::Value& obj);

@@ -23,14 +23,17 @@ namespace PlayFab
 		typedef void(*GetUserDataCallback)(AdminModels::GetUserDataResult& result, void* userData);
 		typedef void(*GetUserInternalDataCallback)(AdminModels::GetUserDataResult& result, void* userData);
 		typedef void(*GetUserReadOnlyDataCallback)(AdminModels::GetUserDataResult& result, void* userData);
+		typedef void(*ResetUserStatisticsCallback)(AdminModels::ResetUserStatisticsResult& result, void* userData);
 		typedef void(*UpdateUserDataCallback)(AdminModels::UpdateUserDataResult& result, void* userData);
 		typedef void(*UpdateUserInternalDataCallback)(AdminModels::UpdateUserDataResult& result, void* userData);
 		typedef void(*UpdateUserReadOnlyDataCallback)(AdminModels::UpdateUserDataResult& result, void* userData);
+		typedef void(*AddNewsCallback)(AdminModels::AddNewsResult& result, void* userData);
 		typedef void(*AddVirtualCurrencyTypesCallback)(AdminModels::BlankResult& result, void* userData);
 		typedef void(*GetCatalogItemsCallback)(AdminModels::GetCatalogItemsResult& result, void* userData);
 		typedef void(*GetRandomResultTablesCallback)(AdminModels::GetRandomResultTablesResult& result, void* userData);
 		typedef void(*GetTitleDataCallback)(AdminModels::GetTitleDataResult& result, void* userData);
 		typedef void(*ListVirualCurrencyTypesCallback)(AdminModels::ListVirtualCurrencyTypesResult& result, void* userData);
+		typedef void(*RemoveTitleDataCallback)(AdminModels::RemoveTitleDataResult& result, void* userData);
 		typedef void(*SetCatalogItemsCallback)(AdminModels::UpdateCatalogItemsResult& result, void* userData);
 		typedef void(*SetTitleDataCallback)(AdminModels::SetTitleDataResult& result, void* userData);
 		typedef void(*UpdateCatalogItemsCallback)(AdminModels::UpdateCatalogItemsResult& result, void* userData);
@@ -71,11 +74,15 @@ namespace PlayFab
 		
 		void GetUserReadOnlyData(AdminModels::GetUserDataRequest& request, GetUserReadOnlyDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
+		void ResetUserStatistics(AdminModels::ResetUserStatisticsRequest& request, ResetUserStatisticsCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		
 		void UpdateUserData(AdminModels::UpdateUserDataRequest& request, UpdateUserDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 		void UpdateUserInternalData(AdminModels::UpdateUserDataRequest& request, UpdateUserInternalDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 		void UpdateUserReadOnlyData(AdminModels::UpdateUserDataRequest& request, UpdateUserReadOnlyDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		
+		void AddNews(AdminModels::AddNewsRequest& request, AddNewsCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 		void AddVirtualCurrencyTypes(AdminModels::AddVirtualCurrencyTypesRequest& request, AddVirtualCurrencyTypesCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
@@ -86,6 +93,8 @@ namespace PlayFab
 		void GetTitleData(AdminModels::GetTitleDataRequest& request, GetTitleDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 		void ListVirualCurrencyTypes(ListVirualCurrencyTypesCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		
+		void RemoveTitleData(AdminModels::RemoveTitleDataRequest& request, RemoveTitleDataCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 		void SetCatalogItems(AdminModels::UpdateCatalogItemsRequest& request, SetCatalogItemsCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
@@ -138,11 +147,15 @@ namespace PlayFab
 		
 		static void OnGetUserReadOnlyDataResult(int httpStatus, HttpRequest* request, void* userData);
 		
+		static void OnResetUserStatisticsResult(int httpStatus, HttpRequest* request, void* userData);
+		
 		static void OnUpdateUserDataResult(int httpStatus, HttpRequest* request, void* userData);
 		
 		static void OnUpdateUserInternalDataResult(int httpStatus, HttpRequest* request, void* userData);
 		
 		static void OnUpdateUserReadOnlyDataResult(int httpStatus, HttpRequest* request, void* userData);
+		
+		static void OnAddNewsResult(int httpStatus, HttpRequest* request, void* userData);
 		
 		static void OnAddVirtualCurrencyTypesResult(int httpStatus, HttpRequest* request, void* userData);
 		
@@ -153,6 +166,8 @@ namespace PlayFab
 		static void OnGetTitleDataResult(int httpStatus, HttpRequest* request, void* userData);
 		
 		static void OnListVirualCurrencyTypesResult(int httpStatus, HttpRequest* request, void* userData);
+		
+		static void OnRemoveTitleDataResult(int httpStatus, HttpRequest* request, void* userData);
 		
 		static void OnSetCatalogItemsResult(int httpStatus, HttpRequest* request, void* userData);
 		

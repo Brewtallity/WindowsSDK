@@ -7,6 +7,70 @@ using namespace rapidjson;
 
 
 
+AddNewsRequest::~AddNewsRequest()
+{
+	
+}
+
+void AddNewsRequest::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	if(Timestamp.notNull()) { writer.String("Timestamp"); writeDatetime(Timestamp, writer); }
+	
+	writer.String("Title"); writer.String(Title.c_str());
+	
+	writer.String("Body"); writer.String(Body.c_str());
+	
+	
+	writer.EndObject();
+}
+
+bool AddNewsRequest::readFromValue(const rapidjson::Value& obj)
+{
+	
+	const Value::Member* Timestamp_member = obj.FindMember("Timestamp");
+	if (Timestamp_member != NULL) Timestamp = readDatetime(Timestamp_member->value);
+	
+	const Value::Member* Title_member = obj.FindMember("Title");
+	if (Title_member != NULL) Title = Title_member->value.GetString();
+	
+	const Value::Member* Body_member = obj.FindMember("Body");
+	if (Body_member != NULL) Body = Body_member->value.GetString();
+	
+	
+	return true;
+}
+
+
+AddNewsResult::~AddNewsResult()
+{
+	
+}
+
+void AddNewsResult::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	if(NewsId.length() > 0) { writer.String("NewsId"); writer.String(NewsId.c_str()); }
+	
+	
+	writer.EndObject();
+}
+
+bool AddNewsResult::readFromValue(const rapidjson::Value& obj)
+{
+	
+	const Value::Member* NewsId_member = obj.FindMember("NewsId");
+	if (NewsId_member != NULL) NewsId = NewsId_member->value.GetString();
+	
+	
+	return true;
+}
+
+
 AddServerBuildRequest::~AddServerBuildRequest()
 {
 	
@@ -1641,9 +1705,11 @@ void ItemGrantResult::writeJSON(PFStringJsonWriter& writer)
     writer.StartObject();
 
 	
-	writer.String("PlayFabId"); writer.String(PlayFabId.c_str());
+	if(PlayFabId.length() > 0) { writer.String("PlayFabId"); writer.String(PlayFabId.c_str()); }
 	
-	writer.String("ItemId"); writer.String(ItemId.c_str());
+	if(ItemId.length() > 0) { writer.String("ItemId"); writer.String(ItemId.c_str()); }
+	
+	if(ItemInstanceId.length() > 0) { writer.String("ItemInstanceId"); writer.String(ItemInstanceId.c_str()); }
 	
 	if(Annotation.length() > 0) { writer.String("Annotation"); writer.String(Annotation.c_str()); }
 	
@@ -1661,6 +1727,9 @@ bool ItemGrantResult::readFromValue(const rapidjson::Value& obj)
 	
 	const Value::Member* ItemId_member = obj.FindMember("ItemId");
 	if (ItemId_member != NULL) ItemId = ItemId_member->value.GetString();
+	
+	const Value::Member* ItemInstanceId_member = obj.FindMember("ItemInstanceId");
+	if (ItemInstanceId_member != NULL) ItemInstanceId = ItemInstanceId_member->value.GetString();
 	
 	const Value::Member* Annotation_member = obj.FindMember("Annotation");
 	if (Annotation_member != NULL) Annotation = Annotation_member->value.GetString();
@@ -2493,6 +2562,104 @@ bool RemoveServerBuildResult::readFromValue(const rapidjson::Value& obj)
 	
 	const Value::Member* BuildId_member = obj.FindMember("BuildId");
 	if (BuildId_member != NULL) BuildId = BuildId_member->value.GetString();
+	
+	
+	return true;
+}
+
+
+RemoveTitleDataRequest::~RemoveTitleDataRequest()
+{
+	
+}
+
+void RemoveTitleDataRequest::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	writer.String("Key"); writer.String(Key.c_str());
+	
+	
+	writer.EndObject();
+}
+
+bool RemoveTitleDataRequest::readFromValue(const rapidjson::Value& obj)
+{
+	
+	const Value::Member* Key_member = obj.FindMember("Key");
+	if (Key_member != NULL) Key = Key_member->value.GetString();
+	
+	
+	return true;
+}
+
+
+RemoveTitleDataResult::~RemoveTitleDataResult()
+{
+	
+}
+
+void RemoveTitleDataResult::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	
+	writer.EndObject();
+}
+
+bool RemoveTitleDataResult::readFromValue(const rapidjson::Value& obj)
+{
+	
+	
+	return true;
+}
+
+
+ResetUserStatisticsRequest::~ResetUserStatisticsRequest()
+{
+	
+}
+
+void ResetUserStatisticsRequest::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	writer.String("PlayFabId"); writer.String(PlayFabId.c_str());
+	
+	
+	writer.EndObject();
+}
+
+bool ResetUserStatisticsRequest::readFromValue(const rapidjson::Value& obj)
+{
+	
+	const Value::Member* PlayFabId_member = obj.FindMember("PlayFabId");
+	if (PlayFabId_member != NULL) PlayFabId = PlayFabId_member->value.GetString();
+	
+	
+	return true;
+}
+
+
+ResetUserStatisticsResult::~ResetUserStatisticsResult()
+{
+	
+}
+
+void ResetUserStatisticsResult::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	
+	writer.EndObject();
+}
+
+bool ResetUserStatisticsResult::readFromValue(const rapidjson::Value& obj)
+{
 	
 	
 	return true;

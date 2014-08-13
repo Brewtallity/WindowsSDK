@@ -1775,6 +1775,195 @@ bool GetFriendsListResult::readFromValue(const rapidjson::Value& obj)
 }
 
 
+GetLeaderboardAroundCurrentUserRequest::~GetLeaderboardAroundCurrentUserRequest()
+{
+	
+}
+
+void GetLeaderboardAroundCurrentUserRequest::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	writer.String("StatisticName"); writer.String(StatisticName.c_str());
+	
+	writer.String("MaxResultsCount"); writer.Int(MaxResultsCount);
+	
+	
+	writer.EndObject();
+}
+
+bool GetLeaderboardAroundCurrentUserRequest::readFromValue(const rapidjson::Value& obj)
+{
+	
+	const Value::Member* StatisticName_member = obj.FindMember("StatisticName");
+	if (StatisticName_member != NULL) StatisticName = StatisticName_member->value.GetString();
+	
+	const Value::Member* MaxResultsCount_member = obj.FindMember("MaxResultsCount");
+	if (MaxResultsCount_member != NULL) MaxResultsCount = MaxResultsCount_member->value.GetInt();
+	
+	
+	return true;
+}
+
+
+PlayerLeaderboardEntry::~PlayerLeaderboardEntry()
+{
+	
+}
+
+void PlayerLeaderboardEntry::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	if(PlayFabId.length() > 0) { writer.String("PlayFabId"); writer.String(PlayFabId.c_str()); }
+	
+	if(DisplayName.length() > 0) { writer.String("DisplayName"); writer.String(DisplayName.c_str()); }
+	
+	writer.String("StatValue"); writer.Int(StatValue);
+	
+	writer.String("Position"); writer.Int(Position);
+	
+	
+	writer.EndObject();
+}
+
+bool PlayerLeaderboardEntry::readFromValue(const rapidjson::Value& obj)
+{
+	
+	const Value::Member* PlayFabId_member = obj.FindMember("PlayFabId");
+	if (PlayFabId_member != NULL) PlayFabId = PlayFabId_member->value.GetString();
+	
+	const Value::Member* DisplayName_member = obj.FindMember("DisplayName");
+	if (DisplayName_member != NULL) DisplayName = DisplayName_member->value.GetString();
+	
+	const Value::Member* StatValue_member = obj.FindMember("StatValue");
+	if (StatValue_member != NULL) StatValue = StatValue_member->value.GetInt();
+	
+	const Value::Member* Position_member = obj.FindMember("Position");
+	if (Position_member != NULL) Position = Position_member->value.GetInt();
+	
+	
+	return true;
+}
+
+
+GetLeaderboardAroundCurrentUserResult::~GetLeaderboardAroundCurrentUserResult()
+{
+	
+}
+
+void GetLeaderboardAroundCurrentUserResult::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	if(!Leaderboard.empty()) {
+	writer.String("Leaderboard");
+	writer.StartArray();
+	for (std::list<PlayerLeaderboardEntry>::iterator iter = Leaderboard.begin(); iter != Leaderboard.end(); iter++) {
+		iter->writeJSON(writer);
+	}
+	writer.EndArray();
+	 }
+	
+	
+	writer.EndObject();
+}
+
+bool GetLeaderboardAroundCurrentUserResult::readFromValue(const rapidjson::Value& obj)
+{
+	
+	const Value::Member* Leaderboard_member = obj.FindMember("Leaderboard");
+	if (Leaderboard_member != NULL) {
+		const rapidjson::Value& memberList = Leaderboard_member->value;
+		for (SizeType i = 0; i < memberList.Size(); i++) {
+			Leaderboard.push_back(PlayerLeaderboardEntry(memberList[i]));
+		}
+	}
+	
+	
+	return true;
+}
+
+
+GetLeaderboardRequest::~GetLeaderboardRequest()
+{
+	
+}
+
+void GetLeaderboardRequest::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	writer.String("StatisticName"); writer.String(StatisticName.c_str());
+	
+	writer.String("StartPosition"); writer.Int(StartPosition);
+	
+	writer.String("MaxResultsCount"); writer.Int(MaxResultsCount);
+	
+	
+	writer.EndObject();
+}
+
+bool GetLeaderboardRequest::readFromValue(const rapidjson::Value& obj)
+{
+	
+	const Value::Member* StatisticName_member = obj.FindMember("StatisticName");
+	if (StatisticName_member != NULL) StatisticName = StatisticName_member->value.GetString();
+	
+	const Value::Member* StartPosition_member = obj.FindMember("StartPosition");
+	if (StartPosition_member != NULL) StartPosition = StartPosition_member->value.GetInt();
+	
+	const Value::Member* MaxResultsCount_member = obj.FindMember("MaxResultsCount");
+	if (MaxResultsCount_member != NULL) MaxResultsCount = MaxResultsCount_member->value.GetInt();
+	
+	
+	return true;
+}
+
+
+GetLeaderboardResult::~GetLeaderboardResult()
+{
+	
+}
+
+void GetLeaderboardResult::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	if(!Leaderboard.empty()) {
+	writer.String("Leaderboard");
+	writer.StartArray();
+	for (std::list<PlayerLeaderboardEntry>::iterator iter = Leaderboard.begin(); iter != Leaderboard.end(); iter++) {
+		iter->writeJSON(writer);
+	}
+	writer.EndArray();
+	 }
+	
+	
+	writer.EndObject();
+}
+
+bool GetLeaderboardResult::readFromValue(const rapidjson::Value& obj)
+{
+	
+	const Value::Member* Leaderboard_member = obj.FindMember("Leaderboard");
+	if (Leaderboard_member != NULL) {
+		const rapidjson::Value& memberList = Leaderboard_member->value;
+		for (SizeType i = 0; i < memberList.Size(); i++) {
+			Leaderboard.push_back(PlayerLeaderboardEntry(memberList[i]));
+		}
+	}
+	
+	
+	return true;
+}
+
+
 GetTitleDataRequest::~GetTitleDataRequest()
 {
 	
@@ -1861,7 +2050,7 @@ void GetTitleNewsRequest::writeJSON(PFStringJsonWriter& writer)
     writer.StartObject();
 
 	
-	if(Count.notNull()) { writer.String("Count"); writer.Uint(Count); }
+	if(Count.notNull()) { writer.String("Count"); writer.Int(Count); }
 	
 	
 	writer.EndObject();
@@ -1871,7 +2060,7 @@ bool GetTitleNewsRequest::readFromValue(const rapidjson::Value& obj)
 {
 	
 	const Value::Member* Count_member = obj.FindMember("Count");
-	if (Count_member != NULL) Count = Count_member->value.GetUint();
+	if (Count_member != NULL) Count = Count_member->value.GetInt();
 	
 	
 	return true;
@@ -1890,6 +2079,8 @@ void TitleNewsItem::writeJSON(PFStringJsonWriter& writer)
 	
 	writer.String("Timestamp"); writeDatetime(Timestamp, writer);
 	
+	if(NewsId.length() > 0) { writer.String("NewsId"); writer.String(NewsId.c_str()); }
+	
 	if(Title.length() > 0) { writer.String("Title"); writer.String(Title.c_str()); }
 	
 	if(Body.length() > 0) { writer.String("Body"); writer.String(Body.c_str()); }
@@ -1903,6 +2094,9 @@ bool TitleNewsItem::readFromValue(const rapidjson::Value& obj)
 	
 	const Value::Member* Timestamp_member = obj.FindMember("Timestamp");
 	if (Timestamp_member != NULL) Timestamp = readDatetime(Timestamp_member->value);
+	
+	const Value::Member* NewsId_member = obj.FindMember("NewsId");
+	if (NewsId_member != NULL) NewsId = NewsId_member->value.GetString();
 	
 	const Value::Member* Title_member = obj.FindMember("Title");
 	if (Title_member != NULL) Title = Title_member->value.GetString();
@@ -2199,6 +2393,66 @@ bool GetUserInventoryResult::readFromValue(const rapidjson::Value& obj)
 	if (VirtualCurrency_member != NULL) {
 		for (Value::ConstMemberIterator iter = VirtualCurrency_member->value.MemberBegin(); iter != VirtualCurrency_member->value.MemberEnd(); ++iter) {
 			VirtualCurrency[iter->name.GetString()] = iter->value.GetInt();
+		}
+	}
+	
+	
+	return true;
+}
+
+
+GetUserStatisticsRequest::~GetUserStatisticsRequest()
+{
+	
+}
+
+void GetUserStatisticsRequest::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	
+	writer.EndObject();
+}
+
+bool GetUserStatisticsRequest::readFromValue(const rapidjson::Value& obj)
+{
+	
+	
+	return true;
+}
+
+
+GetUserStatisticsResult::~GetUserStatisticsResult()
+{
+	
+}
+
+void GetUserStatisticsResult::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	if(!UserStatistics.empty()) {
+	writer.String("UserStatistics");
+	writer.StartObject();
+	for (std::map<std::string, Int32>::iterator iter = UserStatistics.begin(); iter != UserStatistics.end(); ++iter) {
+		writer.String(iter->first.c_str()); writer.Int(iter->second);
+	}
+	writer.EndObject();
+	}
+	
+	
+	writer.EndObject();
+}
+
+bool GetUserStatisticsResult::readFromValue(const rapidjson::Value& obj)
+{
+	
+	const Value::Member* UserStatistics_member = obj.FindMember("UserStatistics");
+	if (UserStatistics_member != NULL) {
+		for (Value::ConstMemberIterator iter = UserStatistics_member->value.MemberBegin(); iter != UserStatistics_member->value.MemberEnd(); ++iter) {
+			UserStatistics[iter->name.GetString()] = iter->value.GetInt();
 		}
 	}
 	
