@@ -1385,6 +1385,25 @@ bool GetUserDataRequest::readFromValue(const rapidjson::Value& obj)
 }
 
 
+void PlayFab::AdminModels::writeUserDataPermissionEnumJSON(UserDataPermission enumVal, PFStringJsonWriter& writer)
+{
+	switch(enumVal)
+	{
+		
+		case UserDataPermissionPrivate: writer.String("Private"); break;
+	}
+}
+
+UserDataPermission PlayFab::AdminModels::readUserDataPermissionFromValue(const rapidjson::Value& obj)
+{
+	std::string enumStr = obj.GetString();
+	if(enumStr == "Private")
+		return UserDataPermissionPrivate;
+	
+	return UserDataPermissionPrivate;
+}
+
+
 UserDataRecord::~UserDataRecord()
 {
 	
@@ -1399,6 +1418,8 @@ void UserDataRecord::writeJSON(PFStringJsonWriter& writer)
 	
 	writer.String("LastUpdated"); writeDatetime(LastUpdated, writer);
 	
+	if(Permission.notNull()) { writer.String("Permission"); writeUserDataPermissionEnumJSON(Permission, writer); }
+	
 	
 	writer.EndObject();
 }
@@ -1411,6 +1432,9 @@ bool UserDataRecord::readFromValue(const rapidjson::Value& obj)
 	
 	const Value::Member* LastUpdated_member = obj.FindMember("LastUpdated");
 	if (LastUpdated_member != NULL) LastUpdated = readDatetime(LastUpdated_member->value);
+	
+	const Value::Member* Permission_member = obj.FindMember("Permission");
+	if (Permission_member != NULL) Permission = readUserDataPermissionFromValue(Permission_member->value);
 	
 	
 	return true;
@@ -3007,6 +3031,8 @@ void UpdateUserDataRequest::writeJSON(PFStringJsonWriter& writer)
 	writer.EndObject();
 	}
 	
+	if(Permission.notNull()) { writer.String("Permission"); writeUserDataPermissionEnumJSON(Permission, writer); }
+	
 	
 	writer.EndObject();
 }
@@ -3023,6 +3049,9 @@ bool UpdateUserDataRequest::readFromValue(const rapidjson::Value& obj)
 			Data[iter->name.GetString()] = iter->value.GetString();
 		}
 	}
+	
+	const Value::Member* Permission_member = obj.FindMember("Permission");
+	if (Permission_member != NULL) Permission = readUserDataPermissionFromValue(Permission_member->value);
 	
 	
 	return true;

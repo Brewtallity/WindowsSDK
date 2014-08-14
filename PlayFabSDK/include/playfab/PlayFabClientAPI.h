@@ -93,7 +93,7 @@ namespace PlayFab
 		
 		void SendAccountRecoveryEmail(ClientModels::SendAccountRecoveryEmailRequest& request, SendAccountRecoveryEmailCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
-		void GetAccountInfo(GetAccountInfoCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		void GetAccountInfo(ClientModels::GetAccountInfoRequest& request, GetAccountInfoCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 		void LinkFacebookAccount(ClientModels::LinkFacebookAccountRequest& request, LinkFacebookAccountCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		

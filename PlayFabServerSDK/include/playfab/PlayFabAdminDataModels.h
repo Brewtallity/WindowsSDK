@@ -931,22 +931,35 @@ namespace AdminModels
         bool readFromValue(const rapidjson::Value& obj);
     };
 	
+	enum UserDataPermission
+	{
+		UserDataPermissionPrivate,
+		UserDataPermissionPublic
+	};
+	
+	void writeUserDataPermissionEnumJSON(UserDataPermission enumVal, PFStringJsonWriter& writer);
+	UserDataPermission readUserDataPermissionFromValue(const rapidjson::Value& obj);
+	
+	
 	struct UserDataRecord : public PlayFabBaseModel
     {
 		
 		std::string Value;
 		time_t LastUpdated;
+		Boxed<UserDataPermission> Permission;
 	
         UserDataRecord() :
 			PlayFabBaseModel(),
 			Value(),
-			LastUpdated(0)
+			LastUpdated(0),
+			Permission()
 			{}
 		
 		UserDataRecord(const UserDataRecord& src) :
 			PlayFabBaseModel(),
 			Value(src.Value),
-			LastUpdated(src.LastUpdated)
+			LastUpdated(src.LastUpdated),
+			Permission(src.Permission)
 			{}
 			
 		UserDataRecord(const rapidjson::Value& obj) : UserDataRecord()
@@ -2218,17 +2231,20 @@ namespace AdminModels
 		
 		std::string PlayFabId;
 		std::map<std::string, std::string> Data;
+		Boxed<UserDataPermission> Permission;
 	
         UpdateUserDataRequest() :
 			PlayFabBaseModel(),
 			PlayFabId(),
-			Data()
+			Data(),
+			Permission()
 			{}
 		
 		UpdateUserDataRequest(const UpdateUserDataRequest& src) :
 			PlayFabBaseModel(),
 			PlayFabId(src.PlayFabId),
-			Data(src.Data)
+			Data(src.Data),
+			Permission(src.Permission)
 			{}
 			
 		UpdateUserDataRequest(const rapidjson::Value& obj) : UpdateUserDataRequest()

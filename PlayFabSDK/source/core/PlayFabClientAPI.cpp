@@ -531,7 +531,7 @@ void PlayFabClientAPI::OnSendAccountRecoveryEmailResult(int httpStatus, HttpRequ
 
 
 void PlayFabClientAPI::GetAccountInfo(
-    
+    GetAccountInfoRequest& request,
     GetAccountInfoCallback callback,
     ErrorCallback errorCallback,
     void* userData
@@ -547,7 +547,7 @@ void PlayFabClientAPI::GetAccountInfo(
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
-    httpRequest->SetBody("{}");
+    httpRequest->SetBody(request.toJSONString());
     httpRequest->CompressBody();
 
     mHttpRequester->AddRequest(httpRequest, OnGetAccountInfoResult, this);
