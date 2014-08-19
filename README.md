@@ -33,7 +33,7 @@ In the Properties panel, switch to "Configuration Properties\Linker\Input"
 
 Add the following libraries to the "Additional Dependencies" line:
 ```
-zlibd.lib;libeay32d.lib;ssleay32d.lib;libcurld.lib;PlayFabAPId.lib;ws2_32.lib;wldap32.lib;
+zlibd.lib;libeay32d.lib;ssleay32d.lib;libcurld.lib;PlayFabAPI.lib;ws2_32.lib;wldap32.lib;
 ```
 
 ## Preprocessor settings
@@ -51,6 +51,17 @@ Substitute $(PlayFabRoot) for wherever you have the PlayFabSDK installed in your
 ## Done
 
 Your project should now be ready to compile and link against the PlayFabSDK.
+
+# Alternative approach
+
+If you'd prefer, another approach is to add the PlayFabSDK's vcproj to your solution. This makes it easier to browse and debug the SDK's source code as you develop with it.
+
+1. Right click your solution select "Add\Existing Project..."
+2. Navigate to your PlayFabSDK location and choose PlayFabSDK\build\VC12\PlayFabAPI\PlayFabAPI.vcxproj
+3. Add a dependency from your game project to the PlayFabAPI project.
+4. On your project properties, make sure "Configuration Properties\Linker\Link Library Depndencies" is set to true.
+
+You must then follow all the steps above to setup dependent libs and headers, but you would leave out "layFabAPI.lib" when you add the additional dependencies line.
 
 
 # API Docs
