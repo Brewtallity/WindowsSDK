@@ -4,6 +4,6 @@
 namespace PlayFab
 {
     const std::string PlayFabAPIRevision = "1.0.0.b6";
-    const std::string PlayFabWindowsSDKVersion = "1.0.1";
-    const std::string PlayFabVersionString = "WindowsSDK-1.0.1-1.0.0.b6";
+    const std::string PlayFabWindowsSDKVersion = "1.0.2";
+    const std::string PlayFabVersionString = "WindowsSDK-1.0.2-1.0.0.b6";
 }

@@ -3,8 +3,7 @@
 
 #include <curl/curl.h>
 
-#define ZLIB_WINAPI
-#include "zlib/zlib.h"
+#include "playfab/PlayFabZlib.h"
 
 #define CHUNK 0x4000
 
@@ -177,7 +176,7 @@ void HttpRequesterCURL::FinalizeRequests()
     long httpResponseStatus = 0;
     int queuedMessages = 0;
     CURLMsg* msg = NULL;
-    while(msg = curl_multi_info_read(mHandle, &queuedMessages))
+    while((msg = curl_multi_info_read(mHandle, &queuedMessages)))
     {
         for(size_t i = 0; i < mHandles.size(); ++i)
         {

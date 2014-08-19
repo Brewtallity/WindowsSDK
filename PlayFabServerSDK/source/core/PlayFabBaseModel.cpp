@@ -80,7 +80,7 @@ time_t PlayFab::readDatetime(const rapidjson::Value& obj)
                        &timeStruct.tm_hour, &timeStruct.tm_min, &timeStruct.tm_sec, &milliseconds);
     timeStruct.tm_year -= 1900;
     
-    time = _mkgmtime(&timeStruct);
+    time = mktime(&timeStruct);
 
     return time;
 }

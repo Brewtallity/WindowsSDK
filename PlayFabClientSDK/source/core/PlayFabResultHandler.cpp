@@ -41,6 +41,10 @@ bool PlayFabRequestHandler::DecodeRequest(int httpStatus, HttpRequest* request, 
         if (statusJson != NULL && statusJson->value.IsString())
             outError.HttpStatus = statusJson->value.GetString();
 
+		const Value::Member* errorNameJson = resultEnvelope.FindMember("error");
+        if (errorNameJson != NULL && errorNameJson->value.IsString())
+            outError.ErrorName = errorNameJson->value.GetString();
+			
         const Value::Member* errorMessageJson = resultEnvelope.FindMember("errorMessage");
         if (errorMessageJson != NULL && errorMessageJson->value.IsString())
             outError.ErrorMessage = errorMessageJson->value.GetString();

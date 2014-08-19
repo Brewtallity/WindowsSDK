@@ -168,7 +168,7 @@ void CatalogItemConsumableInfo::writeJSON(PFStringJsonWriter& writer)
     writer.StartObject();
 
 	
-	writer.String("UsageCount"); writer.Uint(UsageCount);
+	if(UsageCount.notNull()) { writer.String("UsageCount"); writer.Uint(UsageCount); }
 	
 	if(UsagePeriod.notNull()) { writer.String("UsagePeriod"); writer.Uint(UsagePeriod); }
 	
@@ -516,6 +516,7 @@ void PlayFab::ServerModels::writeCurrencyEnumJSON(Currency enumVal, PFStringJson
 		case CurrencyRUB: writer.String("RUB"); break;
 		case CurrencyBRL: writer.String("BRL"); break;
 		case CurrencyCIS: writer.String("CIS"); break;
+		case CurrencyCAD: writer.String("CAD"); break;
 	}
 }
 
@@ -534,6 +535,8 @@ Currency PlayFab::ServerModels::readCurrencyFromValue(const rapidjson::Value& ob
 		return CurrencyBRL;
 	else if(enumStr == "CIS")
 		return CurrencyCIS;
+	else if(enumStr == "CAD")
+		return CurrencyCAD;
 	
 	return CurrencyUSD;
 }
@@ -917,6 +920,7 @@ void PlayFab::ServerModels::writeUserOriginationEnumJSON(UserOrigination enumVal
 		case UserOriginationUnknown: writer.String("Unknown"); break;
 		case UserOriginationIOS: writer.String("IOS"); break;
 		case UserOriginationLoadTest: writer.String("LoadTest"); break;
+		case UserOriginationAndroid: writer.String("Android"); break;
 	}
 }
 
@@ -943,6 +947,8 @@ UserOrigination PlayFab::ServerModels::readUserOriginationFromValue(const rapidj
 		return UserOriginationIOS;
 	else if(enumStr == "LoadTest")
 		return UserOriginationLoadTest;
+	else if(enumStr == "Android")
+		return UserOriginationAndroid;
 	
 	return UserOriginationOrganic;
 }
@@ -1068,6 +1074,7 @@ void PlayFab::ServerModels::writeTitleActivationStatusEnumJSON(TitleActivationSt
 		case TitleActivationStatusActivatedTitleKey: writer.String("ActivatedTitleKey"); break;
 		case TitleActivationStatusPendingSteam: writer.String("PendingSteam"); break;
 		case TitleActivationStatusActivatedSteam: writer.String("ActivatedSteam"); break;
+		case TitleActivationStatusRevokedSteam: writer.String("RevokedSteam"); break;
 	}
 }
 
@@ -1082,6 +1089,8 @@ TitleActivationStatus PlayFab::ServerModels::readTitleActivationStatusFromValue(
 		return TitleActivationStatusPendingSteam;
 	else if(enumStr == "ActivatedSteam")
 		return TitleActivationStatusActivatedSteam;
+	else if(enumStr == "RevokedSteam")
+		return TitleActivationStatusRevokedSteam;
 	
 	return TitleActivationStatusNone;
 }
@@ -1301,6 +1310,7 @@ void PlayFab::ServerModels::writeUserDataPermissionEnumJSON(UserDataPermission e
 	{
 		
 		case UserDataPermissionPrivate: writer.String("Private"); break;
+		case UserDataPermissionPublic: writer.String("Public"); break;
 	}
 }
 
@@ -1309,6 +1319,8 @@ UserDataPermission PlayFab::ServerModels::readUserDataPermissionFromValue(const 
 	std::string enumStr = obj.GetString();
 	if(enumStr == "Private")
 		return UserDataPermissionPrivate;
+	else if(enumStr == "Public")
+		return UserDataPermissionPublic;
 	
 	return UserDataPermissionPrivate;
 }
@@ -1853,6 +1865,7 @@ void PlayFab::ServerModels::writePlayerConnectionStateEnumJSON(PlayerConnectionS
 		case PlayerConnectionStateConnecting: writer.String("Connecting"); break;
 		case PlayerConnectionStateParticipating: writer.String("Participating"); break;
 		case PlayerConnectionStateParticipated: writer.String("Participated"); break;
+		case PlayerConnectionStateReconnecting: writer.String("Reconnecting"); break;
 	}
 }
 
@@ -1867,6 +1880,8 @@ PlayerConnectionState PlayFab::ServerModels::readPlayerConnectionStateFromValue(
 		return PlayerConnectionStateParticipating;
 	else if(enumStr == "Participated")
 		return PlayerConnectionStateParticipated;
+	else if(enumStr == "Reconnecting")
+		return PlayerConnectionStateReconnecting;
 	
 	return PlayerConnectionStateUnassigned;
 }
@@ -2129,6 +2144,49 @@ void UpdateUserDataResult::writeJSON(PFStringJsonWriter& writer)
 
 bool UpdateUserDataResult::readFromValue(const rapidjson::Value& obj)
 {
+	
+	
+	return true;
+}
+
+
+UpdateUserInternalDataRequest::~UpdateUserInternalDataRequest()
+{
+	
+}
+
+void UpdateUserInternalDataRequest::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	writer.String("PlayFabId"); writer.String(PlayFabId.c_str());
+	
+	if(!Data.empty()) {
+	writer.String("Data");
+	writer.StartObject();
+	for (std::map<std::string, std::string>::iterator iter = Data.begin(); iter != Data.end(); ++iter) {
+		writer.String(iter->first.c_str()); writer.String(iter->second.c_str());
+	}
+	writer.EndObject();
+	}
+	
+	
+	writer.EndObject();
+}
+
+bool UpdateUserInternalDataRequest::readFromValue(const rapidjson::Value& obj)
+{
+	
+	const Value::Member* PlayFabId_member = obj.FindMember("PlayFabId");
+	if (PlayFabId_member != NULL) PlayFabId = PlayFabId_member->value.GetString();
+	
+	const Value::Member* Data_member = obj.FindMember("Data");
+	if (Data_member != NULL) {
+		for (Value::ConstMemberIterator iter = Data_member->value.MemberBegin(); iter != Data_member->value.MemberEnd(); ++iter) {
+			Data[iter->name.GetString()] = iter->value.GetString();
+		}
+	}
 	
 	
 	return true;

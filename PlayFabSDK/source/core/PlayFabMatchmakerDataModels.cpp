@@ -255,6 +255,7 @@ void PlayFab::MatchmakerModels::writeRegionEnumJSON(Region enumVal, PFStringJson
 		case RegionSAEast: writer.String("SAEast"); break;
 		case RegionAustralia: writer.String("Australia"); break;
 		case RegionChina: writer.String("China"); break;
+		case RegionUberLan: writer.String("UberLan"); break;
 	}
 }
 
@@ -279,6 +280,8 @@ Region PlayFab::MatchmakerModels::readRegionFromValue(const rapidjson::Value& ob
 		return RegionAustralia;
 	else if(enumStr == "China")
 		return RegionChina;
+	else if(enumStr == "UberLan")
+		return RegionUberLan;
 	
 	return RegionUSWest;
 }

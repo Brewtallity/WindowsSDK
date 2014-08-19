@@ -230,7 +230,7 @@ void CatalogItemConsumableInfo::writeJSON(PFStringJsonWriter& writer)
     writer.StartObject();
 
 	
-	writer.String("UsageCount"); writer.Uint(UsageCount);
+	if(UsageCount.notNull()) { writer.String("UsageCount"); writer.Uint(UsageCount); }
 	
 	if(UsagePeriod.notNull()) { writer.String("UsagePeriod"); writer.Uint(UsagePeriod); }
 	
@@ -777,6 +777,7 @@ void PlayFab::ClientModels::writeCurrencyEnumJSON(Currency enumVal, PFStringJson
 		case CurrencyRUB: writer.String("RUB"); break;
 		case CurrencyBRL: writer.String("BRL"); break;
 		case CurrencyCIS: writer.String("CIS"); break;
+		case CurrencyCAD: writer.String("CAD"); break;
 	}
 }
 
@@ -795,6 +796,8 @@ Currency PlayFab::ClientModels::readCurrencyFromValue(const rapidjson::Value& ob
 		return CurrencyBRL;
 	else if(enumStr == "CIS")
 		return CurrencyCIS;
+	else if(enumStr == "CAD")
+		return CurrencyCAD;
 	
 	return CurrencyUSD;
 }
@@ -814,6 +817,7 @@ void PlayFab::ClientModels::writeRegionEnumJSON(Region enumVal, PFStringJsonWrit
 		case RegionSAEast: writer.String("SAEast"); break;
 		case RegionAustralia: writer.String("Australia"); break;
 		case RegionChina: writer.String("China"); break;
+		case RegionUberLan: writer.String("UberLan"); break;
 	}
 }
 
@@ -838,6 +842,8 @@ Region PlayFab::ClientModels::readRegionFromValue(const rapidjson::Value& obj)
 		return RegionAustralia;
 	else if(enumStr == "China")
 		return RegionChina;
+	else if(enumStr == "UberLan")
+		return RegionUberLan;
 	
 	return RegionUSWest;
 }
@@ -1064,6 +1070,7 @@ void PlayFab::ClientModels::writeTitleActivationStatusEnumJSON(TitleActivationSt
 		case TitleActivationStatusActivatedTitleKey: writer.String("ActivatedTitleKey"); break;
 		case TitleActivationStatusPendingSteam: writer.String("PendingSteam"); break;
 		case TitleActivationStatusActivatedSteam: writer.String("ActivatedSteam"); break;
+		case TitleActivationStatusRevokedSteam: writer.String("RevokedSteam"); break;
 	}
 }
 
@@ -1078,6 +1085,8 @@ TitleActivationStatus PlayFab::ClientModels::readTitleActivationStatusFromValue(
 		return TitleActivationStatusPendingSteam;
 	else if(enumStr == "ActivatedSteam")
 		return TitleActivationStatusActivatedSteam;
+	else if(enumStr == "RevokedSteam")
+		return TitleActivationStatusRevokedSteam;
 	
 	return TitleActivationStatusNone;
 }
@@ -1448,6 +1457,7 @@ void PlayFab::ClientModels::writeUserOriginationEnumJSON(UserOrigination enumVal
 		case UserOriginationUnknown: writer.String("Unknown"); break;
 		case UserOriginationIOS: writer.String("IOS"); break;
 		case UserOriginationLoadTest: writer.String("LoadTest"); break;
+		case UserOriginationAndroid: writer.String("Android"); break;
 	}
 }
 
@@ -1474,6 +1484,8 @@ UserOrigination PlayFab::ClientModels::readUserOriginationFromValue(const rapidj
 		return UserOriginationIOS;
 	else if(enumStr == "LoadTest")
 		return UserOriginationLoadTest;
+	else if(enumStr == "Android")
+		return UserOriginationAndroid;
 	
 	return UserOriginationOrganic;
 }
@@ -2202,6 +2214,7 @@ void PlayFab::ClientModels::writeUserDataPermissionEnumJSON(UserDataPermission e
 	{
 		
 		case UserDataPermissionPrivate: writer.String("Private"); break;
+		case UserDataPermissionPublic: writer.String("Public"); break;
 	}
 }
 
@@ -2210,6 +2223,8 @@ UserDataPermission PlayFab::ClientModels::readUserDataPermissionFromValue(const 
 	std::string enumStr = obj.GetString();
 	if(enumStr == "Private")
 		return UserDataPermissionPrivate;
+	else if(enumStr == "Public")
+		return UserDataPermissionPublic;
 	
 	return UserDataPermissionPrivate;
 }
@@ -3095,6 +3110,7 @@ void PlayFab::ClientModels::writeMatchmakeStatusEnumJSON(MatchmakeStatus enumVal
 		
 		case MatchmakeStatusComplete: writer.String("Complete"); break;
 		case MatchmakeStatusWaiting: writer.String("Waiting"); break;
+		case MatchmakeStatusGameNotFound: writer.String("GameNotFound"); break;
 	}
 }
 
@@ -3105,6 +3121,8 @@ MatchmakeStatus PlayFab::ClientModels::readMatchmakeStatusFromValue(const rapidj
 		return MatchmakeStatusComplete;
 	else if(enumStr == "Waiting")
 		return MatchmakeStatusWaiting;
+	else if(enumStr == "GameNotFound")
+		return MatchmakeStatusGameNotFound;
 	
 	return MatchmakeStatusComplete;
 }
@@ -3245,6 +3263,7 @@ void PlayFab::ClientModels::writeTransactionStatusEnumJSON(TransactionStatus enu
 		case TransactionStatusTradePending: writer.String("TradePending"); break;
 		case TransactionStatusUpgraded: writer.String("Upgraded"); break;
 		case TransactionStatusOther: writer.String("Other"); break;
+		case TransactionStatusFailed: writer.String("Failed"); break;
 	}
 }
 
@@ -3279,6 +3298,8 @@ TransactionStatus PlayFab::ClientModels::readTransactionStatusFromValue(const ra
 		return TransactionStatusUpgraded;
 	else if(enumStr == "Other")
 		return TransactionStatusOther;
+	else if(enumStr == "Failed")
+		return TransactionStatusFailed;
 	
 	return TransactionStatusCreateCart;
 }
