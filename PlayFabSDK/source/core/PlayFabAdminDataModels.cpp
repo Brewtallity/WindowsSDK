@@ -82,7 +82,6 @@ void PlayFab::AdminModels::writeRegionEnumJSON(Region enumVal, PFStringJsonWrite
 		case RegionSingapore: writer.String("Singapore"); break;
 		case RegionJapan: writer.String("Japan"); break;
 		case RegionBrazil: writer.String("Brazil"); break;
-		case RegionAustralia: writer.String("Australia"); break;
 	}
 }
 
@@ -101,8 +100,6 @@ Region PlayFab::AdminModels::readRegionFromValue(const rapidjson::Value& obj)
 		return RegionJapan;
 	else if(enumStr == "Brazil")
 		return RegionBrazil;
-	else if(enumStr == "Australia")
-		return RegionAustralia;
 	
 	return RegionUSCentral;
 }
@@ -120,7 +117,9 @@ void AddServerBuildRequest::writeJSON(PFStringJsonWriter& writer)
 	
 	writer.String("BuildId"); writer.String(BuildId.c_str());
 	
-	if(AdditionalCommandLineArguments.length() > 0) { writer.String("AdditionalCommandLineArguments"); writer.String(AdditionalCommandLineArguments.c_str()); }
+	if(CommandLineTemplate.length() > 0) { writer.String("CommandLineTemplate"); writer.String(CommandLineTemplate.c_str()); }
+	
+	if(ExecutablePath.length() > 0) { writer.String("ExecutablePath"); writer.String(ExecutablePath.c_str()); }
 	
 	if(!ActiveRegions.empty()) {
 	writer.String("ActiveRegions");
@@ -145,8 +144,11 @@ bool AddServerBuildRequest::readFromValue(const rapidjson::Value& obj)
 	const Value::Member* BuildId_member = obj.FindMember("BuildId");
 	if (BuildId_member != NULL) BuildId = BuildId_member->value.GetString();
 	
-	const Value::Member* AdditionalCommandLineArguments_member = obj.FindMember("AdditionalCommandLineArguments");
-	if (AdditionalCommandLineArguments_member != NULL) AdditionalCommandLineArguments = AdditionalCommandLineArguments_member->value.GetString();
+	const Value::Member* CommandLineTemplate_member = obj.FindMember("CommandLineTemplate");
+	if (CommandLineTemplate_member != NULL) CommandLineTemplate = CommandLineTemplate_member->value.GetString();
+	
+	const Value::Member* ExecutablePath_member = obj.FindMember("ExecutablePath");
+	if (ExecutablePath_member != NULL) ExecutablePath = ExecutablePath_member->value.GetString();
 	
 	const Value::Member* ActiveRegions_member = obj.FindMember("ActiveRegions");
 	if (ActiveRegions_member != NULL) {
@@ -176,7 +178,6 @@ void PlayFab::AdminModels::writeGameBuildStatusEnumJSON(GameBuildStatus enumVal,
 		case GameBuildStatusValidating: writer.String("Validating"); break;
 		case GameBuildStatusInvalidBuildPackage: writer.String("InvalidBuildPackage"); break;
 		case GameBuildStatusProcessing: writer.String("Processing"); break;
-		case GameBuildStatusFailedToProcess: writer.String("FailedToProcess"); break;
 	}
 }
 
@@ -191,8 +192,6 @@ GameBuildStatus PlayFab::AdminModels::readGameBuildStatusFromValue(const rapidjs
 		return GameBuildStatusInvalidBuildPackage;
 	else if(enumStr == "Processing")
 		return GameBuildStatusProcessing;
-	else if(enumStr == "FailedToProcess")
-		return GameBuildStatusFailedToProcess;
 	
 	return GameBuildStatusAvailable;
 }
@@ -221,7 +220,9 @@ void AddServerBuildResult::writeJSON(PFStringJsonWriter& writer)
 	
 	writer.String("MaxGamesPerHost"); writer.Int(MaxGamesPerHost);
 	
-	if(AdditionalCommandLineArguments.length() > 0) { writer.String("AdditionalCommandLineArguments"); writer.String(AdditionalCommandLineArguments.c_str()); }
+	if(CommandLineTemplate.length() > 0) { writer.String("CommandLineTemplate"); writer.String(CommandLineTemplate.c_str()); }
+	
+	if(ExecutablePath.length() > 0) { writer.String("ExecutablePath"); writer.String(ExecutablePath.c_str()); }
 	
 	if(Comment.length() > 0) { writer.String("Comment"); writer.String(Comment.c_str()); }
 	
@@ -252,8 +253,11 @@ bool AddServerBuildResult::readFromValue(const rapidjson::Value& obj)
 	const Value::Member* MaxGamesPerHost_member = obj.FindMember("MaxGamesPerHost");
 	if (MaxGamesPerHost_member != NULL) MaxGamesPerHost = MaxGamesPerHost_member->value.GetInt();
 	
-	const Value::Member* AdditionalCommandLineArguments_member = obj.FindMember("AdditionalCommandLineArguments");
-	if (AdditionalCommandLineArguments_member != NULL) AdditionalCommandLineArguments = AdditionalCommandLineArguments_member->value.GetString();
+	const Value::Member* CommandLineTemplate_member = obj.FindMember("CommandLineTemplate");
+	if (CommandLineTemplate_member != NULL) CommandLineTemplate = CommandLineTemplate_member->value.GetString();
+	
+	const Value::Member* ExecutablePath_member = obj.FindMember("ExecutablePath");
+	if (ExecutablePath_member != NULL) ExecutablePath = ExecutablePath_member->value.GetString();
 	
 	const Value::Member* Comment_member = obj.FindMember("Comment");
 	if (Comment_member != NULL) Comment = Comment_member->value.GetString();
@@ -643,16 +647,6 @@ void CatalogItem::writeJSON(PFStringJsonWriter& writer)
 	writer.EndObject();
 	}
 	
-	if(ReleaseDate.notNull()) { writer.String("ReleaseDate"); writeDatetime(ReleaseDate, writer); }
-	
-	if(ExpirationDate.notNull()) { writer.String("ExpirationDate"); writeDatetime(ExpirationDate, writer); }
-	
-	if(IsFree.notNull()) { writer.String("IsFree"); writer.Bool(IsFree); }
-	
-	if(NotForSale.notNull()) { writer.String("NotForSale"); writer.Bool(NotForSale); }
-	
-	if(NotForTrade.notNull()) { writer.String("NotForTrade"); writer.Bool(NotForTrade); }
-	
 	if(!Tags.empty()) {
 	writer.String("Tags");
 	writer.StartArray();
@@ -715,21 +709,6 @@ bool CatalogItem::readFromValue(const rapidjson::Value& obj)
 		}
 	}
 	
-	const Value::Member* ReleaseDate_member = obj.FindMember("ReleaseDate");
-	if (ReleaseDate_member != NULL) ReleaseDate = readDatetime(ReleaseDate_member->value);
-	
-	const Value::Member* ExpirationDate_member = obj.FindMember("ExpirationDate");
-	if (ExpirationDate_member != NULL) ExpirationDate = readDatetime(ExpirationDate_member->value);
-	
-	const Value::Member* IsFree_member = obj.FindMember("IsFree");
-	if (IsFree_member != NULL) IsFree = IsFree_member->value.GetBool();
-	
-	const Value::Member* NotForSale_member = obj.FindMember("NotForSale");
-	if (NotForSale_member != NULL) NotForSale = NotForSale_member->value.GetBool();
-	
-	const Value::Member* NotForTrade_member = obj.FindMember("NotForTrade");
-	if (NotForTrade_member != NULL) NotForTrade = NotForTrade_member->value.GetBool();
-	
 	const Value::Member* Tags_member = obj.FindMember("Tags");
 	if (Tags_member != NULL) {
 		const rapidjson::Value& memberList = Tags_member->value;
@@ -774,7 +753,6 @@ void PlayFab::AdminModels::writeCurrencyEnumJSON(Currency enumVal, PFStringJsonW
 		case CurrencyRUB: writer.String("RUB"); break;
 		case CurrencyBRL: writer.String("BRL"); break;
 		case CurrencyCIS: writer.String("CIS"); break;
-		case CurrencyCAD: writer.String("CAD"); break;
 	}
 }
 
@@ -793,8 +771,6 @@ Currency PlayFab::AdminModels::readCurrencyFromValue(const rapidjson::Value& obj
 		return CurrencyBRL;
 	else if(enumStr == "CIS")
 		return CurrencyCIS;
-	else if(enumStr == "CAD")
-		return CurrencyCAD;
 	
 	return CurrencyUSD;
 }
@@ -1108,7 +1084,6 @@ void PlayFab::AdminModels::writeResultTableNodeTypeEnumJSON(ResultTableNodeType 
 	{
 		
 		case ResultTableNodeTypeItemId: writer.String("ItemId"); break;
-		case ResultTableNodeTypeTableId: writer.String("TableId"); break;
 	}
 }
 
@@ -1117,8 +1092,6 @@ ResultTableNodeType PlayFab::AdminModels::readResultTableNodeTypeFromValue(const
 	std::string enumStr = obj.GetString();
 	if(enumStr == "ItemId")
 		return ResultTableNodeTypeItemId;
-	else if(enumStr == "TableId")
-		return ResultTableNodeTypeTableId;
 	
 	return ResultTableNodeTypeItemId;
 }
@@ -1653,7 +1626,6 @@ void PlayFab::AdminModels::writeUserDataPermissionEnumJSON(UserDataPermission en
 	{
 		
 		case UserDataPermissionPrivate: writer.String("Private"); break;
-		case UserDataPermissionPublic: writer.String("Public"); break;
 	}
 }
 
@@ -1662,8 +1634,6 @@ UserDataPermission PlayFab::AdminModels::readUserDataPermissionFromValue(const r
 	std::string enumStr = obj.GetString();
 	if(enumStr == "Private")
 		return UserDataPermissionPrivate;
-	else if(enumStr == "Public")
-		return UserDataPermissionPublic;
 	
 	return UserDataPermissionPrivate;
 }
@@ -2251,7 +2221,6 @@ void PlayFab::AdminModels::writeUserOriginationEnumJSON(UserOrigination enumVal,
 		case UserOriginationLoadTest: writer.String("LoadTest"); break;
 		case UserOriginationAndroid: writer.String("Android"); break;
 		case UserOriginationPSN: writer.String("PSN"); break;
-		case UserOriginationGameCenter: writer.String("GameCenter"); break;
 	}
 }
 
@@ -2282,8 +2251,6 @@ UserOrigination PlayFab::AdminModels::readUserOriginationFromValue(const rapidjs
 		return UserOriginationAndroid;
 	else if(enumStr == "PSN")
 		return UserOriginationPSN;
-	else if(enumStr == "GameCenter")
-		return UserOriginationGameCenter;
 	
 	return UserOriginationOrganic;
 }
@@ -2414,7 +2381,6 @@ void PlayFab::AdminModels::writeTitleActivationStatusEnumJSON(TitleActivationSta
 		case TitleActivationStatusActivatedTitleKey: writer.String("ActivatedTitleKey"); break;
 		case TitleActivationStatusPendingSteam: writer.String("PendingSteam"); break;
 		case TitleActivationStatusActivatedSteam: writer.String("ActivatedSteam"); break;
-		case TitleActivationStatusRevokedSteam: writer.String("RevokedSteam"); break;
 	}
 }
 
@@ -2429,8 +2395,6 @@ TitleActivationStatus PlayFab::AdminModels::readTitleActivationStatusFromValue(c
 		return TitleActivationStatusPendingSteam;
 	else if(enumStr == "ActivatedSteam")
 		return TitleActivationStatusActivatedSteam;
-	else if(enumStr == "RevokedSteam")
-		return TitleActivationStatusRevokedSteam;
 	
 	return TitleActivationStatusNone;
 }
@@ -2690,7 +2654,9 @@ void ModifyServerBuildRequest::writeJSON(PFStringJsonWriter& writer)
 	
 	writer.String("MaxGamesPerHost"); writer.Int(MaxGamesPerHost);
 	
-	if(AdditionalCommandLineArguments.length() > 0) { writer.String("AdditionalCommandLineArguments"); writer.String(AdditionalCommandLineArguments.c_str()); }
+	if(CommandLineTemplate.length() > 0) { writer.String("CommandLineTemplate"); writer.String(CommandLineTemplate.c_str()); }
+	
+	if(ExecutablePath.length() > 0) { writer.String("ExecutablePath"); writer.String(ExecutablePath.c_str()); }
 	
 	if(Comment.length() > 0) { writer.String("Comment"); writer.String(Comment.c_str()); }
 	
@@ -2718,8 +2684,11 @@ bool ModifyServerBuildRequest::readFromValue(const rapidjson::Value& obj)
 	const Value::Member* MaxGamesPerHost_member = obj.FindMember("MaxGamesPerHost");
 	if (MaxGamesPerHost_member != NULL) MaxGamesPerHost = MaxGamesPerHost_member->value.GetInt();
 	
-	const Value::Member* AdditionalCommandLineArguments_member = obj.FindMember("AdditionalCommandLineArguments");
-	if (AdditionalCommandLineArguments_member != NULL) AdditionalCommandLineArguments = AdditionalCommandLineArguments_member->value.GetString();
+	const Value::Member* CommandLineTemplate_member = obj.FindMember("CommandLineTemplate");
+	if (CommandLineTemplate_member != NULL) CommandLineTemplate = CommandLineTemplate_member->value.GetString();
+	
+	const Value::Member* ExecutablePath_member = obj.FindMember("ExecutablePath");
+	if (ExecutablePath_member != NULL) ExecutablePath = ExecutablePath_member->value.GetString();
 	
 	const Value::Member* Comment_member = obj.FindMember("Comment");
 	if (Comment_member != NULL) Comment = Comment_member->value.GetString();
@@ -2752,7 +2721,9 @@ void ModifyServerBuildResult::writeJSON(PFStringJsonWriter& writer)
 	
 	writer.String("MaxGamesPerHost"); writer.Int(MaxGamesPerHost);
 	
-	if(AdditionalCommandLineArguments.length() > 0) { writer.String("AdditionalCommandLineArguments"); writer.String(AdditionalCommandLineArguments.c_str()); }
+	if(CommandLineTemplate.length() > 0) { writer.String("CommandLineTemplate"); writer.String(CommandLineTemplate.c_str()); }
+	
+	if(ExecutablePath.length() > 0) { writer.String("ExecutablePath"); writer.String(ExecutablePath.c_str()); }
 	
 	if(Comment.length() > 0) { writer.String("Comment"); writer.String(Comment.c_str()); }
 	
@@ -2783,8 +2754,11 @@ bool ModifyServerBuildResult::readFromValue(const rapidjson::Value& obj)
 	const Value::Member* MaxGamesPerHost_member = obj.FindMember("MaxGamesPerHost");
 	if (MaxGamesPerHost_member != NULL) MaxGamesPerHost = MaxGamesPerHost_member->value.GetInt();
 	
-	const Value::Member* AdditionalCommandLineArguments_member = obj.FindMember("AdditionalCommandLineArguments");
-	if (AdditionalCommandLineArguments_member != NULL) AdditionalCommandLineArguments = AdditionalCommandLineArguments_member->value.GetString();
+	const Value::Member* CommandLineTemplate_member = obj.FindMember("CommandLineTemplate");
+	if (CommandLineTemplate_member != NULL) CommandLineTemplate = CommandLineTemplate_member->value.GetString();
+	
+	const Value::Member* ExecutablePath_member = obj.FindMember("ExecutablePath");
+	if (ExecutablePath_member != NULL) ExecutablePath = ExecutablePath_member->value.GetString();
 	
 	const Value::Member* Comment_member = obj.FindMember("Comment");
 	if (Comment_member != NULL) Comment = Comment_member->value.GetString();
@@ -2878,6 +2852,76 @@ void RemoveServerBuildResult::writeJSON(PFStringJsonWriter& writer)
 
 bool RemoveServerBuildResult::readFromValue(const rapidjson::Value& obj)
 {
+	
+	
+	return true;
+}
+
+
+UserCredentials::~UserCredentials()
+{
+	
+}
+
+void UserCredentials::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	writer.String("Username"); writer.String(Username.c_str());
+	
+	writer.String("Password"); writer.String(Password.c_str());
+	
+	
+	writer.EndObject();
+}
+
+bool UserCredentials::readFromValue(const rapidjson::Value& obj)
+{
+	
+	const Value::Member* Username_member = obj.FindMember("Username");
+	if (Username_member != NULL) Username = Username_member->value.GetString();
+	
+	const Value::Member* Password_member = obj.FindMember("Password");
+	if (Password_member != NULL) Password = Password_member->value.GetString();
+	
+	
+	return true;
+}
+
+
+ResetUsersRequest::~ResetUsersRequest()
+{
+	
+}
+
+void ResetUsersRequest::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	writer.String("Users");
+	writer.StartArray();
+	for (std::list<UserCredentials>::iterator iter = Users.begin(); iter != Users.end(); iter++) {
+		iter->writeJSON(writer);
+	}
+	writer.EndArray();
+	
+	
+	
+	writer.EndObject();
+}
+
+bool ResetUsersRequest::readFromValue(const rapidjson::Value& obj)
+{
+	
+	const Value::Member* Users_member = obj.FindMember("Users");
+	if (Users_member != NULL) {
+		const rapidjson::Value& memberList = Users_member->value;
+		for (SizeType i = 0; i < memberList.Size(); i++) {
+			Users.push_back(UserCredentials(memberList[i]));
+		}
+	}
 	
 	
 	return true;
