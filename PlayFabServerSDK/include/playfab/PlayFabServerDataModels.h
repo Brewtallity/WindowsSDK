@@ -1410,6 +1410,105 @@ namespace ServerModels
         bool readFromValue(const rapidjson::Value& obj);
     };
 	
+	struct GrantItemsToUserRequest : public PlayFabBaseModel
+    {
+		
+		std::string CatalogVersion;
+		std::string PlayFabId;
+		std::string Annotation;
+		std::list<std::string> ItemIds;
+	
+        GrantItemsToUserRequest() :
+			PlayFabBaseModel(),
+			CatalogVersion(),
+			PlayFabId(),
+			Annotation(),
+			ItemIds()
+			{}
+		
+		GrantItemsToUserRequest(const GrantItemsToUserRequest& src) :
+			PlayFabBaseModel(),
+			CatalogVersion(src.CatalogVersion),
+			PlayFabId(src.PlayFabId),
+			Annotation(src.Annotation),
+			ItemIds(src.ItemIds)
+			{}
+			
+		GrantItemsToUserRequest(const rapidjson::Value& obj) : GrantItemsToUserRequest()
+        {
+            readFromValue(obj);
+        }
+		
+		~GrantItemsToUserRequest();
+		
+        void writeJSON(PFStringJsonWriter& writer);
+        bool readFromValue(const rapidjson::Value& obj);
+    };
+	
+	struct ItemGrantResult : public PlayFabBaseModel
+    {
+		
+		std::string PlayFabId;
+		std::string ItemId;
+		std::string ItemInstanceId;
+		std::string Annotation;
+		bool Result;
+	
+        ItemGrantResult() :
+			PlayFabBaseModel(),
+			PlayFabId(),
+			ItemId(),
+			ItemInstanceId(),
+			Annotation(),
+			Result(false)
+			{}
+		
+		ItemGrantResult(const ItemGrantResult& src) :
+			PlayFabBaseModel(),
+			PlayFabId(src.PlayFabId),
+			ItemId(src.ItemId),
+			ItemInstanceId(src.ItemInstanceId),
+			Annotation(src.Annotation),
+			Result(src.Result)
+			{}
+			
+		ItemGrantResult(const rapidjson::Value& obj) : ItemGrantResult()
+        {
+            readFromValue(obj);
+        }
+		
+		~ItemGrantResult();
+		
+        void writeJSON(PFStringJsonWriter& writer);
+        bool readFromValue(const rapidjson::Value& obj);
+    };
+	
+	struct GrantItemsToUserResult : public PlayFabBaseModel
+    {
+		
+		std::list<ItemGrantResult> ItemGrantResults;
+	
+        GrantItemsToUserResult() :
+			PlayFabBaseModel(),
+			ItemGrantResults()
+			{}
+		
+		GrantItemsToUserResult(const GrantItemsToUserResult& src) :
+			PlayFabBaseModel(),
+			ItemGrantResults(src.ItemGrantResults)
+			{}
+			
+		GrantItemsToUserResult(const rapidjson::Value& obj) : GrantItemsToUserResult()
+        {
+            readFromValue(obj);
+        }
+		
+		~GrantItemsToUserResult();
+		
+        void writeJSON(PFStringJsonWriter& writer);
+        bool readFromValue(const rapidjson::Value& obj);
+    };
+	
 	struct ItemGrant : public PlayFabBaseModel
     {
 		
@@ -1466,44 +1565,6 @@ namespace ServerModels
         }
 		
 		~GrantItemsToUsersRequest();
-		
-        void writeJSON(PFStringJsonWriter& writer);
-        bool readFromValue(const rapidjson::Value& obj);
-    };
-	
-	struct ItemGrantResult : public PlayFabBaseModel
-    {
-		
-		std::string PlayFabId;
-		std::string ItemId;
-		std::string ItemInstanceId;
-		std::string Annotation;
-		bool Result;
-	
-        ItemGrantResult() :
-			PlayFabBaseModel(),
-			PlayFabId(),
-			ItemId(),
-			ItemInstanceId(),
-			Annotation(),
-			Result(false)
-			{}
-		
-		ItemGrantResult(const ItemGrantResult& src) :
-			PlayFabBaseModel(),
-			PlayFabId(src.PlayFabId),
-			ItemId(src.ItemId),
-			ItemInstanceId(src.ItemInstanceId),
-			Annotation(src.Annotation),
-			Result(src.Result)
-			{}
-			
-		ItemGrantResult(const rapidjson::Value& obj) : ItemGrantResult()
-        {
-            readFromValue(obj);
-        }
-		
-		~ItemGrantResult();
 		
         void writeJSON(PFStringJsonWriter& writer);
         bool readFromValue(const rapidjson::Value& obj);
@@ -1570,15 +1631,18 @@ namespace ServerModels
 	struct ModifyItemUsesResult : public PlayFabBaseModel
     {
 		
+		std::string ItemInstanceId;
 		Int32 RemainingUses;
 	
         ModifyItemUsesResult() :
 			PlayFabBaseModel(),
+			ItemInstanceId(),
 			RemainingUses(0)
 			{}
 		
 		ModifyItemUsesResult(const ModifyItemUsesResult& src) :
 			PlayFabBaseModel(),
+			ItemInstanceId(src.ItemInstanceId),
 			RemainingUses(src.RemainingUses)
 			{}
 			

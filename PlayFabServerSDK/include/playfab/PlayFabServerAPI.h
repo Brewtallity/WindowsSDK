@@ -35,6 +35,7 @@ namespace PlayFab
 		typedef void(*SetTitleDataCallback)(ServerModels::SetTitleDataResult& result, void* userData);
 		typedef void(*AddUserVirtualCurrencyCallback)(ServerModels::ModifyUserVirtualCurrencyResult& result, void* userData);
 		typedef void(*GetUserInventoryCallback)(ServerModels::GetUserInventoryResult& result, void* userData);
+		typedef void(*GrantItemsToUserCallback)(ServerModels::GrantItemsToUserResult& result, void* userData);
 		typedef void(*GrantItemsToUsersCallback)(ServerModels::GrantItemsToUsersResult& result, void* userData);
 		typedef void(*ModifyItemUsesCallback)(ServerModels::ModifyItemUsesResult& result, void* userData);
 		typedef void(*SubtractUserVirtualCurrencyCallback)(ServerModels::ModifyUserVirtualCurrencyResult& result, void* userData);
@@ -93,6 +94,8 @@ namespace PlayFab
 		void AddUserVirtualCurrency(ServerModels::AddUserVirtualCurrencyRequest& request, AddUserVirtualCurrencyCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 		void GetUserInventory(ServerModels::GetUserInventoryRequest& request, GetUserInventoryCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
+		
+		void GrantItemsToUser(ServerModels::GrantItemsToUserRequest& request, GrantItemsToUserCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
 		void GrantItemsToUsers(ServerModels::GrantItemsToUsersRequest& request, GrantItemsToUsersCallback callback, ErrorCallback errorCallback = NULL, void* userData = NULL);
 		
@@ -158,6 +161,8 @@ namespace PlayFab
 		static void OnAddUserVirtualCurrencyResult(int httpStatus, HttpRequest* request, void* userData);
 		
 		static void OnGetUserInventoryResult(int httpStatus, HttpRequest* request, void* userData);
+		
+		static void OnGrantItemsToUserResult(int httpStatus, HttpRequest* request, void* userData);
 		
 		static void OnGrantItemsToUsersResult(int httpStatus, HttpRequest* request, void* userData);
 		

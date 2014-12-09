@@ -82,6 +82,7 @@ void PlayFab::AdminModels::writeRegionEnumJSON(Region enumVal, PFStringJsonWrite
 		case RegionSingapore: writer.String("Singapore"); break;
 		case RegionJapan: writer.String("Japan"); break;
 		case RegionBrazil: writer.String("Brazil"); break;
+		case RegionAustralia: writer.String("Australia"); break;
 	}
 }
 
@@ -100,6 +101,8 @@ Region PlayFab::AdminModels::readRegionFromValue(const rapidjson::Value& obj)
 		return RegionJapan;
 	else if(enumStr == "Brazil")
 		return RegionBrazil;
+	else if(enumStr == "Australia")
+		return RegionAustralia;
 	
 	return RegionUSCentral;
 }
@@ -178,6 +181,7 @@ void PlayFab::AdminModels::writeGameBuildStatusEnumJSON(GameBuildStatus enumVal,
 		case GameBuildStatusValidating: writer.String("Validating"); break;
 		case GameBuildStatusInvalidBuildPackage: writer.String("InvalidBuildPackage"); break;
 		case GameBuildStatusProcessing: writer.String("Processing"); break;
+		case GameBuildStatusFailedToProcess: writer.String("FailedToProcess"); break;
 	}
 }
 
@@ -192,6 +196,8 @@ GameBuildStatus PlayFab::AdminModels::readGameBuildStatusFromValue(const rapidjs
 		return GameBuildStatusInvalidBuildPackage;
 	else if(enumStr == "Processing")
 		return GameBuildStatusProcessing;
+	else if(enumStr == "FailedToProcess")
+		return GameBuildStatusFailedToProcess;
 	
 	return GameBuildStatusAvailable;
 }
@@ -753,6 +759,7 @@ void PlayFab::AdminModels::writeCurrencyEnumJSON(Currency enumVal, PFStringJsonW
 		case CurrencyRUB: writer.String("RUB"); break;
 		case CurrencyBRL: writer.String("BRL"); break;
 		case CurrencyCIS: writer.String("CIS"); break;
+		case CurrencyCAD: writer.String("CAD"); break;
 	}
 }
 
@@ -771,6 +778,8 @@ Currency PlayFab::AdminModels::readCurrencyFromValue(const rapidjson::Value& obj
 		return CurrencyBRL;
 	else if(enumStr == "CIS")
 		return CurrencyCIS;
+	else if(enumStr == "CAD")
+		return CurrencyCAD;
 	
 	return CurrencyUSD;
 }
@@ -873,6 +882,75 @@ bool GetCatalogItemsResult::readFromValue(const rapidjson::Value& obj)
 			Catalog.push_back(CatalogItem(memberList[i]));
 		}
 	}
+	
+	
+	return true;
+}
+
+
+GetDataReportRequest::~GetDataReportRequest()
+{
+	
+}
+
+void GetDataReportRequest::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	writer.String("ReportName"); writer.String(ReportName.c_str());
+	
+	writer.String("Year"); writer.Int(Year);
+	
+	writer.String("Month"); writer.Int(Month);
+	
+	writer.String("Day"); writer.Int(Day);
+	
+	
+	writer.EndObject();
+}
+
+bool GetDataReportRequest::readFromValue(const rapidjson::Value& obj)
+{
+	
+	const Value::Member* ReportName_member = obj.FindMember("ReportName");
+	if (ReportName_member != NULL) ReportName = ReportName_member->value.GetString();
+	
+	const Value::Member* Year_member = obj.FindMember("Year");
+	if (Year_member != NULL) Year = Year_member->value.GetInt();
+	
+	const Value::Member* Month_member = obj.FindMember("Month");
+	if (Month_member != NULL) Month = Month_member->value.GetInt();
+	
+	const Value::Member* Day_member = obj.FindMember("Day");
+	if (Day_member != NULL) Day = Day_member->value.GetInt();
+	
+	
+	return true;
+}
+
+
+GetDataReportResult::~GetDataReportResult()
+{
+	
+}
+
+void GetDataReportResult::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	if(DownloadUrl.length() > 0) { writer.String("DownloadUrl"); writer.String(DownloadUrl.c_str()); }
+	
+	
+	writer.EndObject();
+}
+
+bool GetDataReportResult::readFromValue(const rapidjson::Value& obj)
+{
+	
+	const Value::Member* DownloadUrl_member = obj.FindMember("DownloadUrl");
+	if (DownloadUrl_member != NULL) DownloadUrl = DownloadUrl_member->value.GetString();
 	
 	
 	return true;
@@ -1084,6 +1162,7 @@ void PlayFab::AdminModels::writeResultTableNodeTypeEnumJSON(ResultTableNodeType 
 	{
 		
 		case ResultTableNodeTypeItemId: writer.String("ItemId"); break;
+		case ResultTableNodeTypeTableId: writer.String("TableId"); break;
 	}
 }
 
@@ -1092,6 +1171,8 @@ ResultTableNodeType PlayFab::AdminModels::readResultTableNodeTypeFromValue(const
 	std::string enumStr = obj.GetString();
 	if(enumStr == "ItemId")
 		return ResultTableNodeTypeItemId;
+	else if(enumStr == "TableId")
+		return ResultTableNodeTypeTableId;
 	
 	return ResultTableNodeTypeItemId;
 }
@@ -1626,6 +1707,7 @@ void PlayFab::AdminModels::writeUserDataPermissionEnumJSON(UserDataPermission en
 	{
 		
 		case UserDataPermissionPrivate: writer.String("Private"); break;
+		case UserDataPermissionPublic: writer.String("Public"); break;
 	}
 }
 
@@ -1634,6 +1716,8 @@ UserDataPermission PlayFab::AdminModels::readUserDataPermissionFromValue(const r
 	std::string enumStr = obj.GetString();
 	if(enumStr == "Private")
 		return UserDataPermissionPrivate;
+	else if(enumStr == "Public")
+		return UserDataPermissionPublic;
 	
 	return UserDataPermissionPrivate;
 }
@@ -2221,6 +2305,7 @@ void PlayFab::AdminModels::writeUserOriginationEnumJSON(UserOrigination enumVal,
 		case UserOriginationLoadTest: writer.String("LoadTest"); break;
 		case UserOriginationAndroid: writer.String("Android"); break;
 		case UserOriginationPSN: writer.String("PSN"); break;
+		case UserOriginationGameCenter: writer.String("GameCenter"); break;
 	}
 }
 
@@ -2251,6 +2336,8 @@ UserOrigination PlayFab::AdminModels::readUserOriginationFromValue(const rapidjs
 		return UserOriginationAndroid;
 	else if(enumStr == "PSN")
 		return UserOriginationPSN;
+	else if(enumStr == "GameCenter")
+		return UserOriginationGameCenter;
 	
 	return UserOriginationOrganic;
 }
@@ -2381,6 +2468,7 @@ void PlayFab::AdminModels::writeTitleActivationStatusEnumJSON(TitleActivationSta
 		case TitleActivationStatusActivatedTitleKey: writer.String("ActivatedTitleKey"); break;
 		case TitleActivationStatusPendingSteam: writer.String("PendingSteam"); break;
 		case TitleActivationStatusActivatedSteam: writer.String("ActivatedSteam"); break;
+		case TitleActivationStatusRevokedSteam: writer.String("RevokedSteam"); break;
 	}
 }
 
@@ -2395,6 +2483,8 @@ TitleActivationStatus PlayFab::AdminModels::readTitleActivationStatusFromValue(c
 		return TitleActivationStatusPendingSteam;
 	else if(enumStr == "ActivatedSteam")
 		return TitleActivationStatusActivatedSteam;
+	else if(enumStr == "RevokedSteam")
+		return TitleActivationStatusRevokedSteam;
 	
 	return TitleActivationStatusNone;
 }

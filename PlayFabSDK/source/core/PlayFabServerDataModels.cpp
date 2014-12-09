@@ -154,6 +154,7 @@ void PlayFab::ServerModels::writeUserOriginationEnumJSON(UserOrigination enumVal
 		case UserOriginationLoadTest: writer.String("LoadTest"); break;
 		case UserOriginationAndroid: writer.String("Android"); break;
 		case UserOriginationPSN: writer.String("PSN"); break;
+		case UserOriginationGameCenter: writer.String("GameCenter"); break;
 	}
 }
 
@@ -184,6 +185,8 @@ UserOrigination PlayFab::ServerModels::readUserOriginationFromValue(const rapidj
 		return UserOriginationAndroid;
 	else if(enumStr == "PSN")
 		return UserOriginationPSN;
+	else if(enumStr == "GameCenter")
+		return UserOriginationGameCenter;
 	
 	return UserOriginationOrganic;
 }
@@ -316,6 +319,7 @@ void PlayFab::ServerModels::writeCurrencyEnumJSON(Currency enumVal, PFStringJson
 		case CurrencyRUB: writer.String("RUB"); break;
 		case CurrencyBRL: writer.String("BRL"); break;
 		case CurrencyCIS: writer.String("CIS"); break;
+		case CurrencyCAD: writer.String("CAD"); break;
 	}
 }
 
@@ -334,6 +338,8 @@ Currency PlayFab::ServerModels::readCurrencyFromValue(const rapidjson::Value& ob
 		return CurrencyBRL;
 	else if(enumStr == "CIS")
 		return CurrencyCIS;
+	else if(enumStr == "CAD")
+		return CurrencyCAD;
 	
 	return CurrencyUSD;
 }
@@ -348,6 +354,7 @@ void PlayFab::ServerModels::writeTitleActivationStatusEnumJSON(TitleActivationSt
 		case TitleActivationStatusActivatedTitleKey: writer.String("ActivatedTitleKey"); break;
 		case TitleActivationStatusPendingSteam: writer.String("PendingSteam"); break;
 		case TitleActivationStatusActivatedSteam: writer.String("ActivatedSteam"); break;
+		case TitleActivationStatusRevokedSteam: writer.String("RevokedSteam"); break;
 	}
 }
 
@@ -362,6 +369,8 @@ TitleActivationStatus PlayFab::ServerModels::readTitleActivationStatusFromValue(
 		return TitleActivationStatusPendingSteam;
 	else if(enumStr == "ActivatedSteam")
 		return TitleActivationStatusActivatedSteam;
+	else if(enumStr == "RevokedSteam")
+		return TitleActivationStatusRevokedSteam;
 	
 	return TitleActivationStatusNone;
 }
@@ -1385,6 +1394,7 @@ void PlayFab::ServerModels::writeUserDataPermissionEnumJSON(UserDataPermission e
 	{
 		
 		case UserDataPermissionPrivate: writer.String("Private"); break;
+		case UserDataPermissionPublic: writer.String("Public"); break;
 	}
 }
 
@@ -1393,6 +1403,8 @@ UserDataPermission PlayFab::ServerModels::readUserDataPermissionFromValue(const 
 	std::string enumStr = obj.GetString();
 	if(enumStr == "Private")
 		return UserDataPermissionPrivate;
+	else if(enumStr == "Public")
+		return UserDataPermissionPublic;
 	
 	return UserDataPermissionPrivate;
 }
@@ -1969,6 +1981,146 @@ bool GetUserStatisticsResult::readFromValue(const rapidjson::Value& obj)
 }
 
 
+GrantItemsToUserRequest::~GrantItemsToUserRequest()
+{
+	
+}
+
+void GrantItemsToUserRequest::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	if(CatalogVersion.length() > 0) { writer.String("CatalogVersion"); writer.String(CatalogVersion.c_str()); }
+	
+	if(PlayFabId.length() > 0) { writer.String("PlayFabId"); writer.String(PlayFabId.c_str()); }
+	
+	if(Annotation.length() > 0) { writer.String("Annotation"); writer.String(Annotation.c_str()); }
+	
+	if(!ItemIds.empty()) {
+	writer.String("ItemIds");
+	writer.StartArray();
+	for (std::list<std::string>::iterator iter = ItemIds.begin(); iter != ItemIds.end(); iter++) {
+		writer.String(iter->c_str());
+	}
+	writer.EndArray();
+	 }
+	
+	
+	writer.EndObject();
+}
+
+bool GrantItemsToUserRequest::readFromValue(const rapidjson::Value& obj)
+{
+	
+	const Value::Member* CatalogVersion_member = obj.FindMember("CatalogVersion");
+	if (CatalogVersion_member != NULL) CatalogVersion = CatalogVersion_member->value.GetString();
+	
+	const Value::Member* PlayFabId_member = obj.FindMember("PlayFabId");
+	if (PlayFabId_member != NULL) PlayFabId = PlayFabId_member->value.GetString();
+	
+	const Value::Member* Annotation_member = obj.FindMember("Annotation");
+	if (Annotation_member != NULL) Annotation = Annotation_member->value.GetString();
+	
+	const Value::Member* ItemIds_member = obj.FindMember("ItemIds");
+	if (ItemIds_member != NULL) {
+		const rapidjson::Value& memberList = ItemIds_member->value;
+		for (SizeType i = 0; i < memberList.Size(); i++) {
+			ItemIds.push_back(memberList[i].GetString());
+		}
+	}
+	
+	
+	return true;
+}
+
+
+ItemGrantResult::~ItemGrantResult()
+{
+	
+}
+
+void ItemGrantResult::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	if(PlayFabId.length() > 0) { writer.String("PlayFabId"); writer.String(PlayFabId.c_str()); }
+	
+	if(ItemId.length() > 0) { writer.String("ItemId"); writer.String(ItemId.c_str()); }
+	
+	if(ItemInstanceId.length() > 0) { writer.String("ItemInstanceId"); writer.String(ItemInstanceId.c_str()); }
+	
+	if(Annotation.length() > 0) { writer.String("Annotation"); writer.String(Annotation.c_str()); }
+	
+	writer.String("Result"); writer.Bool(Result);
+	
+	
+	writer.EndObject();
+}
+
+bool ItemGrantResult::readFromValue(const rapidjson::Value& obj)
+{
+	
+	const Value::Member* PlayFabId_member = obj.FindMember("PlayFabId");
+	if (PlayFabId_member != NULL) PlayFabId = PlayFabId_member->value.GetString();
+	
+	const Value::Member* ItemId_member = obj.FindMember("ItemId");
+	if (ItemId_member != NULL) ItemId = ItemId_member->value.GetString();
+	
+	const Value::Member* ItemInstanceId_member = obj.FindMember("ItemInstanceId");
+	if (ItemInstanceId_member != NULL) ItemInstanceId = ItemInstanceId_member->value.GetString();
+	
+	const Value::Member* Annotation_member = obj.FindMember("Annotation");
+	if (Annotation_member != NULL) Annotation = Annotation_member->value.GetString();
+	
+	const Value::Member* Result_member = obj.FindMember("Result");
+	if (Result_member != NULL) Result = Result_member->value.GetBool();
+	
+	
+	return true;
+}
+
+
+GrantItemsToUserResult::~GrantItemsToUserResult()
+{
+	
+}
+
+void GrantItemsToUserResult::writeJSON(PFStringJsonWriter& writer)
+{
+    writer.StartObject();
+
+	
+	if(!ItemGrantResults.empty()) {
+	writer.String("ItemGrantResults");
+	writer.StartArray();
+	for (std::list<ItemGrantResult>::iterator iter = ItemGrantResults.begin(); iter != ItemGrantResults.end(); iter++) {
+		iter->writeJSON(writer);
+	}
+	writer.EndArray();
+	 }
+	
+	
+	writer.EndObject();
+}
+
+bool GrantItemsToUserResult::readFromValue(const rapidjson::Value& obj)
+{
+	
+	const Value::Member* ItemGrantResults_member = obj.FindMember("ItemGrantResults");
+	if (ItemGrantResults_member != NULL) {
+		const rapidjson::Value& memberList = ItemGrantResults_member->value;
+		for (SizeType i = 0; i < memberList.Size(); i++) {
+			ItemGrantResults.push_back(ItemGrantResult(memberList[i]));
+		}
+	}
+	
+	
+	return true;
+}
+
+
 ItemGrant::~ItemGrant()
 {
 	
@@ -2044,53 +2196,6 @@ bool GrantItemsToUsersRequest::readFromValue(const rapidjson::Value& obj)
 			ItemGrants.push_back(ItemGrant(memberList[i]));
 		}
 	}
-	
-	
-	return true;
-}
-
-
-ItemGrantResult::~ItemGrantResult()
-{
-	
-}
-
-void ItemGrantResult::writeJSON(PFStringJsonWriter& writer)
-{
-    writer.StartObject();
-
-	
-	if(PlayFabId.length() > 0) { writer.String("PlayFabId"); writer.String(PlayFabId.c_str()); }
-	
-	if(ItemId.length() > 0) { writer.String("ItemId"); writer.String(ItemId.c_str()); }
-	
-	if(ItemInstanceId.length() > 0) { writer.String("ItemInstanceId"); writer.String(ItemInstanceId.c_str()); }
-	
-	if(Annotation.length() > 0) { writer.String("Annotation"); writer.String(Annotation.c_str()); }
-	
-	writer.String("Result"); writer.Bool(Result);
-	
-	
-	writer.EndObject();
-}
-
-bool ItemGrantResult::readFromValue(const rapidjson::Value& obj)
-{
-	
-	const Value::Member* PlayFabId_member = obj.FindMember("PlayFabId");
-	if (PlayFabId_member != NULL) PlayFabId = PlayFabId_member->value.GetString();
-	
-	const Value::Member* ItemId_member = obj.FindMember("ItemId");
-	if (ItemId_member != NULL) ItemId = ItemId_member->value.GetString();
-	
-	const Value::Member* ItemInstanceId_member = obj.FindMember("ItemInstanceId");
-	if (ItemInstanceId_member != NULL) ItemInstanceId = ItemInstanceId_member->value.GetString();
-	
-	const Value::Member* Annotation_member = obj.FindMember("Annotation");
-	if (Annotation_member != NULL) Annotation = Annotation_member->value.GetString();
-	
-	const Value::Member* Result_member = obj.FindMember("Result");
-	if (Result_member != NULL) Result = Result_member->value.GetBool();
 	
 	
 	return true;
@@ -2183,6 +2288,8 @@ void ModifyItemUsesResult::writeJSON(PFStringJsonWriter& writer)
     writer.StartObject();
 
 	
+	if(ItemInstanceId.length() > 0) { writer.String("ItemInstanceId"); writer.String(ItemInstanceId.c_str()); }
+	
 	writer.String("RemainingUses"); writer.Int(RemainingUses);
 	
 	
@@ -2191,6 +2298,9 @@ void ModifyItemUsesResult::writeJSON(PFStringJsonWriter& writer)
 
 bool ModifyItemUsesResult::readFromValue(const rapidjson::Value& obj)
 {
+	
+	const Value::Member* ItemInstanceId_member = obj.FindMember("ItemInstanceId");
+	if (ItemInstanceId_member != NULL) ItemInstanceId = ItemInstanceId_member->value.GetString();
 	
 	const Value::Member* RemainingUses_member = obj.FindMember("RemainingUses");
 	if (RemainingUses_member != NULL) RemainingUses = RemainingUses_member->value.GetInt();
@@ -2273,6 +2383,7 @@ void PlayFab::ServerModels::writePlayerConnectionStateEnumJSON(PlayerConnectionS
 		case PlayerConnectionStateConnecting: writer.String("Connecting"); break;
 		case PlayerConnectionStateParticipating: writer.String("Participating"); break;
 		case PlayerConnectionStateParticipated: writer.String("Participated"); break;
+		case PlayerConnectionStateReconnecting: writer.String("Reconnecting"); break;
 	}
 }
 
@@ -2287,6 +2398,8 @@ PlayerConnectionState PlayFab::ServerModels::readPlayerConnectionStateFromValue(
 		return PlayerConnectionStateParticipating;
 	else if(enumStr == "Participated")
 		return PlayerConnectionStateParticipated;
+	else if(enumStr == "Reconnecting")
+		return PlayerConnectionStateReconnecting;
 	
 	return PlayerConnectionStateUnassigned;
 }

@@ -115,7 +115,10 @@ namespace PlayFab
 		PlayFabErrorJavascriptException = 1099,
 		PlayFabErrorInvalidSessionTicket = 1100,
 		PlayFabErrorUnableToConnectToDatabase = 1101,
-		PlayFabErrorInternalServerError = 1110
+		PlayFabErrorInternalServerError = 1110,
+		PlayFabErrorInvalidReportDate = 1111,
+		PlayFabErrorReportNotAvailable = 1112,
+		PlayFabErrorDatabaseThroughputExceeded = 1113
     };
 
     struct PlayFabError

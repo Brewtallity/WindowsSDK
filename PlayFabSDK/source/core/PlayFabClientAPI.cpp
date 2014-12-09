@@ -74,7 +74,7 @@ void PlayFabClientAPI::LoginWithAndroidDeviceID(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -98,7 +98,7 @@ void PlayFabClientAPI::OnLoginWithAndroidDeviceIDResult(int httpStatus, HttpRequ
 
         if (request->GetResultCallback() != NULL)
         {
-            LoginWithAndroidDeviceIDCallback successCallback = static_cast<LoginWithAndroidDeviceIDCallback>(request->GetResultCallback());
+            LoginWithAndroidDeviceIDCallback successCallback = (LoginWithAndroidDeviceIDCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -133,7 +133,7 @@ void PlayFabClientAPI::LoginWithFacebook(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -157,7 +157,7 @@ void PlayFabClientAPI::OnLoginWithFacebookResult(int httpStatus, HttpRequest* re
 
         if (request->GetResultCallback() != NULL)
         {
-            LoginWithFacebookCallback successCallback = static_cast<LoginWithFacebookCallback>(request->GetResultCallback());
+            LoginWithFacebookCallback successCallback = (LoginWithFacebookCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -192,7 +192,7 @@ void PlayFabClientAPI::LoginWithGameCenter(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -216,7 +216,7 @@ void PlayFabClientAPI::OnLoginWithGameCenterResult(int httpStatus, HttpRequest* 
 
         if (request->GetResultCallback() != NULL)
         {
-            LoginWithGameCenterCallback successCallback = static_cast<LoginWithGameCenterCallback>(request->GetResultCallback());
+            LoginWithGameCenterCallback successCallback = (LoginWithGameCenterCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -251,7 +251,7 @@ void PlayFabClientAPI::LoginWithGoogleAccount(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -275,7 +275,7 @@ void PlayFabClientAPI::OnLoginWithGoogleAccountResult(int httpStatus, HttpReques
 
         if (request->GetResultCallback() != NULL)
         {
-            LoginWithGoogleAccountCallback successCallback = static_cast<LoginWithGoogleAccountCallback>(request->GetResultCallback());
+            LoginWithGoogleAccountCallback successCallback = (LoginWithGoogleAccountCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -310,7 +310,7 @@ void PlayFabClientAPI::LoginWithIOSDeviceID(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -334,7 +334,7 @@ void PlayFabClientAPI::OnLoginWithIOSDeviceIDResult(int httpStatus, HttpRequest*
 
         if (request->GetResultCallback() != NULL)
         {
-            LoginWithIOSDeviceIDCallback successCallback = static_cast<LoginWithIOSDeviceIDCallback>(request->GetResultCallback());
+            LoginWithIOSDeviceIDCallback successCallback = (LoginWithIOSDeviceIDCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -369,7 +369,7 @@ void PlayFabClientAPI::LoginWithPlayFab(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -393,7 +393,7 @@ void PlayFabClientAPI::OnLoginWithPlayFabResult(int httpStatus, HttpRequest* req
 
         if (request->GetResultCallback() != NULL)
         {
-            LoginWithPlayFabCallback successCallback = static_cast<LoginWithPlayFabCallback>(request->GetResultCallback());
+            LoginWithPlayFabCallback successCallback = (LoginWithPlayFabCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -428,7 +428,7 @@ void PlayFabClientAPI::LoginWithSteam(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -452,7 +452,7 @@ void PlayFabClientAPI::OnLoginWithSteamResult(int httpStatus, HttpRequest* reque
 
         if (request->GetResultCallback() != NULL)
         {
-            LoginWithSteamCallback successCallback = static_cast<LoginWithSteamCallback>(request->GetResultCallback());
+            LoginWithSteamCallback successCallback = (LoginWithSteamCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -487,7 +487,7 @@ void PlayFabClientAPI::RegisterPlayFabUser(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -511,7 +511,7 @@ void PlayFabClientAPI::OnRegisterPlayFabUserResult(int httpStatus, HttpRequest* 
 
         if (request->GetResultCallback() != NULL)
         {
-            RegisterPlayFabUserCallback successCallback = static_cast<RegisterPlayFabUserCallback>(request->GetResultCallback());
+            RegisterPlayFabUserCallback successCallback = (RegisterPlayFabUserCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -545,7 +545,7 @@ void PlayFabClientAPI::AddUsernamePassword(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -568,7 +568,7 @@ void PlayFabClientAPI::OnAddUsernamePasswordResult(int httpStatus, HttpRequest* 
 
         if (request->GetResultCallback() != NULL)
         {
-            AddUsernamePasswordCallback successCallback = static_cast<AddUsernamePasswordCallback>(request->GetResultCallback());
+            AddUsernamePasswordCallback successCallback = (AddUsernamePasswordCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -602,7 +602,7 @@ void PlayFabClientAPI::GetAccountInfo(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -625,7 +625,7 @@ void PlayFabClientAPI::OnGetAccountInfoResult(int httpStatus, HttpRequest* reque
 
         if (request->GetResultCallback() != NULL)
         {
-            GetAccountInfoCallback successCallback = static_cast<GetAccountInfoCallback>(request->GetResultCallback());
+            GetAccountInfoCallback successCallback = (GetAccountInfoCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -659,7 +659,7 @@ void PlayFabClientAPI::GetPlayFabIDsFromFacebookIDs(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -682,7 +682,7 @@ void PlayFabClientAPI::OnGetPlayFabIDsFromFacebookIDsResult(int httpStatus, Http
 
         if (request->GetResultCallback() != NULL)
         {
-            GetPlayFabIDsFromFacebookIDsCallback successCallback = static_cast<GetPlayFabIDsFromFacebookIDsCallback>(request->GetResultCallback());
+            GetPlayFabIDsFromFacebookIDsCallback successCallback = (GetPlayFabIDsFromFacebookIDsCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -716,7 +716,7 @@ void PlayFabClientAPI::GetUserCombinedInfo(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -739,7 +739,7 @@ void PlayFabClientAPI::OnGetUserCombinedInfoResult(int httpStatus, HttpRequest* 
 
         if (request->GetResultCallback() != NULL)
         {
-            GetUserCombinedInfoCallback successCallback = static_cast<GetUserCombinedInfoCallback>(request->GetResultCallback());
+            GetUserCombinedInfoCallback successCallback = (GetUserCombinedInfoCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -773,7 +773,7 @@ void PlayFabClientAPI::LinkFacebookAccount(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -796,7 +796,7 @@ void PlayFabClientAPI::OnLinkFacebookAccountResult(int httpStatus, HttpRequest* 
 
         if (request->GetResultCallback() != NULL)
         {
-            LinkFacebookAccountCallback successCallback = static_cast<LinkFacebookAccountCallback>(request->GetResultCallback());
+            LinkFacebookAccountCallback successCallback = (LinkFacebookAccountCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -830,7 +830,7 @@ void PlayFabClientAPI::LinkGameCenterAccount(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -853,7 +853,7 @@ void PlayFabClientAPI::OnLinkGameCenterAccountResult(int httpStatus, HttpRequest
 
         if (request->GetResultCallback() != NULL)
         {
-            LinkGameCenterAccountCallback successCallback = static_cast<LinkGameCenterAccountCallback>(request->GetResultCallback());
+            LinkGameCenterAccountCallback successCallback = (LinkGameCenterAccountCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -887,7 +887,7 @@ void PlayFabClientAPI::LinkSteamAccount(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -910,7 +910,7 @@ void PlayFabClientAPI::OnLinkSteamAccountResult(int httpStatus, HttpRequest* req
 
         if (request->GetResultCallback() != NULL)
         {
-            LinkSteamAccountCallback successCallback = static_cast<LinkSteamAccountCallback>(request->GetResultCallback());
+            LinkSteamAccountCallback successCallback = (LinkSteamAccountCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -944,7 +944,7 @@ void PlayFabClientAPI::SendAccountRecoveryEmail(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -967,7 +967,7 @@ void PlayFabClientAPI::OnSendAccountRecoveryEmailResult(int httpStatus, HttpRequ
 
         if (request->GetResultCallback() != NULL)
         {
-            SendAccountRecoveryEmailCallback successCallback = static_cast<SendAccountRecoveryEmailCallback>(request->GetResultCallback());
+            SendAccountRecoveryEmailCallback successCallback = (SendAccountRecoveryEmailCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -1001,7 +1001,7 @@ void PlayFabClientAPI::UnlinkFacebookAccount(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -1024,7 +1024,7 @@ void PlayFabClientAPI::OnUnlinkFacebookAccountResult(int httpStatus, HttpRequest
 
         if (request->GetResultCallback() != NULL)
         {
-            UnlinkFacebookAccountCallback successCallback = static_cast<UnlinkFacebookAccountCallback>(request->GetResultCallback());
+            UnlinkFacebookAccountCallback successCallback = (UnlinkFacebookAccountCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -1058,7 +1058,7 @@ void PlayFabClientAPI::UnlinkGameCenterAccount(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -1081,7 +1081,7 @@ void PlayFabClientAPI::OnUnlinkGameCenterAccountResult(int httpStatus, HttpReque
 
         if (request->GetResultCallback() != NULL)
         {
-            UnlinkGameCenterAccountCallback successCallback = static_cast<UnlinkGameCenterAccountCallback>(request->GetResultCallback());
+            UnlinkGameCenterAccountCallback successCallback = (UnlinkGameCenterAccountCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -1115,7 +1115,7 @@ void PlayFabClientAPI::UnlinkSteamAccount(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -1138,7 +1138,7 @@ void PlayFabClientAPI::OnUnlinkSteamAccountResult(int httpStatus, HttpRequest* r
 
         if (request->GetResultCallback() != NULL)
         {
-            UnlinkSteamAccountCallback successCallback = static_cast<UnlinkSteamAccountCallback>(request->GetResultCallback());
+            UnlinkSteamAccountCallback successCallback = (UnlinkSteamAccountCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -1172,7 +1172,7 @@ void PlayFabClientAPI::UpdateEmailAddress(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -1195,7 +1195,7 @@ void PlayFabClientAPI::OnUpdateEmailAddressResult(int httpStatus, HttpRequest* r
 
         if (request->GetResultCallback() != NULL)
         {
-            UpdateEmailAddressCallback successCallback = static_cast<UpdateEmailAddressCallback>(request->GetResultCallback());
+            UpdateEmailAddressCallback successCallback = (UpdateEmailAddressCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -1229,7 +1229,7 @@ void PlayFabClientAPI::UpdatePassword(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -1252,7 +1252,7 @@ void PlayFabClientAPI::OnUpdatePasswordResult(int httpStatus, HttpRequest* reque
 
         if (request->GetResultCallback() != NULL)
         {
-            UpdatePasswordCallback successCallback = static_cast<UpdatePasswordCallback>(request->GetResultCallback());
+            UpdatePasswordCallback successCallback = (UpdatePasswordCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -1286,7 +1286,7 @@ void PlayFabClientAPI::UpdateUserTitleDisplayName(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -1309,7 +1309,7 @@ void PlayFabClientAPI::OnUpdateUserTitleDisplayNameResult(int httpStatus, HttpRe
 
         if (request->GetResultCallback() != NULL)
         {
-            UpdateUserTitleDisplayNameCallback successCallback = static_cast<UpdateUserTitleDisplayNameCallback>(request->GetResultCallback());
+            UpdateUserTitleDisplayNameCallback successCallback = (UpdateUserTitleDisplayNameCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -1343,7 +1343,7 @@ void PlayFabClientAPI::GetFriendLeaderboard(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -1366,7 +1366,7 @@ void PlayFabClientAPI::OnGetFriendLeaderboardResult(int httpStatus, HttpRequest*
 
         if (request->GetResultCallback() != NULL)
         {
-            GetFriendLeaderboardCallback successCallback = static_cast<GetFriendLeaderboardCallback>(request->GetResultCallback());
+            GetFriendLeaderboardCallback successCallback = (GetFriendLeaderboardCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -1400,7 +1400,7 @@ void PlayFabClientAPI::GetLeaderboard(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -1423,7 +1423,7 @@ void PlayFabClientAPI::OnGetLeaderboardResult(int httpStatus, HttpRequest* reque
 
         if (request->GetResultCallback() != NULL)
         {
-            GetLeaderboardCallback successCallback = static_cast<GetLeaderboardCallback>(request->GetResultCallback());
+            GetLeaderboardCallback successCallback = (GetLeaderboardCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -1457,7 +1457,7 @@ void PlayFabClientAPI::GetLeaderboardAroundCurrentUser(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -1480,7 +1480,7 @@ void PlayFabClientAPI::OnGetLeaderboardAroundCurrentUserResult(int httpStatus, H
 
         if (request->GetResultCallback() != NULL)
         {
-            GetLeaderboardAroundCurrentUserCallback successCallback = static_cast<GetLeaderboardAroundCurrentUserCallback>(request->GetResultCallback());
+            GetLeaderboardAroundCurrentUserCallback successCallback = (GetLeaderboardAroundCurrentUserCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -1514,7 +1514,7 @@ void PlayFabClientAPI::GetUserData(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -1537,7 +1537,7 @@ void PlayFabClientAPI::OnGetUserDataResult(int httpStatus, HttpRequest* request,
 
         if (request->GetResultCallback() != NULL)
         {
-            GetUserDataCallback successCallback = static_cast<GetUserDataCallback>(request->GetResultCallback());
+            GetUserDataCallback successCallback = (GetUserDataCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -1571,7 +1571,7 @@ void PlayFabClientAPI::GetUserReadOnlyData(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -1594,7 +1594,7 @@ void PlayFabClientAPI::OnGetUserReadOnlyDataResult(int httpStatus, HttpRequest* 
 
         if (request->GetResultCallback() != NULL)
         {
-            GetUserReadOnlyDataCallback successCallback = static_cast<GetUserReadOnlyDataCallback>(request->GetResultCallback());
+            GetUserReadOnlyDataCallback successCallback = (GetUserReadOnlyDataCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -1628,7 +1628,7 @@ void PlayFabClientAPI::GetUserStatistics(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -1651,7 +1651,7 @@ void PlayFabClientAPI::OnGetUserStatisticsResult(int httpStatus, HttpRequest* re
 
         if (request->GetResultCallback() != NULL)
         {
-            GetUserStatisticsCallback successCallback = static_cast<GetUserStatisticsCallback>(request->GetResultCallback());
+            GetUserStatisticsCallback successCallback = (GetUserStatisticsCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -1685,7 +1685,7 @@ void PlayFabClientAPI::UpdateUserData(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -1708,7 +1708,7 @@ void PlayFabClientAPI::OnUpdateUserDataResult(int httpStatus, HttpRequest* reque
 
         if (request->GetResultCallback() != NULL)
         {
-            UpdateUserDataCallback successCallback = static_cast<UpdateUserDataCallback>(request->GetResultCallback());
+            UpdateUserDataCallback successCallback = (UpdateUserDataCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -1742,7 +1742,7 @@ void PlayFabClientAPI::UpdateUserStatistics(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -1765,7 +1765,7 @@ void PlayFabClientAPI::OnUpdateUserStatisticsResult(int httpStatus, HttpRequest*
 
         if (request->GetResultCallback() != NULL)
         {
-            UpdateUserStatisticsCallback successCallback = static_cast<UpdateUserStatisticsCallback>(request->GetResultCallback());
+            UpdateUserStatisticsCallback successCallback = (UpdateUserStatisticsCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -1799,7 +1799,7 @@ void PlayFabClientAPI::GetCatalogItems(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -1822,7 +1822,7 @@ void PlayFabClientAPI::OnGetCatalogItemsResult(int httpStatus, HttpRequest* requ
 
         if (request->GetResultCallback() != NULL)
         {
-            GetCatalogItemsCallback successCallback = static_cast<GetCatalogItemsCallback>(request->GetResultCallback());
+            GetCatalogItemsCallback successCallback = (GetCatalogItemsCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -1856,7 +1856,7 @@ void PlayFabClientAPI::GetStoreItems(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -1879,7 +1879,7 @@ void PlayFabClientAPI::OnGetStoreItemsResult(int httpStatus, HttpRequest* reques
 
         if (request->GetResultCallback() != NULL)
         {
-            GetStoreItemsCallback successCallback = static_cast<GetStoreItemsCallback>(request->GetResultCallback());
+            GetStoreItemsCallback successCallback = (GetStoreItemsCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -1913,7 +1913,7 @@ void PlayFabClientAPI::GetTitleData(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -1936,7 +1936,7 @@ void PlayFabClientAPI::OnGetTitleDataResult(int httpStatus, HttpRequest* request
 
         if (request->GetResultCallback() != NULL)
         {
-            GetTitleDataCallback successCallback = static_cast<GetTitleDataCallback>(request->GetResultCallback());
+            GetTitleDataCallback successCallback = (GetTitleDataCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -1970,7 +1970,7 @@ void PlayFabClientAPI::GetTitleNews(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -1993,7 +1993,7 @@ void PlayFabClientAPI::OnGetTitleNewsResult(int httpStatus, HttpRequest* request
 
         if (request->GetResultCallback() != NULL)
         {
-            GetTitleNewsCallback successCallback = static_cast<GetTitleNewsCallback>(request->GetResultCallback());
+            GetTitleNewsCallback successCallback = (GetTitleNewsCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -2027,7 +2027,7 @@ void PlayFabClientAPI::AddUserVirtualCurrency(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -2050,7 +2050,7 @@ void PlayFabClientAPI::OnAddUserVirtualCurrencyResult(int httpStatus, HttpReques
 
         if (request->GetResultCallback() != NULL)
         {
-            AddUserVirtualCurrencyCallback successCallback = static_cast<AddUserVirtualCurrencyCallback>(request->GetResultCallback());
+            AddUserVirtualCurrencyCallback successCallback = (AddUserVirtualCurrencyCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -2084,7 +2084,7 @@ void PlayFabClientAPI::ConfirmPurchase(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -2107,7 +2107,7 @@ void PlayFabClientAPI::OnConfirmPurchaseResult(int httpStatus, HttpRequest* requ
 
         if (request->GetResultCallback() != NULL)
         {
-            ConfirmPurchaseCallback successCallback = static_cast<ConfirmPurchaseCallback>(request->GetResultCallback());
+            ConfirmPurchaseCallback successCallback = (ConfirmPurchaseCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -2141,7 +2141,7 @@ void PlayFabClientAPI::ConsumeItem(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -2164,7 +2164,7 @@ void PlayFabClientAPI::OnConsumeItemResult(int httpStatus, HttpRequest* request,
 
         if (request->GetResultCallback() != NULL)
         {
-            ConsumeItemCallback successCallback = static_cast<ConsumeItemCallback>(request->GetResultCallback());
+            ConsumeItemCallback successCallback = (ConsumeItemCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -2198,7 +2198,7 @@ void PlayFabClientAPI::GetUserInventory(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -2221,7 +2221,7 @@ void PlayFabClientAPI::OnGetUserInventoryResult(int httpStatus, HttpRequest* req
 
         if (request->GetResultCallback() != NULL)
         {
-            GetUserInventoryCallback successCallback = static_cast<GetUserInventoryCallback>(request->GetResultCallback());
+            GetUserInventoryCallback successCallback = (GetUserInventoryCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -2255,7 +2255,7 @@ void PlayFabClientAPI::PayForPurchase(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -2278,7 +2278,7 @@ void PlayFabClientAPI::OnPayForPurchaseResult(int httpStatus, HttpRequest* reque
 
         if (request->GetResultCallback() != NULL)
         {
-            PayForPurchaseCallback successCallback = static_cast<PayForPurchaseCallback>(request->GetResultCallback());
+            PayForPurchaseCallback successCallback = (PayForPurchaseCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -2312,7 +2312,7 @@ void PlayFabClientAPI::PurchaseItem(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -2335,7 +2335,7 @@ void PlayFabClientAPI::OnPurchaseItemResult(int httpStatus, HttpRequest* request
 
         if (request->GetResultCallback() != NULL)
         {
-            PurchaseItemCallback successCallback = static_cast<PurchaseItemCallback>(request->GetResultCallback());
+            PurchaseItemCallback successCallback = (PurchaseItemCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -2369,7 +2369,7 @@ void PlayFabClientAPI::RedeemCoupon(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -2392,7 +2392,7 @@ void PlayFabClientAPI::OnRedeemCouponResult(int httpStatus, HttpRequest* request
 
         if (request->GetResultCallback() != NULL)
         {
-            RedeemCouponCallback successCallback = static_cast<RedeemCouponCallback>(request->GetResultCallback());
+            RedeemCouponCallback successCallback = (RedeemCouponCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -2426,7 +2426,7 @@ void PlayFabClientAPI::StartPurchase(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -2449,7 +2449,7 @@ void PlayFabClientAPI::OnStartPurchaseResult(int httpStatus, HttpRequest* reques
 
         if (request->GetResultCallback() != NULL)
         {
-            StartPurchaseCallback successCallback = static_cast<StartPurchaseCallback>(request->GetResultCallback());
+            StartPurchaseCallback successCallback = (StartPurchaseCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -2483,7 +2483,7 @@ void PlayFabClientAPI::SubtractUserVirtualCurrency(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -2506,7 +2506,7 @@ void PlayFabClientAPI::OnSubtractUserVirtualCurrencyResult(int httpStatus, HttpR
 
         if (request->GetResultCallback() != NULL)
         {
-            SubtractUserVirtualCurrencyCallback successCallback = static_cast<SubtractUserVirtualCurrencyCallback>(request->GetResultCallback());
+            SubtractUserVirtualCurrencyCallback successCallback = (SubtractUserVirtualCurrencyCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -2540,7 +2540,7 @@ void PlayFabClientAPI::UnlockContainerItem(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -2563,7 +2563,7 @@ void PlayFabClientAPI::OnUnlockContainerItemResult(int httpStatus, HttpRequest* 
 
         if (request->GetResultCallback() != NULL)
         {
-            UnlockContainerItemCallback successCallback = static_cast<UnlockContainerItemCallback>(request->GetResultCallback());
+            UnlockContainerItemCallback successCallback = (UnlockContainerItemCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -2597,7 +2597,7 @@ void PlayFabClientAPI::AddFriend(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -2620,7 +2620,7 @@ void PlayFabClientAPI::OnAddFriendResult(int httpStatus, HttpRequest* request, v
 
         if (request->GetResultCallback() != NULL)
         {
-            AddFriendCallback successCallback = static_cast<AddFriendCallback>(request->GetResultCallback());
+            AddFriendCallback successCallback = (AddFriendCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -2654,7 +2654,7 @@ void PlayFabClientAPI::GetFriendsList(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -2677,7 +2677,7 @@ void PlayFabClientAPI::OnGetFriendsListResult(int httpStatus, HttpRequest* reque
 
         if (request->GetResultCallback() != NULL)
         {
-            GetFriendsListCallback successCallback = static_cast<GetFriendsListCallback>(request->GetResultCallback());
+            GetFriendsListCallback successCallback = (GetFriendsListCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -2711,7 +2711,7 @@ void PlayFabClientAPI::RemoveFriend(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -2734,7 +2734,7 @@ void PlayFabClientAPI::OnRemoveFriendResult(int httpStatus, HttpRequest* request
 
         if (request->GetResultCallback() != NULL)
         {
-            RemoveFriendCallback successCallback = static_cast<RemoveFriendCallback>(request->GetResultCallback());
+            RemoveFriendCallback successCallback = (RemoveFriendCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -2768,7 +2768,7 @@ void PlayFabClientAPI::SetFriendTags(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -2791,7 +2791,7 @@ void PlayFabClientAPI::OnSetFriendTagsResult(int httpStatus, HttpRequest* reques
 
         if (request->GetResultCallback() != NULL)
         {
-            SetFriendTagsCallback successCallback = static_cast<SetFriendTagsCallback>(request->GetResultCallback());
+            SetFriendTagsCallback successCallback = (SetFriendTagsCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -2825,7 +2825,7 @@ void PlayFabClientAPI::RegisterForIOSPushNotification(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -2848,7 +2848,7 @@ void PlayFabClientAPI::OnRegisterForIOSPushNotificationResult(int httpStatus, Ht
 
         if (request->GetResultCallback() != NULL)
         {
-            RegisterForIOSPushNotificationCallback successCallback = static_cast<RegisterForIOSPushNotificationCallback>(request->GetResultCallback());
+            RegisterForIOSPushNotificationCallback successCallback = (RegisterForIOSPushNotificationCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -2882,7 +2882,7 @@ void PlayFabClientAPI::ValidateIOSReceipt(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -2905,7 +2905,7 @@ void PlayFabClientAPI::OnValidateIOSReceiptResult(int httpStatus, HttpRequest* r
 
         if (request->GetResultCallback() != NULL)
         {
-            ValidateIOSReceiptCallback successCallback = static_cast<ValidateIOSReceiptCallback>(request->GetResultCallback());
+            ValidateIOSReceiptCallback successCallback = (ValidateIOSReceiptCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -2939,7 +2939,7 @@ void PlayFabClientAPI::GetCurrentGames(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -2962,7 +2962,7 @@ void PlayFabClientAPI::OnGetCurrentGamesResult(int httpStatus, HttpRequest* requ
 
         if (request->GetResultCallback() != NULL)
         {
-            GetCurrentGamesCallback successCallback = static_cast<GetCurrentGamesCallback>(request->GetResultCallback());
+            GetCurrentGamesCallback successCallback = (GetCurrentGamesCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -2996,7 +2996,7 @@ void PlayFabClientAPI::GetGameServerRegions(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -3019,7 +3019,7 @@ void PlayFabClientAPI::OnGetGameServerRegionsResult(int httpStatus, HttpRequest*
 
         if (request->GetResultCallback() != NULL)
         {
-            GetGameServerRegionsCallback successCallback = static_cast<GetGameServerRegionsCallback>(request->GetResultCallback());
+            GetGameServerRegionsCallback successCallback = (GetGameServerRegionsCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -3053,7 +3053,7 @@ void PlayFabClientAPI::Matchmake(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -3076,7 +3076,7 @@ void PlayFabClientAPI::OnMatchmakeResult(int httpStatus, HttpRequest* request, v
 
         if (request->GetResultCallback() != NULL)
         {
-            MatchmakeCallback successCallback = static_cast<MatchmakeCallback>(request->GetResultCallback());
+            MatchmakeCallback successCallback = (MatchmakeCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -3110,7 +3110,7 @@ void PlayFabClientAPI::StartGame(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -3133,7 +3133,7 @@ void PlayFabClientAPI::OnStartGameResult(int httpStatus, HttpRequest* request, v
 
         if (request->GetResultCallback() != NULL)
         {
-            StartGameCallback successCallback = static_cast<StartGameCallback>(request->GetResultCallback());
+            StartGameCallback successCallback = (StartGameCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -3167,7 +3167,7 @@ void PlayFabClientAPI::AndroidDevicePushNotificationRegistration(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -3190,7 +3190,7 @@ void PlayFabClientAPI::OnAndroidDevicePushNotificationRegistrationResult(int htt
 
         if (request->GetResultCallback() != NULL)
         {
-            AndroidDevicePushNotificationRegistrationCallback successCallback = static_cast<AndroidDevicePushNotificationRegistrationCallback>(request->GetResultCallback());
+            AndroidDevicePushNotificationRegistrationCallback successCallback = (AndroidDevicePushNotificationRegistrationCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -3224,7 +3224,7 @@ void PlayFabClientAPI::ValidateGooglePlayPurchase(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -3247,7 +3247,7 @@ void PlayFabClientAPI::OnValidateGooglePlayPurchaseResult(int httpStatus, HttpRe
 
         if (request->GetResultCallback() != NULL)
         {
-            ValidateGooglePlayPurchaseCallback successCallback = static_cast<ValidateGooglePlayPurchaseCallback>(request->GetResultCallback());
+            ValidateGooglePlayPurchaseCallback successCallback = (ValidateGooglePlayPurchaseCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -3281,7 +3281,7 @@ void PlayFabClientAPI::LogEvent(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -3304,7 +3304,7 @@ void PlayFabClientAPI::OnLogEventResult(int httpStatus, HttpRequest* request, vo
 
         if (request->GetResultCallback() != NULL)
         {
-            LogEventCallback successCallback = static_cast<LogEventCallback>(request->GetResultCallback());
+            LogEventCallback successCallback = (LogEventCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -3338,7 +3338,7 @@ void PlayFabClientAPI::AddSharedGroupMembers(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -3361,7 +3361,7 @@ void PlayFabClientAPI::OnAddSharedGroupMembersResult(int httpStatus, HttpRequest
 
         if (request->GetResultCallback() != NULL)
         {
-            AddSharedGroupMembersCallback successCallback = static_cast<AddSharedGroupMembersCallback>(request->GetResultCallback());
+            AddSharedGroupMembersCallback successCallback = (AddSharedGroupMembersCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -3395,7 +3395,7 @@ void PlayFabClientAPI::CreateSharedGroup(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -3418,7 +3418,7 @@ void PlayFabClientAPI::OnCreateSharedGroupResult(int httpStatus, HttpRequest* re
 
         if (request->GetResultCallback() != NULL)
         {
-            CreateSharedGroupCallback successCallback = static_cast<CreateSharedGroupCallback>(request->GetResultCallback());
+            CreateSharedGroupCallback successCallback = (CreateSharedGroupCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -3452,7 +3452,7 @@ void PlayFabClientAPI::GetSharedGroupData(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -3475,7 +3475,7 @@ void PlayFabClientAPI::OnGetSharedGroupDataResult(int httpStatus, HttpRequest* r
 
         if (request->GetResultCallback() != NULL)
         {
-            GetSharedGroupDataCallback successCallback = static_cast<GetSharedGroupDataCallback>(request->GetResultCallback());
+            GetSharedGroupDataCallback successCallback = (GetSharedGroupDataCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -3509,7 +3509,7 @@ void PlayFabClientAPI::RemoveSharedGroupMembers(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -3532,7 +3532,7 @@ void PlayFabClientAPI::OnRemoveSharedGroupMembersResult(int httpStatus, HttpRequ
 
         if (request->GetResultCallback() != NULL)
         {
-            RemoveSharedGroupMembersCallback successCallback = static_cast<RemoveSharedGroupMembersCallback>(request->GetResultCallback());
+            RemoveSharedGroupMembersCallback successCallback = (RemoveSharedGroupMembersCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -3566,7 +3566,7 @@ void PlayFabClientAPI::UpdateSharedGroupData(
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
@@ -3589,7 +3589,7 @@ void PlayFabClientAPI::OnUpdateSharedGroupDataResult(int httpStatus, HttpRequest
 
         if (request->GetResultCallback() != NULL)
         {
-            UpdateSharedGroupDataCallback successCallback = static_cast<UpdateSharedGroupDataCallback>(request->GetResultCallback());
+            UpdateSharedGroupDataCallback successCallback = (UpdateSharedGroupDataCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -3610,43 +3610,44 @@ void PlayFabClientAPI::OnUpdateSharedGroupDataResult(int httpStatus, HttpRequest
 }
 
 
-void PlayFabClientAPI::GetLogicServerUrl(
-    GetLogicServerUrlRequest& request,
-    GetLogicServerUrlCallback callback,
+void PlayFabClientAPI::GetCloudScriptUrl(
+    GetCloudScriptUrlRequest& request,
+    GetCloudScriptUrlCallback callback,
     ErrorCallback errorCallback,
     void* userData
     )
 {
     
-    HttpRequest* httpRequest = new HttpRequest("POST", PlayFabSettings::getURL("/Client/GetLogicServerUrl"));
+    HttpRequest* httpRequest = new HttpRequest("POST", PlayFabSettings::getURL("/Client/GetCloudScriptUrl"));
     httpRequest->SetHeader("Content-Type", "application/json");
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
     httpRequest->SetBody(request.toJSONString());
     httpRequest->CompressBody();
 
-    mHttpRequester->AddRequest(httpRequest, OnGetLogicServerUrlResult, this);
+    mHttpRequester->AddRequest(httpRequest, OnGetCloudScriptUrlResult, this);
 }
 
-void PlayFabClientAPI::OnGetLogicServerUrlResult(int httpStatus, HttpRequest* request, void* userData)
+void PlayFabClientAPI::OnGetCloudScriptUrlResult(int httpStatus, HttpRequest* request, void* userData)
 {
-    GetLogicServerUrlResult outResult;
+    GetCloudScriptUrlResult outResult;
     PlayFabError errorResult;
 
     bool success = PlayFabRequestHandler::DecodeRequest(httpStatus, request, userData, outResult, errorResult);
 
     if (success)
     {
-        
+        if (outResult.Url.length() > 0)
+			PlayFabSettings::logicServerURL = outResult.Url;
 
         if (request->GetResultCallback() != NULL)
         {
-            GetLogicServerUrlCallback successCallback = static_cast<GetLogicServerUrlCallback>(request->GetResultCallback());
+            GetCloudScriptUrlCallback successCallback = (GetCloudScriptUrlCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
@@ -3667,32 +3668,32 @@ void PlayFabClientAPI::OnGetLogicServerUrlResult(int httpStatus, HttpRequest* re
 }
 
 
-void PlayFabClientAPI::ServerAction(
-    ServerActionRequest& request,
-    ServerActionCallback callback,
+void PlayFabClientAPI::RunCloudScript(
+    RunCloudScriptRequest& request,
+    RunCloudScriptCallback callback,
     ErrorCallback errorCallback,
     void* userData
     )
 {
     
-    HttpRequest* httpRequest = new HttpRequest("POST", PlayFabSettings::getURL("/Client/ServerAction"));
+    HttpRequest* httpRequest = new HttpRequest("POST", PlayFabSettings::getLogicURL("/Client/RunCloudScript"));
     httpRequest->SetHeader("Content-Type", "application/json");
 	httpRequest->SetHeader("X-PlayFabSDK", PlayFabVersionString);
 	httpRequest->SetHeader("X-Authorization", mUserSessionTicket);
 	
-    httpRequest->SetResultCallback(callback);
+    httpRequest->SetResultCallback((void*)callback);
     httpRequest->SetErrorCallback(errorCallback);
     httpRequest->SetUserData(userData);
 
     httpRequest->SetBody(request.toJSONString());
     httpRequest->CompressBody();
 
-    mHttpRequester->AddRequest(httpRequest, OnServerActionResult, this);
+    mHttpRequester->AddRequest(httpRequest, OnRunCloudScriptResult, this);
 }
 
-void PlayFabClientAPI::OnServerActionResult(int httpStatus, HttpRequest* request, void* userData)
+void PlayFabClientAPI::OnRunCloudScriptResult(int httpStatus, HttpRequest* request, void* userData)
 {
-    ServerActionResult outResult;
+    RunCloudScriptResult outResult;
     PlayFabError errorResult;
 
     bool success = PlayFabRequestHandler::DecodeRequest(httpStatus, request, userData, outResult, errorResult);
@@ -3703,7 +3704,7 @@ void PlayFabClientAPI::OnServerActionResult(int httpStatus, HttpRequest* request
 
         if (request->GetResultCallback() != NULL)
         {
-            ServerActionCallback successCallback = static_cast<ServerActionCallback>(request->GetResultCallback());
+            RunCloudScriptCallback successCallback = (RunCloudScriptCallback)(request->GetResultCallback());
             successCallback(outResult, request->GetUserData());
         }
     }
